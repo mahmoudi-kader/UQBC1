@@ -14,7 +14,7 @@ public class Etudiant {
         return codePermanent;
     }
     
-    void String setCodePermanent(String codePermanent){
+    public void setCodePermanent(String codePermanent){
         this.codePermanent = codePermanent;
     }
     
@@ -22,7 +22,7 @@ public class Etudiant {
         return nom;
     }
     
-    void String setNom(String nom){
+    public void setNom(String nom){
         this.nom = nom;
     }
 
@@ -30,7 +30,7 @@ public class Etudiant {
         return codePermanent;
     }
     
-    void String setPrenom(String prenom){
+    public void setPrenom(String prenom){
         this.prenom = prenom;
     }    
 }
