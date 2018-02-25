@@ -8,22 +8,22 @@ package inf2015.tp1.uqbc;
  * @author nawal
  */
 public class Cours {
-    private String cours;
+    private String titre;
     private String groupe;
     private String session;
 
     /**
      * @return the cours
      */
-    public String getCours() {
-        return cours;
+    public String getTitre() {
+        return titre;
     }
 
     /**
      * @param cours the cours to set
      */
-    public void setCours(String cours) {
-        this.cours = cours;
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     /**
