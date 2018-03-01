@@ -27,7 +27,7 @@ public class Etudiant {
     }
 
     public String getPrenom(){
-        return codePermanent;
+        return prenom;
     }
     
     public void setPrenom(String prenom){
