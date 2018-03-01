@@ -10,6 +10,7 @@ public class Cours {
     private String titre;
     private String groupe;
     private String session;
+    private String commentaire;
     private List<Evaluation> listeEvaluation;
     
     public String getTitre() {
@@ -36,5 +37,11 @@ public class Cours {
         this.session = session;
     }
     
+    public String getCommentaire() {
+        return commentaire;
+    }
     
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
 }
