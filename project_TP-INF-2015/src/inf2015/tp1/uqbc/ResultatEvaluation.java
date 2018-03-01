@@ -1,7 +1,7 @@
 package inf2015.tp1.uqbc;
 
 /**
- *  La classe qui représente un résultat d'évalution pour un étudiant
+ *  La classe qui représente un résultat d'évaluation pour un étudiant
  * @author benoit
  */
 public class ResultatEvaluation {
