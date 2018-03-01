@@ -1,5 +1,8 @@
 
 package inf2015.tp1.uqbc;
+
+import java.util.List;
+
 /*
  * Classe qui représente un cours
  */
@@ -7,7 +10,7 @@ public class Cours {
     private String titre;
     private String groupe;
     private String session;
-
+    private List<Evaluation> listeEvaluation;
     
     public String getTitre() {
         return titre;
