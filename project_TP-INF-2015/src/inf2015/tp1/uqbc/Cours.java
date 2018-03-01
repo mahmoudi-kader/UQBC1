@@ -12,6 +12,7 @@ public class Cours {
     private String session;
     private String commentaire;
     private List<Evaluation> listeEvaluation;
+    private List<Etudiant> listeEtudiant;
     
     public String getTitre() {
         return titre;
