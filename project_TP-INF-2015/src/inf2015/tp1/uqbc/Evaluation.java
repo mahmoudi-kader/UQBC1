@@ -1,5 +1,7 @@
 package inf2015.tp1.uqbc;
 
+import java.util.List;
+
 /**
  *
  * @author Abdelkader
