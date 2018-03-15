@@ -2,6 +2,8 @@ package inf2015.tp1.uqbc;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,8 +24,8 @@ public class ValidationDonnees {
     
     public void validerRepertoire(){
         String numeroEvaluation;
-        int i=0;
-        int nombreLecture=0;
+        int nombreLectureCours=0;
+        int nombreLectureEvaluation=0;
         int nombreFichiers=0;
         String nomCours;
         String numeroCours;
@@ -31,15 +33,18 @@ public class ValidationDonnees {
         String session;
         String identifiantListe = "ListeEtudiantsCours";
         String identifiantEvaluation = "evaluation";
-        List <Cours> cours = new ArrayList<>();
-        Cours coursTemp = new Cours();
+        List <Cours> cours = new ArrayList<Cours>();
+        Cours coursTemp;
         Evaluation evaluationTemp = new Evaluation();
         
         File rep = new File(getNomRepertoire());
         File[] fichiers = rep.listFiles();
+        Arrays.sort(fichiers,Collections.reverseOrder());
+        
         nombreFichiers=fichiers.length;
         System.out.println(nombreFichiers);
-        while( i < nombreFichiers  & nombreLecture < nombreFichiers){ //i < nombreFichiers  && 
+        for(int i =0; i < nombreFichiers ; i++ ){ //i < nombreFichiers  && 
+            coursTemp = new Cours();
             if(fichiers[i].getName().startsWith(identifiantListe) ){
                 nomCours= fichiers[i].getName().replaceAll(identifiantListe, "").substring(0,3);
                 numeroCours= fichiers[i].getName().replaceAll(identifiantListe, "").substring(3,7);
@@ -48,8 +53,9 @@ public class ValidationDonnees {
                 coursTemp.setTitre(nomCours);
                 coursTemp.setGroupe(groupe);
                 coursTemp.setSession(session);
+                coursTemp.setNumero(numeroCours);
                 cours.add(coursTemp);
-                nombreLecture++;
+                nombreLectureCours++;
             }else if(fichiers[i].getName().startsWith(identifiantEvaluation) ){
                 numeroEvaluation = fichiers[i].getName().replaceAll(identifiantEvaluation, "").substring(0,1);
                 nomCours= fichiers[i].getName().replaceAll(identifiantEvaluation, "").substring(1,4);
@@ -62,19 +68,14 @@ public class ValidationDonnees {
                             evaluationTemp.setNumeroEvaluation(numeroEvaluation);
                             coursTemp=cours.get(j);
                             cours.set(j,coursTemp).setListeEvaluation(evaluationTemp);
-                            nombreLecture++;
+                            nombreLectureEvaluation++;
                         }
                     }
                 }
             }
-            if ( i >= nombreFichiers-1 & nombreLecture < nombreFichiers){
-                i=0;
-            }else{
-                i++;
-            }
         }
-        System.out.println(nombreLecture);
+        System.out.println(nombreLectureCours);
+        System.out.println(nombreLectureEvaluation);
         System.out.println(cours.size());
     }
-    
 }
