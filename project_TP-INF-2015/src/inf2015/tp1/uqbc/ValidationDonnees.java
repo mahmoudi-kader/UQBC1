@@ -59,9 +59,9 @@ public class ValidationDonnees {
                 if( ! cours.isEmpty() ){
                     for(int j=0; j<cours.size();j++){
                         if(nomCours.equalsIgnoreCase(cours.get(j).getTitre()) && groupe.equalsIgnoreCase(cours.get(j).getGroupe()) && session.equalsIgnoreCase(cours.get(j).getSession()) ){
-                            evaluationTemp.setNumeroEvaluation(numeroEvaluation);
+                         //   evaluationTemp.setNumeroEvaluation(numeroEvaluation);
                             coursTemp=cours.get(j);
-                            cours.set(j,coursTemp).setListeEvaluation(evaluationTemp);
+                          //  cours.set(j,coursTemp).setListeEvaluation(evaluationTemp);
                             nombreLecture++;
                         }
                     }
