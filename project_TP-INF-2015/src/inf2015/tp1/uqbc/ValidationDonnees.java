@@ -1,4 +1,4 @@
-package inf2015.tp1.uqbc;
+/*package inf2015.tp1.uqbc;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import java.util.List;
  *
  * La classe qui fait les validations
  */
+/*
 public class ValidationDonnees {
     private String nomRepertoire;
     
@@ -80,3 +81,4 @@ public class ValidationDonnees {
         System.out.println(cours.size());
     }
 }
+*/

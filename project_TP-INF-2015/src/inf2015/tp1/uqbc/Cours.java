@@ -8,7 +8,7 @@ import java.util.List;
  * Classe qui représente un cours
  */
 public class Cours {
-    private String jsonString;
+
     private String titre;
     private String groupe;
     private String session;
@@ -18,6 +18,16 @@ public class Cours {
     private List<Etudiant> listeEtudiant;
     private double moyenneGroupe=0;
     
+    public Cours(){
+        
+    }
+    public Cours(String titre, String groupe, String session, String commentaire, String numeroCours){
+        this.titre = titre;
+        this.groupe = groupe;
+        this.session = session;
+        this.commentaire = commentaire;
+        this.numeroCours = numeroCours;
+    }
     public String getTitre() {
         return titre;
     }
@@ -71,6 +81,14 @@ public class Cours {
             
         }
         return listNoteEtudiants;
+    }
+    
+    public void setListeEvaluation(List<Evaluation> listeEvaluation) {
+        this.listeEvaluation = listeEvaluation;
+    }
+
+    public void setListeEtudiant(List<Etudiant> listeEtudiant) {
+        this.listeEtudiant = listeEtudiant;
     }
 
 }

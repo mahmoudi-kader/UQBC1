@@ -9,6 +9,15 @@ public class ResultatEvaluation {
     private Etudiant etudiant;
     private Double note;
     
+    public ResultatEvaluation(){
+        
+    }
+    
+    public ResultatEvaluation(Etudiant etudiant, Double note){
+        this.etudiant = etudiant;
+        this.note = note;
+    }
+    
     public Etudiant getEtudiant(){
         return etudiant;
     }

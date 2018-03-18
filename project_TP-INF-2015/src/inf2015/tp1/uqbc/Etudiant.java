@@ -10,6 +10,14 @@ public class Etudiant {
     private String nom;
     private String prenom;
     
+    public Etudiant(){
+        
+    }
+    public Etudiant(String codePermanent, String nom, String prenom){
+        this.codePermanent = codePermanent;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
     public String getCodePermanent(){
         return codePermanent;
     }
