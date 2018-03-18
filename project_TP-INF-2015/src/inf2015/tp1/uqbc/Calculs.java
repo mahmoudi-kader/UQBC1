@@ -22,13 +22,13 @@ public class Calculs {
         return moyenne;
     }
     
-    public double calculNotePondereeGlobale(List<Cours> liste, String titre, String codeParmanent){
+    public double calculNotePondereeGlobale(List<Evaluation> listeEvaluation, String titre, String codeParmanent){
         double notePonderee=0;
         
         return notePonderee;
     }
     
-    public double calculNotePondereeEvaluation(List<Cours> liste, String titre, String codeParmanent, String numeroEvaluation){
+    public double calculNotePondereeEvaluation(List<Evaluation> listeEvaluation, String titre, String codeParmanent, String numeroEvaluation){
         double notePonderee=0;
         
         return notePonderee;
