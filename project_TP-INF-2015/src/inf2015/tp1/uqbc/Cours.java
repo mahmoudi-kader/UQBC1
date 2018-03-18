@@ -3,6 +3,7 @@ package inf2015.tp1.uqbc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /*
  * Classe qui représente un cours
@@ -68,4 +69,39 @@ public class Cours {
         return listNoteEtudiants;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cours other = (Cours) obj;
+        if (!Objects.equals(this.titre, other.titre)) {
+            return false;
+        }
+        if (!Objects.equals(this.groupe, other.groupe)) {
+            return false;
+        }
+        if (!Objects.equals(this.session, other.session)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroCours, other.numeroCours)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 }
