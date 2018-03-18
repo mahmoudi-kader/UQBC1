@@ -1,6 +1,7 @@
 
 package inf2015.tp1.uqbc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -15,6 +16,7 @@ public class Cours {
     private String numeroCours;
     private List<Evaluation> listeEvaluation;
     private List<Etudiant> listeEtudiant;
+    private double moyenneGroupe=0;
     
     public String getTitre() {
         return titre;
@@ -41,8 +43,6 @@ public class Cours {
     }
     
     public String getCommentaire() {
-       
-    
           return commentaire ; 
     }
     
@@ -57,4 +57,9 @@ public class Cours {
     public void setNumeroCours(String numeroCours) {
         this.numeroCours = numeroCours;
     }
+
+    public double getMoyenneGroupe() {
+        return moyenneGroupe;
+    }
+
 }
