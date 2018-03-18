@@ -22,7 +22,6 @@ public class FichierListeEtudiant extends FichierJSON {
        
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(nomFichier);
-        m.
         boolean succes = m.matches();
         if(succes){
             int groupCount = m.groupCount();
