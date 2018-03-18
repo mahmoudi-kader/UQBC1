@@ -5,7 +5,7 @@ import org.junit.Test;
  *
  * @author benoit
  */
-public class RamasseFichierTest {
+public class TraitementFichierTest {
     
     @Test
     public void testRamasserAppelerAvecListeNull(){

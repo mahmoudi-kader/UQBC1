@@ -1,7 +1,7 @@
 package inf2015.tp1.uqbc;
 
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
-import inf2015.tp1.uqbc.fichiers.RamasseFichiers;
+import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +21,10 @@ public class Application {
         
         List<FichierJSON> listeFichiers = new ArrayList();
         Map<Cours,FichierJSON> map = new HashMap();
-        RamasseFichiers.ramasser(null, listeFichiers);
+        TraitementFichiers.ramasser(null, listeFichiers);
         //traiter chargement objets : Benoit
+        
+        
         
         
         //TODO Benoit

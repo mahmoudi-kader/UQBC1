@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * @author benoit
  */
-public class RamasseFichiers {
+public class TraitementFichiers {
     
     private static final String defaultWorkingDirectory = "./";
     private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
