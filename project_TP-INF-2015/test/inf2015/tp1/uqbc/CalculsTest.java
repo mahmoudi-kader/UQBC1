@@ -23,41 +23,38 @@ public class CalculsTest {
     public CalculsTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    
     @Test
     public void testCalculs(){
         List<Evaluation> listeEvaluation = new ArrayList<Evaluation>();
-        List<Etudiant> listeEtudiant= new ArrayList<Etudiant>();
+        List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
+        List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        
         Cours cours1 = new Cours("BIO", "Gr10", "H18", "BlaBla", "1012");
-        Etudiant etudiantTemp = new Etudiant("SADN27272727","Saddd","Naaaa");
-        listeEtudiant.add(etudiantTemp);
-        etudiantTemp = new Etudiant("DASS27272727","Dasss","Naaaa");
-        listeEtudiant.add(etudiantTemp);
+        Etudiant etudiantTemp1 = new Etudiant("SADN27272727","Saddd","Naaaa");
+        Etudiant etudiantTemp2 = new Etudiant("DASS27272727","Dasss","Naaaa");
+        listeEtudiant.add(etudiantTemp1);
+        listeEtudiant.add(etudiantTemp2);
+        cours1.setListeEtudiant(listeEtudiant);
+        
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2,15.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1,13.0));
+        listeEvaluation.add(new Evaluation("blabla", "1", "TP", "TP", "20%"));
+        listeEvaluation.get(0).setListeResultatEvaluation(listeResultatEvaluation);
+        
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2,35.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1,38.0));
+        listeEvaluation.add(new Evaluation("blabla", "2", "Examen intra", "Examen", "40%"));
+        listeEvaluation.get(1).setListeResultatEvaluation(listeResultatEvaluation);
+        
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2,36.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1,36.0));
+        listeEvaluation.add(new Evaluation("blabla", "3", "Examen final", "Examen", "40%"));
+        listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
+        cours1.setListeEvaluation(listeEvaluation);
         
         double moyenne = cours1.getMoyenneGroupe();
-        
-        Assert.assertEquals("La moyenne du cours " + cours1.getTitre() + " est ", 21.33, moyenne);
+        System.out.println(moyenne);
+        Assert.assertEquals(86.5, moyenne,0.001);
         
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
