@@ -12,14 +12,16 @@ public class Calculs {
         double moyenne = 0;
         double total = 0;
         int nombreEvaluation = 0;
-        for(Evaluation evaluation : listeEvaluation){
-            for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
-                if(resultat.getNote() > 0){
-                    total = total + resultat.getNote();
-                    nombreEvaluation++;
+        if (!(listeEvaluation == null)){
+            for(Evaluation evaluation : listeEvaluation){
+                for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
+                    if(resultat.getNote() > 0){
+                        total = total + resultat.getNote();
+                        nombreEvaluation++;
+                    }
                 }
+                moyenne = moyenne + (total / nombreEvaluation);
             }
-            moyenne = moyenne + (total / nombreEvaluation);
         }
         return moyenne;
     }
