@@ -56,7 +56,12 @@ public class Evaluation {
     }
 
     public double getMoyenneGroupeEvaluation() {
+        moyenneGroupeEvaluation = Calculs.calculMoyenneGroupeEvaluation(listeResultatEvaluation);
         return moyenneGroupeEvaluation;
+    }
+
+    public List<ResultatEvaluation> getListeResultatEvaluation() {
+        return listeResultatEvaluation;
     }
 
 }
