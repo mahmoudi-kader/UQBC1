@@ -8,30 +8,104 @@ import java.util.List;
  */
 public class Calculs {
     
-    
-    
-    public double calculMoyenneGroupeGlobale(List<Evaluation> listeEvaluation){
-        double moyenne=0;
-        
+    public static double calculMoyenneGroupeGlobale(List<Evaluation> listeEvaluation){
+        double moyenne = 0;
+        double total = 0;
+        int nombreEvaluation = 0;
+        for(Evaluation evaluation : listeEvaluation){
+            for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
+                if(resultat.getNote() > 0){
+                    total = total + resultat.getNote();
+                    nombreEvaluation++;
+                }
+            }
+            moyenne = moyenne + (total / nombreEvaluation);
+        }
         return moyenne;
     }
     
-    public double calculMoyenneGroupeEvaluation(List<ResultatEvaluation> listeEtudiant){
-        double moyenne=0;
-        
+    public static double calculPonderationGroupeGlobale(List<Evaluation> listeEvaluation){
+        boolean ponderationExiste = false;
+        double total = 0;
+        for(Evaluation evaluation : listeEvaluation){
+            for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
+                if(resultat.getNote() > 0){
+                    ponderationExiste = true;
+                }
+            }
+            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+         }
+        return total;
+    }
+    
+    public static double calculMoyenneGroupeEvaluation(List<ResultatEvaluation> listeResultatEvaluation){
+        double moyenne = 0;
+        double total = 0;
+        int nombreEvaluation = 0;
+            for(ResultatEvaluation resultat:listeResultatEvaluation){
+                if(resultat.getNote() > 0){
+                    total = total + resultat.getNote();
+                    nombreEvaluation++;
+                }
+            }
+            moyenne = moyenne + (total / nombreEvaluation);
         return moyenne;
     }
     
-    public double calculNotePondereeGlobale(List<Evaluation> listeEvaluation, String titre, String codeParmanent){
+    public static double calculNotePondereeGlobale(List<Evaluation> listeEvaluation, String codeParmanent){
         double notePonderee=0;
-        
+        double total = 0;
+        int nombreEvaluation = 0;
+        for(Evaluation evaluation : listeEvaluation){
+            for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
+                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                    total = total + resultat.getNote();
+                    nombreEvaluation++;
+                }
+            }
+        }
+        notePonderee = notePonderee + (total / nombreEvaluation);
         return notePonderee;
     }
     
-    public double calculNotePondereeEvaluation(List<Evaluation> listeEvaluation, String titre, String codeParmanent, String numeroEvaluation){
+    public static double calculPonderationGlobaleEtudiant(List<Evaluation> listeEvaluation, String codeParmanent){
         double notePonderee=0;
-        
+        boolean ponderationExiste = false;
+        double total = 0;
+        int nombreEvaluation = 0;
+        for(Evaluation evaluation : listeEvaluation){
+            for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
+                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                    ponderationExiste = true;
+                }
+            }
+            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+        }
+        return total;
+    }
+    
+    public static double calculNotePondereeEvaluation(List<Evaluation> listeEvaluation, String codeParmanent, String numeroEvaluation){
+        double notePonderee=0;
+        double total = 0;
+        int nombreEvaluation = 0;
+        for(Evaluation evaluation : listeEvaluation){
+            for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
+                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                    total = total + resultat.getNote();
+                    nombreEvaluation++;
+                }
+            }
+        }
+        notePonderee = notePonderee + (total / nombreEvaluation);
         return notePonderee;
+    }
+    
+    private static double convertirPonderation(String ponderation){
+        double nombre = 0;
+        
+        nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
+        
+        return nombre;
     }
             
             

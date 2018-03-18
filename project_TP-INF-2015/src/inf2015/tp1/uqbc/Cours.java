@@ -59,12 +59,17 @@ public class Cours {
     }
 
     public double getMoyenneGroupe() {
+        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(listeEvaluation);
         return moyenneGroupe;
     }
     
     public ArrayList<String> moyenneEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         ArrayList<String> listNoteEtudiants = new ArrayList();
-        
+        double moyenneEtudiantGlobal = 0;
+        for(Etudiant etudiant:listeEtudiant){
+            moyenneEtudiantGlobal = Calculs.calculNotePondereeGlobale(listeEvaluation, etudiant.getCodePermanent());
+            
+        }
         return listNoteEtudiants;
     }
 
