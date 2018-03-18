@@ -12,6 +12,7 @@ public class Cours {
     private String groupe;
     private String session;
     private String commentaire;
+    private String numeroCours;
     private List<Evaluation> listeEvaluation;
     private List<Etudiant> listeEtudiant;
     
@@ -47,5 +48,13 @@ public class Cours {
     
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
+    }
+
+    public String getNumeroCours() {
+        return numeroCours;
+    }
+
+    public void setNumeroCours(String numeroCours) {
+        this.numeroCours = numeroCours;
     }
 }
