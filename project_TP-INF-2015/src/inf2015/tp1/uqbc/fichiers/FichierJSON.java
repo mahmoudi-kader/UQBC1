@@ -11,6 +11,8 @@ public abstract class FichierJSON {
     private String json;
     private File fichier;
 
+    public abstract boolean testerNomFichier(String nomFichier);
+    
     public String getJson() {
         return json;
     }

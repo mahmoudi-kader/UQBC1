@@ -27,7 +27,7 @@ public class FichierListeEtudiantTest {
         
         boolean resultat = fichierListeEtudiant.testerNomFichier("ListeEtudiantsCoursBI0O1012-Gr10-H18.json");
         
-        Assert.assertFalse("Le nom du fichier est valide masi devrait être invalide.", resultat);
+        Assert.assertFalse("Le nom du fichier est valide mais devrait être invalide.", resultat);
         
     }
     
