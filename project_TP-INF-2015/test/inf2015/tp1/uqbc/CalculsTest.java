@@ -52,9 +52,6 @@ public class CalculsTest {
         double moyenneEvaluation = 0;
         System.out.println("La moyenne du cours " + moyenneCours);
         Assert.assertEquals(86.5, moyenneCours,0.001);
-        System.out.println(cours1.getListeEvaluation().get(0).getListeResultatEvaluation().get(0).getNote());
-        System.out.println(cours1.getListeEvaluation().get(0).getListeResultatEvaluation().get(1).getNote());
-        moyenneEvaluation = cours1.getListeEvaluation().get(0).getMoyenneGroupeEvaluation();
         Assert.assertEquals(14.0, moyenneEvaluation,0.001);
     }
 }
