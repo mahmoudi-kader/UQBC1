@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Evaluation {
  private String commentaire;
+ private String numeroEvaluation;
  private String nomEvaluation;
  private String type;
  private String ponderation;
@@ -43,6 +44,14 @@ public class Evaluation {
 
     public void setPonderation(String ponderation) {
         this.ponderation = ponderation;
+    }
+
+    public String getNumeroEvaluation() {
+        return numeroEvaluation;
+    }
+
+    public void setNumeroEvaluation(String numeroEvaluation) {
+        this.numeroEvaluation = numeroEvaluation;
     }
 
 }
