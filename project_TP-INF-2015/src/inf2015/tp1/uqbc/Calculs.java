@@ -50,6 +50,8 @@ public class Calculs {
                     nombreEvaluation++;
                 }
             }
+            System.out.println("total" + total);
+            System.out.println("nombreEvaluation" + nombreEvaluation);
             moyenne = moyenne + (total / nombreEvaluation);
         return moyenne;
     }

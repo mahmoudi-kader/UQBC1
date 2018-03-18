@@ -7,11 +7,7 @@ package inf2015.tp1.uqbc;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,9 +48,13 @@ public class CalculsTest {
         listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
         cours1.setListeEvaluation(listeEvaluation);
         
-        double moyenne = cours1.getMoyenneGroupe();
-        System.out.println(moyenne);
-        Assert.assertEquals(86.5, moyenne,0.001);
-        
+        double moyenneCours = cours1.getMoyenneGroupe();
+        double moyenneEvaluation = 0;
+        System.out.println("La moyenne du cours " + moyenneCours);
+        Assert.assertEquals(86.5, moyenneCours,0.001);
+        System.out.println(cours1.getListeEvaluation().get(0).getListeResultatEvaluation().get(0).getNote());
+        System.out.println(cours1.getListeEvaluation().get(0).getListeResultatEvaluation().get(1).getNote());
+        moyenneEvaluation = cours1.getListeEvaluation().get(0).getMoyenneGroupeEvaluation();
+        Assert.assertEquals(14.0, moyenneEvaluation,0.001);
     }
 }
