@@ -1,4 +1,4 @@
-package inf2015.tp1.uqbc;
+package inf2015.tp1.uqbc.fichiers;
 
 import java.io.File;
 import java.util.List;
@@ -27,10 +27,23 @@ public class RamasseFichiers {
             repertoire = defaultWorkingDirectory;
         }
         
-        
         if(liste == null){
             throw new RuntimeException("La variable 'liste' doit être initialisée.");
         }
+        
+        File repertoireTravail = new File(repertoire);
+        
+        if(! repertoireTravail.exists() || !repertoireTravail.isDirectory() || repertoireTravail.canRead() ){
+            throw new RuntimeException("Le répertoire : '"+repertoire+"' n'est pas un répertoire ou n'est pas accessible." );    
+        }
+        
+        File[] listfichier = repertoireTravail.listFiles();
+        
+        
+        
+        
+        
+        
         
         
     }

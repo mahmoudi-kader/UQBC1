@@ -1,4 +1,4 @@
-package inf2015.tp1.uqbc;
+package inf2015.tp1.uqbc.fichiers;
 
 import java.io.IOException;
 import java.nio.file.Files;
