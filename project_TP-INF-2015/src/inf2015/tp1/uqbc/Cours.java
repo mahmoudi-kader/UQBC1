@@ -1,15 +1,12 @@
 
 package inf2015.tp1.uqbc;
 
-import org.json.JSONObject;
 import java.util.List;
-import org.json.JSONArray;
 
 /*
  * Classe qui représente un cours
  */
 public class Cours {
-     private JSONArray info = new JSONArray();
     private String jsonString;
     private String titre;
     private String groupe;

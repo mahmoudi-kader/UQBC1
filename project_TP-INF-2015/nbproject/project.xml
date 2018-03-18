@@ -5,6 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>project_TP-INF-2015</name>
             <source-roots>
+                <root id="src.fichiers.dir"/>
                 <root id="src.dir"/>
             </source-roots>
             <test-roots>
