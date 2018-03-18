@@ -12,7 +12,8 @@ import java.util.List;
 public class RamasseFichiers {
     
     private static final String defaultWorkingDirectory = "./";
-    
+    private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
+    private static final String PREFIXE_FICHIER_NOTES = "evaluation";
     
     /**
      * ramasser tous les fichiers du répertoire, et les mettre dans une liste.
@@ -22,7 +23,7 @@ public class RamasseFichiers {
      * @param repertoire
      * @param liste 
      */
-    public static void ramasser(String repertoire, List<File> liste){
+    public static void ramasser(String repertoire, List<FichierJSON> liste){
         if(repertoire == null || repertoire.length() == 0){
             repertoire = defaultWorkingDirectory;
         }
@@ -37,14 +38,29 @@ public class RamasseFichiers {
             throw new RuntimeException("Le répertoire : '"+repertoire+"' n'est pas un répertoire ou n'est pas accessible." );    
         }
         
-        File[] listfichier = repertoireTravail.listFiles();
-        
-        
-        
-        
-        
-        
-        
+        File[] listeFichiers = repertoireTravail.listFiles();
+                      
+        for(File fichier : listeFichiers){
+            if(fichier.isDirectory()){
+                ramasser(fichier.getAbsolutePath(),liste);
+            }else{
+                
+                FichierJSON fichierJSON = null;
+                if(fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)){
+                    
+                    fichierJSON = new FichierListeEtudiant();
+                    
+                }else if(fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)){
+                    
+                    fichierJSON = new FichierNotesCours();
+                    
+                }else{
+                    throw new RuntimeException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
+                }
+                fichierJSON.initialiserFichier(fichier);
+                liste.add(fichierJSON);
+            }
+        }
         
     }
     

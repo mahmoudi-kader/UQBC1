@@ -1,6 +1,7 @@
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
+import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,7 +16,8 @@ public class FichierListeEtudiantTest {
         
         FichierListeEtudiant fichierListeEtudiant = new FichierListeEtudiant();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("ListeEtudiantsCoursBIO1012-Gr10-H18.json");
+        File file = new File("ListeEtudiantsCoursBIO1012-Gr10-H18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertTrue("Le nom du fichier est invalide.", resultat);
         
@@ -26,7 +28,8 @@ public class FichierListeEtudiantTest {
         
         FichierListeEtudiant fichierListeEtudiant = new FichierListeEtudiant();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("ListeEtudiantsCoursBIO1012-Gr10-H18.json");
+        File file = new File("ListeEtudiantsCoursBIO1012-Gr10-H18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertTrue("Le nom du fichier est invalide.", resultat);
         
@@ -45,7 +48,8 @@ public class FichierListeEtudiantTest {
         
         FichierListeEtudiant fichierListeEtudiant = new FichierListeEtudiant();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("ListeEtudiantsCoursBI0O1012-Gr10-H18.json");
+        File file  = new File("ListeEtudiantsCoursBI0O1012-Gr10-H18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertFalse("Le nom du fichier est valide mais devrait être invalide.", resultat);
         

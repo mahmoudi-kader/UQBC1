@@ -95,6 +95,10 @@ public class Cours {
     @Override
     public int hashCode() {
         int hash = 3;
+        hash = 11 * hash + Objects.hashCode(this.titre);
+        hash = 11 * hash + Objects.hashCode(this.groupe);
+        hash = 11 * hash + Objects.hashCode(this.session);
+        hash = 11 * hash + Objects.hashCode(this.numeroCours);
         return hash;
     }
 
@@ -125,6 +129,7 @@ public class Cours {
         return true;
     }
 
+    
     
     
 }

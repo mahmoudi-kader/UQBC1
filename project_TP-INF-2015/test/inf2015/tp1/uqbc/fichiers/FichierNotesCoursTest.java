@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
+import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -20,7 +16,8 @@ public class FichierNotesCoursTest {
         
         FichierNotesCours fichierListeEtudiant = new FichierNotesCours();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("evaluation1BIO1012-Gr10-H18.json");
+        File file  = new File("evaluation1BIO1012-Gr10-H18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertTrue("Le nom du fichier est invalide.", resultat);
         
@@ -40,7 +37,8 @@ public class FichierNotesCoursTest {
         
         FichierNotesCours fichierListeEtudiant = new FichierNotesCours();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("evaluation1234BIO10112-Gr99-E18.json");
+        File file  = new File("evaluation1234BIO10112-Gr99-E18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertTrue("Le nom du fichier est invalide.", resultat);        
         
@@ -61,7 +59,8 @@ public class FichierNotesCoursTest {
         
         FichierNotesCours fichierListeEtudiant = new FichierNotesCours();
         
-        boolean resultat = fichierListeEtudiant.testerNomFichier("evaluationBIO1012-Gr10-H18.json");
+        File file  = new File("ListeEtudiantsCoursBI0O1012-Gr10-H18.json");
+        boolean resultat = fichierListeEtudiant.initialiserFichier(file);
         
         Assert.assertFalse("Le nom du fichier est valide mais devrait être invalide.", resultat);        
         

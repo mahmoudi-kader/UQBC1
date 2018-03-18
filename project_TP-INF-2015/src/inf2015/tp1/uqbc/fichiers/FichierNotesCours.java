@@ -2,6 +2,7 @@ package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Evaluation;
+import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,10 +16,10 @@ public class FichierNotesCours extends FichierJSON {
     private Cours cours = null;
     
     @Override
-    public boolean testerNomFichier(String nomFichier){
+    public boolean initialiserFichier(File fichier){
         
         Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(nomFichier);
+        Matcher m = p.matcher(fichier.getName());
         boolean succes = m.matches();
         if(succes){
             int groupCount = m.groupCount();
