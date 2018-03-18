@@ -12,7 +12,8 @@ public class Evaluation {
  private String nomEvaluation;
  private String type;
  private String ponderation;
- private List<ResultatEvaluation> listeEtudiant;
+ private List<ResultatEvaluation> listeResultatEvaluation;
+ private double moyenneGroupeEvaluation=0;
 
     public String getCommentaire() {
         return commentaire;
@@ -52,6 +53,10 @@ public class Evaluation {
 
     public void setNumeroEvaluation(String numeroEvaluation) {
         this.numeroEvaluation = numeroEvaluation;
+    }
+
+    public double getMoyenneGroupeEvaluation() {
+        return moyenneGroupeEvaluation;
     }
 
 }
