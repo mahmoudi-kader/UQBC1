@@ -18,6 +18,16 @@ public class FichierListeEtudiantTest {
         
         Assert.assertTrue("Le nom du fichier est invalide.", resultat);
         
+    }
+    
+    @Test
+    public void testTesterNomFichierNegatif(){
+        
+        FichierListeEtudiant fichierListeEtudiant = new FichierListeEtudiant();
+        
+        boolean resultat = fichierListeEtudiant.testerNomFichier("ListeEtudiantsCoursBI0O1012-Gr10-H18.json");
+        
+        Assert.assertFalse("Le nom du fichier est valide masi devrait être invalide.", resultat);
         
     }
     

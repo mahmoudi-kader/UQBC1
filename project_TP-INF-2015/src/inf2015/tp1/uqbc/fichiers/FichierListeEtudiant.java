@@ -1,5 +1,6 @@
 package inf2015.tp1.uqbc.fichiers;
 
+import inf2015.tp1.uqbc.Cours;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class FichierListeEtudiant extends FichierJSON {
  
-    protected String regex = "ListeEtudiantsCours[A-Z]{3}[0-9]{4}-Gr[\\d]*-[HAE][\\d]{2}\\.json";
+    protected String regex = "ListeEtudiantsCours([1A-Z]{3}[0-9]{4})-Gr([\\d]*)-([HAE][\\d]{2})\\.json";
     
     
     /**
@@ -18,7 +19,7 @@ public class FichierListeEtudiant extends FichierJSON {
      * @param nomFichier
      * @return 
      */
-        public boolean testerNomFichier(String nomFichier){
+     public boolean testerNomFichier(String nomFichier){
        
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(nomFichier);
@@ -26,12 +27,17 @@ public class FichierListeEtudiant extends FichierJSON {
         if(succes){
             int groupCount = m.groupCount();
             System.out.println("group count: "+m.groupCount());
-            System.out.println(m.group(0));
-            System.out.println(m.group(1));
-            System.out.println(m.group(2));
-            System.out.println(m.group(3));
-            System.out.println(m.group(4));
-            System.out.println(m.group(5));
+            
+            Cours cours = new Cours();
+            cours.setTitre(m.group(1));
+            cours.setGroupe(m.group(2));
+            cours.setSession(m.group(3));
+            
+            System.out.println("Fichier:"+m.group(0));
+            System.out.println("titre="+cours.getTitre());
+            System.out.println("group="+cours.getGroupe());
+            System.out.println("session="+cours.getSession());
+
         }
         
         return succes;
