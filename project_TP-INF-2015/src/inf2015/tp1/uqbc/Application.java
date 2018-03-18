@@ -1,5 +1,7 @@
 package inf2015.tp1.uqbc;
 
+import inf2015.tp1.uqbc.fichiers.FileReader;
+
 /**
  *
  * @author benoit
