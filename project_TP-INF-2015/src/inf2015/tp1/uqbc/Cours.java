@@ -61,5 +61,11 @@ public class Cours {
     public double getMoyenneGroupe() {
         return moyenneGroupe;
     }
+    
+    public ArrayList<String> moyenneEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
+        ArrayList<String> listNoteEtudiants = new ArrayList();
+        
+        return listNoteEtudiants;
+    }
 
 }
