@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc;
 
 import org.junit.After;
@@ -44,7 +39,7 @@ public class ValidationDonnees1Test extends TestCase {
     @Test
     public void testGetNomRepertoire() {
         System.out.println("getNomRepertoire");
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         String expResult = "xxx";
         String result = instance.getNomRepertoire();
         assertEquals(expResult, result);
@@ -55,7 +50,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testSetNomRepertoire() {
         System.out.println("setNomRepertoire");
         String nomRepertoire = "fff";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         instance.setNomRepertoire(nomRepertoire);
        String result = instance.getNomRepertoire();
         assertEquals(nomRepertoire, result);
@@ -65,7 +60,7 @@ public class ValidationDonnees1Test extends TestCase {
     @Test
     public void testValiderRepertoire() {
         System.out.println("validerRepertoire");
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         instance.validerRepertoire();
         fail("The test case is a prototype.");
     }
@@ -74,7 +69,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderNomCours() {
         System.out.println("validerNomCours");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerNomCours(cours);
         assertEquals(expResult, result);
@@ -85,7 +80,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderNumeroCours() {
         System.out.println("validerNumeroCours");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerNumeroCours(cours);
         assertEquals(expResult, result);
@@ -96,7 +91,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderGroupe() {
         System.out.println("validerGroupe");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerGroupe(cours);
         assertEquals(expResult, result);
@@ -107,7 +102,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderSession() {
         System.out.println("validerSession");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerSession(cours);
         assertEquals(expResult, result);
@@ -118,7 +113,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderCodePermanent() {
         System.out.println("validerCodePermanent");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerCodePermanent(cours);
         assertEquals(expResult, result);
@@ -129,7 +124,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderTypeEvaluation() {
         System.out.println("validerTypeEvaluation");
         String cours = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerTypeEvaluation(cours);
         assertEquals(expResult, result);
@@ -141,7 +136,7 @@ public class ValidationDonnees1Test extends TestCase {
         System.out.println("validerNomEvaluation");
         String nomEvaluation = "";
         String typeEvaluation = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerNomEvaluation(nomEvaluation, typeEvaluation);
         assertEquals(expResult, result);
@@ -152,7 +147,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderNote() {
         System.out.println("validerNote");
         String ponderation = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerNote(ponderation);
         assertEquals(expResult, result);
@@ -163,7 +158,7 @@ public class ValidationDonnees1Test extends TestCase {
     public void testValiderPonderation() {
         System.out.println("validerPonderation");
         String ponderation = "";
-        ValidationDonnees1 instance = new ValidationDonnees1();
+        ValidationDonnees instance = new ValidationDonnees();
         boolean expResult = false;
         boolean result = instance.validerPonderation(ponderation);
         assertEquals(expResult, result);
