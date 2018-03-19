@@ -70,7 +70,7 @@ public class Cours {
     }
 
     public double getMoyenneGroupe() {
-        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(listeEvaluation);
+        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(getListeEvaluation());
         return moyenneGroupe;
     }
     
@@ -91,6 +91,7 @@ public class Cours {
     public void setListeEtudiant(List<Etudiant> listeEtudiant) {
         this.listeEtudiant = listeEtudiant;
     }
+    
 
     @Override
     public int hashCode() {
@@ -127,6 +128,20 @@ public class Cours {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @return the listeEvaluation
+     */
+    public List<Evaluation> getListeEvaluation() {
+        return listeEvaluation;
+    }
+
+    /**
+     * @return the listeEtudiant
+     */
+    public List<Etudiant> getListeEtudiant() {
+        return listeEtudiant;
     }
 
     

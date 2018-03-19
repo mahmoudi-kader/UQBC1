@@ -23,6 +23,8 @@ public class ValidationDonneesTest {
     
     @BeforeClass
     public static void setUpClass() {
+        String getNomRepertoire="";
+        
     }
     
     @AfterClass
@@ -42,4 +44,16 @@ public class ValidationDonneesTest {
     //
     // @Test
     // public void hello() {}
+
+    @Test
+    public void testGetNomRepertoire() {
+    }
+
+    @Test
+    public void testSetNomRepertoire() {
+    }
+
+    @Test
+    public void testValiderRepertoire() {
+    }
 }
