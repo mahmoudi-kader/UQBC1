@@ -2,9 +2,8 @@ package inf2015.tp1.uqbc;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import org.json.JSONObject;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -17,15 +16,10 @@ public class FileWrite {
         JSONObject obj = new JSONObject();
         FileWriter file = new FileWriter("./");
         
-    try {
-            file.write(obj.toJSONString());
-            System.out.println("JSON Object: " + obj);
-}   catch (IOException e) {
-        e.printStackTrace();
-}   finally {
+        file.write(obj.toString());
+        System.out.println("JSON Object: " + obj);
         file.flush();
         file.close();
-        }
     
     
     }
