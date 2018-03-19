@@ -1,7 +1,13 @@
 package inf2015.tp1.uqbc.fichiers;
 
+import inf2015.tp1.uqbc.Cours;
+import inf2015.tp1.uqbc.Evaluation;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.json.JSONObject;
 
 /**
  * Cette class va ramasser tous les fichiers du répertoire, et les mettre dans une liste.
@@ -45,6 +51,11 @@ public class TraitementFichiers {
                 ramasser(fichier.getAbsolutePath(),liste);
             }else{
                 
+                if(!fichier.canRead()){
+                    throw new RuntimeException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
+                }
+                
+                
                 FichierJSON fichierJSON = null;
                 if(fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)){
                     
@@ -58,10 +69,41 @@ public class TraitementFichiers {
                     throw new RuntimeException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
                 }
                 fichierJSON.initialiserFichier(fichier);
+                fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));                
                 liste.add(fichierJSON);
             }
         }
         
     }
     
+    
+    public static List<Cours> chargerDonnees(Map<Cours, FichierJSON> map){
+        
+        List<Cours> listeCours = new ArrayList();
+        
+        Set<Cours> set =  map.keySet();
+        for(Cours cours : set){
+            
+            FichierJSON fichier = map.get(cours);
+            String szJson = fichier.getJson();
+            JSONObject jsonObj = new JSONObject(szJson);
+            
+            if(fichier instanceof FichierNotesCours){
+                Evaluation eval = new Evaluation();
+                eval.setCommentaire(jsonObj.getString("commentaire"));
+                eval.setNomEvaluation(jsonObj.getString("nom_evaluation"));
+                eval.setType(jsonObj.getString("type"));
+                eval.setPonderation(jsonObj.getString("ponderation"));
+            }else{
+                
+            }
+            
+        }
+        
+        
+        
+        return listeCours;
+    }
+    
+ 
 }

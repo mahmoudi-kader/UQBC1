@@ -3,9 +3,8 @@ package inf2015.tp1.uqbc.fichiers;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 /**
@@ -20,10 +19,10 @@ public static void main(String[] args) throws IOException{
 		jsonObject.put("", new Integer(100));
 		
 		JSONArray jsonArray= new JSONArray();
-		jsonArray.add("exemple 1");
-		jsonArray.add("");
-		jsonArray.add("exemple 2");
-		jsonArray.add("");
+		jsonArray.put("exemple 1");
+		jsonArray.put("");
+		jsonArray.put("exemple 2");
+		jsonArray.put("");
 		
 		jsonObject.put("",jsonArray);
 		
@@ -31,7 +30,7 @@ public static void main(String[] args) throws IOException{
  
 		FileWriter writer= new FileWriter(file);
 		System.out.println(jsonArray);
-		writer.write(jsonObject.toJSONString());
+		writer.write(jsonObject.toString());
 		writer.close();
                 }
 }
