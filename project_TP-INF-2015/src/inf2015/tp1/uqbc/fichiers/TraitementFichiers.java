@@ -2,6 +2,7 @@ package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.ValidationDonnees;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,11 +91,28 @@ public class TraitementFichiers {
             
             if(fichier instanceof FichierNotesCours){
                 Evaluation eval = new Evaluation();
-                eval.setCommentaire(jsonObj.getString("commentaire"));
-                eval.setNomEvaluation(jsonObj.getString("nom_evaluation"));
+                
+                String commentaire = jsonObj.getString("commentaire");
+                String nomEvaluation = jsonObj.getString("nom_evaluation");
+                String ponderation = jsonObj.getString("ponderation");
+                String typeEvaluation = jsonObj.getString("type");
+                
+                eval.setCommentaire(commentaire);
+                eval.setNomEvaluation(nomEvaluation);
                 eval.setType(jsonObj.getString("type"));
-                eval.setPonderation(jsonObj.getString("ponderation"));
+                eval.setPonderation(ponderation);
+                
+                boolean valide = true;
+                valide = valide && ValidationDonnees.validerNomEvaluation(nomEvaluation, szJson);
+                valide = valide && ValidationDonnees.validerPonderation(ponderation);
+                
+                        
+                cours.getListeEvaluation().add(eval);
+                
             }else{
+                
+                
+                
                 
             }
             
