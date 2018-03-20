@@ -15,8 +15,8 @@ public class Cours {
     private String session;
     private String commentaire;
     private String numeroCours;
-    private List<Evaluation> listeEvaluation;
-    private List<Etudiant> listeEtudiant;
+    private List<Evaluation> listeEvaluation = new ArrayList();
+    private List<Etudiant> listeEtudiant = new ArrayList();
     private double moyenneGroupe=0;
     
     public Cours(){
