@@ -4,10 +4,10 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ValidationDonnees;
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -78,38 +78,58 @@ public class TraitementFichiers {
         
     }
     
-    
-    public static List<Cours> chargerDonnees(Map<Cours, FichierJSON> map){
+    public static List<Cours> chargerDonnees(List<FichierJSON> liste){
         
-        List<Cours> listeCours = new ArrayList();
+        Map<Cours, Cours> map= new Hashtable();
         
-        Set<Cours> set =  map.keySet();
-        for(Cours cours : set){
+        for(FichierJSON fichier : liste){
             
-            FichierJSON fichier = map.get(cours);
             String szJson = fichier.getJson();
             JSONObject jsonObj = new JSONObject(szJson);
             
             if(fichier instanceof FichierNotesCours){
-                Evaluation eval = new Evaluation();
                 
                 String commentaire = jsonObj.getString("commentaire");
                 String nomEvaluation = jsonObj.getString("nom_evaluation");
                 String ponderation = jsonObj.getString("ponderation");
                 String typeEvaluation = jsonObj.getString("type");
-                
-                eval.setCommentaire(commentaire);
-                eval.setNomEvaluation(nomEvaluation);
-                eval.setType(jsonObj.getString("type"));
-                eval.setPonderation(ponderation);
+                JSONArray donnees = jsonObj.getJSONArray("donnees");
                 
                 boolean valide = true;
+                
+                if(donnees == null || donnees.length()==0){
+                    throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
+                }
                 valide = valide && ValidationDonnees.validerNomEvaluation(nomEvaluation, szJson);
                 valide = valide && ValidationDonnees.validerPonderation(ponderation);
                 
-                        
-                cours.getListeEvaluation().add(eval);
                 
+                if(valide){
+                    
+                    //On s'assure que le cours n'est pas déjà dans notre liste de cours
+                    Cours cours = fichier.getCours();
+                    if(map.containsKey(cours)){
+                        cours = map.get(cours);
+                    }else{
+                        map.put(cours, cours);
+                    }
+                    
+                    Evaluation eval = ((FichierNotesCours) fichier).getEvaluation();
+                    eval.setCommentaire(commentaire);
+                    eval.setNomEvaluation(nomEvaluation);
+                    eval.setType(jsonObj.getString("type"));
+                    eval.setPonderation(ponderation);
+                    eval.setNumeroEvaluation(jsonObj.getString(""));
+                    
+                    eval.getListeResultatEvaluation();
+                    
+                    cours.getListeEvaluation().add(eval);
+                    
+                }else{
+                    throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est invalide.");
+                }
+                
+            //FichierListeEtudiant
             }else{
                 
                 
@@ -119,7 +139,7 @@ public class TraitementFichiers {
             
         }
         
-        
+        List<Cours> listeCours = null;
         
         return listeCours;
     }

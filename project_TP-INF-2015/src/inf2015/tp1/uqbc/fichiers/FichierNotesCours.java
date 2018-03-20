@@ -12,8 +12,9 @@ import java.util.regex.Pattern;
  */
 public class FichierNotesCours extends FichierJSON {
     
-    private String regex = "evaluation([0-9]++)([A-Z]{3})([0-9]++)-(Gr[\\d]*)-([HAE][\\d]{2})\\.json";
-    private Cours cours = null;
+    Evaluation evaluation = null;
+    private final String regex = "evaluation([0-9]++)([A-Z]{3})([0-9]++)-(Gr[\\d]*)-([HAE][\\d]{2})\\.json";
+    
     
     @Override
     public boolean initialiserFichier(File fichier){
@@ -25,7 +26,7 @@ public class FichierNotesCours extends FichierJSON {
             int groupCount = m.groupCount();
             System.out.println("group count: "+m.groupCount());
             
-            Evaluation evaluation = new Evaluation();
+            this.evaluation = new Evaluation();
             evaluation.setNumeroEvaluation(m.group(1));
             
             setCours(new Cours());
@@ -33,27 +34,18 @@ public class FichierNotesCours extends FichierJSON {
             getCours().setNumeroCours(m.group(3));
             getCours().setGroupe(m.group(4));            
             getCours().setSession(m.group(5));
-            
-            
-            System.out.println("Fichier:"+m.group(0));
-            System.out.println("noEvaluation="+evaluation.getNumeroEvaluation());
-            System.out.println("titre="+cours.getTitre());
-            System.out.println("group="+cours.getGroupe());
-            System.out.println("numeroCours="+cours.getNumeroCours());
-            System.out.println("session="+cours.getSession());
-
         }
-        
         
         return succes;
     }
-    
-    public Cours getCours() {
-        return cours;
+
+    public Evaluation getEvaluation() {
+        return evaluation;
     }
 
-    public void setCours(Cours cours) {
-        this.cours = cours;
-    }    
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
+    }
+  
     
 }

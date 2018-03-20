@@ -1,5 +1,6 @@
 package inf2015.tp1.uqbc.fichiers;
 
+import inf2015.tp1.uqbc.Cours;
 import java.io.File;
 
 /**
@@ -10,6 +11,7 @@ public abstract class FichierJSON {
     
     private String json;
     private File fichier;
+    private Cours cours = null;
 
     public abstract boolean initialiserFichier(File fichier);
     
@@ -28,5 +30,13 @@ public abstract class FichierJSON {
     public void setFichier(File fichier) {
         this.fichier = fichier;
     }
+    
+    public Cours getCours() {
+        return cours;
+    }
+
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }  
     
 }

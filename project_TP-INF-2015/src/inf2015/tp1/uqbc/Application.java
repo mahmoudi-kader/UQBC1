@@ -20,8 +20,8 @@ public class Application {
         
         
         List<FichierJSON> listeFichiers = new ArrayList();
-        Map<Cours,FichierJSON> map = new HashMap();
         TraitementFichiers.ramasser(null, listeFichiers);
+        TraitementFichiers.chargerDonnees(listeFichiers);
         //traiter chargement objets : Benoit
         
         

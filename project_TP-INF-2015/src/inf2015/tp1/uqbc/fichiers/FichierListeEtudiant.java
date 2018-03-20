@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 public class FichierListeEtudiant extends FichierJSON {
  
     protected String regex = "ListeEtudiantsCours([1A-Z]{3})([0-9]{4})-(Gr[\\d]*)-([HAE][\\d]{2})\\.json";
-    private Cours cours = null;
     
     /**
      * Cette méthode test si le nom du fichier correspond au format attendu.
@@ -48,14 +47,5 @@ public class FichierListeEtudiant extends FichierJSON {
         return succes;
         
     }
-
-    public Cours getCours() {
-        return cours;
-    }
-
-    public void setCours(Cours cours) {
-        this.cours = cours;
-    }
-    
     
 }
