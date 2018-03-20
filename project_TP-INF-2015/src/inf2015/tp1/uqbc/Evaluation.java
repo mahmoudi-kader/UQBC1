@@ -1,5 +1,6 @@
 package inf2015.tp1.uqbc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Evaluation {
  private String nomEvaluation;
  private String type;
  private String ponderation;
- private List<ResultatEvaluation> listeResultatEvaluation;
+ private List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<>();
  private double moyenneGroupeEvaluation=0;
     public Evaluation(){
 
