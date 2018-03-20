@@ -2,6 +2,8 @@ package inf2015.tp1.uqbc;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONObject;
 
 
@@ -20,7 +22,8 @@ public class FileWrite {
         System.out.println("JSON Object: " + obj);
         file.flush();
         file.close();
-    
+        
+        
     
     }
     
