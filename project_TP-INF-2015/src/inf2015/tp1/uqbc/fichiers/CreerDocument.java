@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
 import inf2015.tp1.uqbc.Etudiant;
+import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.ResultatEvaluation;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,16 +12,14 @@ import java.util.List;
 
 /**
  *
- * @author Abdelkader
+ * Classe qui permet d'ècrire le fichier txt par étudiant
  */
 public class CreerDocument {
 
     public String EcrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
         String version = "Version :      a venir       ";
-        CoursEtudiant coursEtudiant = new CoursEtudiant();
-        coursEtudiant.setCours(cours);
-        coursEtudiant.setEtudiant(etudiant);
+        CoursEtudiant coursEtudiant;
         texte = version + "/n";
         texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + "/n";
         texte = texte + "Groupe: " + cours.getGroupe() + "/n";
@@ -34,11 +29,16 @@ public class CreerDocument {
         texte = texte + "Groupe: " + etudiant.getNom() + "/n";
         texte = texte + "Session: " + etudiant.getPrenom() + "/n";
         texte = texte + "============================ " + "/n";
-        texte = texte + "Evaluation: " + "/n";
-        texte = texte + "/n";
-        texte = texte +  "/n";
-        texte = texte + "============================ " + "/n";
-
+        for(Evaluation evaluation : cours.getListeEvaluation()){
+            coursEtudiant = new CoursEtudiant(cours, etudiant,evaluation);
+            texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
+            texte = texte + coursEtudiant.getNomEvaluation() +  "/n";
+            texte = texte + "Type : " + coursEtudiant.getType() +  "/n";
+            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() +  "/n";
+            texte = texte + "Note : " + coursEtudiant.getPonderation() +  "/n";
+            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() +  "/n";
+            texte = texte + "============================ " + "/n";
+        }
         return texte;
     }
 
@@ -53,7 +53,7 @@ public class CreerDocument {
                 nomFichier = cours.getSession() + "_" + cours.getTitre() + cours.getNumeroCours() + "_" + etudiant.getCodePermanent();
                 CreerFichier(nomFichier);
                 //on insere dans le fichier les données de l'objet CoursEtudiant
-
+                texte = EcrireTexte(cours, etudiant);
                 FileWriter writer = new FileWriter(nomFichier);
                 writer.write(texte);
                 writer.close();

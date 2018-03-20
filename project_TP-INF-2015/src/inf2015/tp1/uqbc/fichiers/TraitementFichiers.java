@@ -17,6 +17,7 @@ import org.json.JSONObject;
  */
 public class TraitementFichiers {
     
+    //private static final String defaultWorkingDirectory = "./";
     private static final String defaultWorkingDirectory = "./";
     private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
     private static final String PREFIXE_FICHIER_NOTES = "evaluation";
