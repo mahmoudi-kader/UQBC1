@@ -70,7 +70,7 @@ public class Cours {
     }
 
     public double getMoyenneGroupe() {
-        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(getListeEvaluation());
+        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(getListeEtudiant(), getListeEvaluation());
         return moyenneGroupe;
     }
     
@@ -78,7 +78,7 @@ public class Cours {
         ArrayList<String> listNoteEtudiants = new ArrayList();
         double moyenneEtudiantGlobal = 0;
         for(Etudiant etudiant:listeEtudiant){
-            moyenneEtudiantGlobal = Calculs.calculNotePondereeGlobale(listeEvaluation, etudiant.getCodePermanent());
+            moyenneEtudiantGlobal = Calculs.calculNotePondereeGlobale(getListeEtudiant(), listeEvaluation, etudiant.getCodePermanent());
             
         }
         return listNoteEtudiants;
