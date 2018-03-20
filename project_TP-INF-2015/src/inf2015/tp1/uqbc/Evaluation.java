@@ -65,11 +65,13 @@ public class Evaluation {
     public void setNumeroEvaluation(String numeroEvaluation) {
         this.numeroEvaluation = numeroEvaluation;
     }
-
+    
+    
     public double getMoyenneGroupeEvaluation() {
         moyenneGroupeEvaluation = Calculs.calculMoyenneGroupeEvaluation(listeResultatEvaluation);
         return moyenneGroupeEvaluation;
     }
+    
 
     public void setListeResultatEvaluation(List<ResultatEvaluation> listeResultatEvaluation) {
         this.listeResultatEvaluation = listeResultatEvaluation;

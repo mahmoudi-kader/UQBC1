@@ -8,16 +8,18 @@ import java.util.List;
  */
 public class Calculs {
     
-    public static double calculMoyenneGroupeGlobale(List<Evaluation> listeEvaluation){
+    public static double calculMoyenneGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         double moyenne = 0;
         double total = 0;
         int nombreEvaluation = 0;
         if (!(listeEvaluation == null)){
             for(Evaluation evaluation : listeEvaluation){
                 for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
-                    if(resultat.getNote() > 0){
-                        total = total + resultat.getNote();
-                        nombreEvaluation++;
+                    if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                        if(resultat.getNote() > 0){
+                            total = total + resultat.getNote();
+                            nombreEvaluation++;
+                        }
                     }
                 }
                 moyenne = moyenne + (total / nombreEvaluation);
@@ -26,13 +28,15 @@ public class Calculs {
         return moyenne;
     }
     
-    public static double calculPonderationGroupeGlobale(List<Evaluation> listeEvaluation){
+    public static double calculPonderationGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         boolean ponderationExiste = false;
         double total = 0;
         for(Evaluation evaluation : listeEvaluation){
             for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
-                if(resultat.getNote() > 0){
-                    ponderationExiste = true;
+                if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                    if(resultat.getNote() > 0){
+                        ponderationExiste = true;
+                    }
                 }
             }
             if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
@@ -45,10 +49,12 @@ public class Calculs {
         double total = 0;
         int nombreEvaluation = 0;
             for(ResultatEvaluation resultat:listeResultatEvaluation){
-                if(resultat.getNote() > 0){
-                    total = total + resultat.getNote();
-                    nombreEvaluation++;
-                }
+                //if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                    if(resultat.getNote() > 0){
+                        total = total + resultat.getNote();
+                        nombreEvaluation++;
+                    }
+                //}
             }
             System.out.println("total" + total);
             System.out.println("nombreEvaluation" + nombreEvaluation);
@@ -56,15 +62,17 @@ public class Calculs {
         return moyenne;
     }
     
-    public static double calculNotePondereeGlobale(List<Evaluation> listeEvaluation, String codeParmanent){
+    public static double calculNotePondereeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent){
         double notePonderee=0;
         double total = 0;
         int nombreEvaluation = 0;
         for(Evaluation evaluation : listeEvaluation){
             for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
-                    total = total + resultat.getNote();
-                    nombreEvaluation++;
+                if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                    if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                        total = total + resultat.getNote();
+                        nombreEvaluation++;
+                    }
                 }
             }
         }
@@ -72,15 +80,17 @@ public class Calculs {
         return notePonderee;
     }
     
-    public static double calculPonderationGlobaleEtudiant(List<Evaluation> listeEvaluation, String codeParmanent){
+    public static double calculPonderationGlobaleEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent){
         double notePonderee=0;
         boolean ponderationExiste = false;
         double total = 0;
         int nombreEvaluation = 0;
         for(Evaluation evaluation : listeEvaluation){
             for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
-                    ponderationExiste = true;
+                if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                        if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                        ponderationExiste = true;
+                    }
                 }
             }
             if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
@@ -88,15 +98,17 @@ public class Calculs {
         return total;
     }
     
-    public static double calculNotePondereeEvaluation(List<Evaluation> listeEvaluation, String codeParmanent, String numeroEvaluation){
+    public static double calculNotePondereeEvaluation(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent, String numeroEvaluation){
         double notePonderee=0;
         double total = 0;
         int nombreEvaluation = 0;
         for(Evaluation evaluation : listeEvaluation){
             for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
-                    total = total + resultat.getNote();
-                    nombreEvaluation++;
+                if(validerEtudiantEvaluation(listeEtudiant, resultat) == true){
+                    if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() > 0){
+                        total = total + resultat.getNote();
+                        nombreEvaluation++;
+                    }
                 }
             }
         }
@@ -112,10 +124,18 @@ public class Calculs {
         return nombre;
     }
     
-    public static boolean validerEtudiantEvaluation(){
-        boolean evaluationValide = false;
-        
-        
+    public static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, ResultatEvaluation resultatEvaluation){
+        boolean evaluationValide = true;
+        String codePermanentEtudiant = null;
+        int i=0;
+        codePermanentEtudiant = resultatEvaluation.getEtudiant().getCodePermanent();
+        i = 0;
+        while(i < listeEtudiant.size() && evaluationValide == true){
+            if(!codePermanentEtudiant.equals(listeEtudiant.get(i).getCodePermanent())){
+                evaluationValide = false;
+            }
+            i++;
+        }
         return evaluationValide;
     }
 }
