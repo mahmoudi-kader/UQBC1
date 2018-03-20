@@ -1,17 +1,13 @@
 package inf2015.tp1.uqbc;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import static javafx.scene.input.KeyCode.T;
-
 /**
  *
  * Classe qui valide les donnees du cours
  */
 public class ValidationDonnees {
+    
+    /*
+    
     private String nomRepertoire;
     
 
@@ -58,9 +54,9 @@ public class ValidationDonnees {
                 }
             }
         }
-    }
+    }*/
     
-    public boolean validerNomCours(String cours){
+    public static boolean validerNomCours(String cours){
         boolean nomValide = false;
         
         if(!(cours == null) && cours.length()==3 && estAlphabetique(cours)== true){
@@ -71,7 +67,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerNumeroCours(String cours){
+    public static boolean validerNumeroCours(String cours){
         boolean nomValide = false;
       
         if(!(cours == null) && cours.length()==4 && estNumerique(cours) == true ){
@@ -82,7 +78,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerGroupe(String cours){
+    public static boolean validerGroupe(String cours){
         boolean nomValide = false;
       
         if(!(cours == null) && cours.length()==4 ){
@@ -101,7 +97,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerSession(String cours){
+    public static boolean validerSession(String cours){
         boolean nomValide = false;
       
         if(!(cours == null) && cours.length()==3 ){
@@ -120,7 +116,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerCodePermanent(String cours){
+    public static boolean validerCodePermanent(String cours){
         boolean nomValide = false;
       
         if(!(cours == null) && cours.length()==12 ){
@@ -139,7 +135,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerTypeEvaluation(String cours){
+    public static boolean validerTypeEvaluation(String cours){
         boolean nomValide = false;
       
         if(!(cours == null) && estAlphabetique(cours) == true ){
@@ -153,7 +149,7 @@ public class ValidationDonnees {
         }
         return nomValide;
     }
-    public boolean validerNomEvaluation(String nomEvaluation, String typeEvaluation){
+    public static boolean validerNomEvaluation(String nomEvaluation, String typeEvaluation){
         boolean nomValide = false;
       
         if(!(nomEvaluation == null) && !(typeEvaluation == null) && estAlphabetique(nomEvaluation) == true ){
@@ -184,7 +180,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerNote(String ponderation){
+    public static boolean validerNote(String ponderation){
         boolean nomValide = false;
       
         if(!(ponderation == null) && estDouble(ponderation) == true ){
@@ -195,7 +191,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    public boolean validerPonderation(String ponderation){
+    public static boolean validerPonderation(String ponderation){
         boolean nomValide = false;
       
         if(!(ponderation == null)){
@@ -212,7 +208,7 @@ public class ValidationDonnees {
         return nomValide;
     }
     
-    private boolean estNumerique(String str){
+    private static boolean estNumerique(String str){
         for (char c : str.toCharArray())
         {
             if (!Character.isDigit(c)) return false;
@@ -220,7 +216,7 @@ public class ValidationDonnees {
         return true;
     }
     
-    private boolean estAlphabetique(String str){
+    private static boolean estAlphabetique(String str){
         for (char c : str.toCharArray())
         {
             if (!(c >= 'a' && c <= 'z' )) return false;
@@ -229,11 +225,12 @@ public class ValidationDonnees {
     }
     
     private static boolean estDouble(String str) {
-		try {
-			Double.parseDouble(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;		
-	}
+        try {
+                Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+                return false;
+        }
+        return true;		
+    }
+    
 }
