@@ -111,6 +111,11 @@ public class Calculs {
         
         return nombre;
     }
-            
-            
+    
+    public static boolean validerEtudiantEvaluation(){
+        boolean evaluationValide = false;
+        
+        
+        return evaluationValide;
+    }
 }
