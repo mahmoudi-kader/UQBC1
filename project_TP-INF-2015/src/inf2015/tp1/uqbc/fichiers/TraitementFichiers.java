@@ -1,9 +1,13 @@
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
+import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.ResultatEvaluation;
 import inf2015.tp1.uqbc.ValidationDonnees;
+import inf2015.tp1.uqbc.ValidationException;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +26,8 @@ public class TraitementFichiers {
     private static final String defaultWorkingDirectory = "./";
     private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
     private static final String PREFIXE_FICHIER_NOTES = "evaluation";
+    
+    private static final Hashtable<String,Etudiant> tableEtudiants = new Hashtable<>();
     
     /**
      * ramasser tous les fichiers du répertoire, et les mettre dans une liste.
@@ -49,30 +55,38 @@ public class TraitementFichiers {
         File[] listeFichiers = repertoireTravail.listFiles();
                       
         for(File fichier : listeFichiers){
-            if(fichier.isDirectory()){
-                ramasser(fichier.getAbsolutePath(),liste);
-            }else{
-                
-                if(!fichier.canRead()){
-                    throw new RuntimeException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
-                }
-                
-                
-                FichierJSON fichierJSON = null;
-                if(fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)){
-                    
-                    fichierJSON = new FichierListeEtudiant();
-                    
-                }else if(fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)){
-                    
-                    fichierJSON = new FichierNotesCours();
-                    
+            
+            
+            try{
+            
+                if(fichier.isDirectory()){
+                    ramasser(fichier.getAbsolutePath(),liste);
                 }else{
-                    throw new RuntimeException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
+
+                    if(!fichier.canRead()){
+                        throw new RuntimeException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
+                    }
+
+
+                    FichierJSON fichierJSON = null;
+                    if(fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)){
+
+                        fichierJSON = new FichierListeEtudiant();
+
+                    }else if(fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)){
+
+                        fichierJSON = new FichierNotesCours();
+
+                    }else{
+                        throw new RuntimeException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
+                    }
+                    fichierJSON.initialiserFichier(fichier);
+                    fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));                
+                    liste.add(fichierJSON);
                 }
-                fichierJSON.initialiserFichier(fichier);
-                fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));                
-                liste.add(fichierJSON);
+                
+            }catch(ValidationException ve){
+                System.out.println(ve.getMessage() + " dans le fichier : "+fichier.getAbsolutePath());
             }
         }
         
@@ -100,8 +114,8 @@ public class TraitementFichiers {
                 if(donnees == null || donnees.length()==0){
                     throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
                 }
-                valide = valide && ValidationDonnees.validerNomEvaluation(nomEvaluation, szJson);
-                valide = valide && ValidationDonnees.validerPonderation(ponderation);
+                //valide = valide && ValidationDonnees.validerNomEvaluation(nomEvaluation, szJson);
+                //valide = valide && ValidationDonnees.validerPonderation(ponderation);
                 
                 
                 if(valide){
@@ -121,7 +135,7 @@ public class TraitementFichiers {
                     eval.setPonderation(ponderation);
                     eval.setNumeroEvaluation(jsonObj.getString(""));
                     
-                    eval.getListeResultatEvaluation();
+                    eval.setListeResultatEvaluation(traiterDonnees(donnees));
                     
                     cours.getListeEvaluation().add(eval);
                     
@@ -144,5 +158,32 @@ public class TraitementFichiers {
         return listeCours;
     }
     
- 
+    protected static List<ResultatEvaluation> traiterDonnees(JSONArray donnees){
+        
+        List<ResultatEvaluation> liste = new ArrayList<>();
+        
+        int size = donnees.length();
+        
+        for(int i=0; i< size; i++){
+            
+            JSONObject obj = donnees.getJSONObject(i);
+            String codePermanent = obj.getString("code_permanent");
+            Double note = obj.getDouble("note");
+            
+            ValidationDonnees.validerCodePermanent(codePermanent);
+            
+            ResultatEvaluation resultat = new ResultatEvaluation();
+            
+            Etudiant etudiant = tableEtudiants.get(codePermanent);
+            if(etudiant == null){
+                etudiant = new Etudiant(codePermanent, null, null);
+                tableEtudiants.put(codePermanent, etudiant);
+            }
+            resultat.setEtudiant(etudiant);
+            resultat.setNote(note);
+        }
+        
+        return liste;
+    }
+    
 }
