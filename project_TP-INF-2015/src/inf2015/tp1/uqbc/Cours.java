@@ -17,7 +17,6 @@ public class Cours {
     private String numeroCours;
     private List<Evaluation> listeEvaluation = new ArrayList();
     private List<Etudiant> listeEtudiant = new ArrayList();
-    private double moyenneGroupe=0;
     
     public Cours(){
         
@@ -70,7 +69,7 @@ public class Cours {
     }
 
     public double getMoyenneGroupe() {
-        moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(getListeEtudiant(), getListeEvaluation());
+        double moyenneGroupe= Calculs.calculMoyenneGroupeGlobale(getListeEtudiant(), getListeEvaluation());
         return moyenneGroupe;
     }
     
@@ -105,29 +104,17 @@ public class Cours {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        Boolean egal=(this == obj) && (obj == null) ;
+        if (obj!=null){
+           egal=egal && getClass() == obj.getClass();
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cours other = (Cours) obj;
-        if (!Objects.equals(this.titre, other.titre)) {
-            return false;
-        }
-        if (!Objects.equals(this.groupe, other.groupe)) {
-            return false;
-        }
-        if (!Objects.equals(this.session, other.session)) {
-            return false;
-        }
-        if (!Objects.equals(this.numeroCours, other.numeroCours)) {
-            return false;
-        }
-        return true;
+        final Cours other;
+        other = (Cours) obj;
+        egal=egal && Objects.equals(this.titre, other.titre);
+        egal=egal && Objects.equals(this.groupe, other.groupe);
+        egal=egal && Objects.equals(this.session, other.session);
+        egal=egal && Objects.equals(this.numeroCours, other.numeroCours);
+        return egal;
     }
 
     /**
