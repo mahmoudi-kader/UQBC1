@@ -1,5 +1,4 @@
 package inf2015.tp1.uqbc;
-
 import java.util.List;
 
 /**
@@ -14,8 +13,8 @@ public class Calculs {
         int nombreEvaluation = 0;
         if (!(listeEvaluation == null)){
             for(Evaluation evaluation : listeEvaluation){
-                total = 0;
-                nombreEvaluation = 0;
+               // total = 0;
+               // nombreEvaluation = 0;
                 if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
                     for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
                         if(resultat.getNote() >= 0){
@@ -37,14 +36,14 @@ public class Calculs {
         boolean ponderationExiste = false;
         double total = 0;
         for(Evaluation evaluation : listeEvaluation){
-            if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
+            if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation())){
                 for(ResultatEvaluation resultat:evaluation.getListeResultatEvaluation()){
                     if(resultat.getNote() >= 0){
                         ponderationExiste = true;
                     }
                 } 
             }
-            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+            if(ponderationExiste) total = total + convertirPonderation(evaluation.getPonderation());
          }
         return total;
     }
@@ -76,7 +75,7 @@ public class Calculs {
             nombreEvaluation = 0;
             if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
                 for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                    if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() >= 0){
+                    if(resultat.getEtudiant().getCodePermanent().equals(codeParmanent) && resultat.getNote() >= 0){
                         total = total + resultat.getNote();
                         nombreEvaluation++;
                     }
@@ -91,24 +90,20 @@ public class Calculs {
     }
     
     public static double calculPonderationGlobaleEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent){
-        double notePonderee=0;
         boolean ponderationExiste = false;
-        double total = 0;
-        int nombreEvaluation = 0;
+        double total=0;
         for(Evaluation evaluation : listeEvaluation){
             total = 0;
-            nombreEvaluation = 0;
             if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
                 for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                    if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() >= 0){
+                    if(resultat.getEtudiant().getCodePermanent().equals(codeParmanent) && resultat.getNote() >= 0){
                         ponderationExiste = true;
                     }
                 } 
             } else {
                 total = 0;
-                nombreEvaluation = 1;
             }
-            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+            if(ponderationExiste) total = total + convertirPonderation(evaluation.getPonderation());
         }
         return total;
     }
@@ -122,7 +117,7 @@ public class Calculs {
             nombreEvaluation = 0;
             if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
                 for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
-                    if(resultat.getEtudiant().equals(codeParmanent) && resultat.getNote() >= 0){
+                    if(resultat.getEtudiant().getCodePermanent().equals(codeParmanent) && resultat.getNote() >= 0){
                         total = total + resultat.getNote();
                         nombreEvaluation++;
                     }
@@ -137,32 +132,28 @@ public class Calculs {
     }
     
     private static double convertirPonderation(String ponderation){
-        double nombre = 0;
         
-        nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
-        
-        return nombre;
+        return Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
+
     }
     
     public static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, List<ResultatEvaluation> listeResultatEvaluation){
         boolean evaluationValide = false;
-        String codePermanentEtudiant = null;
+        String codePermanentEtudiant ;
         boolean valide = false;
-        int i=0;
+        int i;
         for(int j = 0; j < listeResultatEvaluation.size() ; j++){
             codePermanentEtudiant = listeResultatEvaluation.get(j).getEtudiant().getCodePermanent();
             i = 0;
-            valide = false;
-            while(i < listeEtudiant.size() && valide == false){
+           // valide = false;
+            while(i < listeEtudiant.size() && !valide ){
                 if(!codePermanentEtudiant.equals(listeEtudiant.get(i).getCodePermanent())){
                     valide = true;
                 }
                 i++;
             }
-            if (valide == true){
+            if (valide){
                 evaluationValide = true;
-            }else{
-                evaluationValide = false;
             }
         }
         return evaluationValide;
