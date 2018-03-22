@@ -10,8 +10,8 @@ public class Calculs {
     
     public static double calculMoyenneGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         double moyenne = 0;
-        double total = 0;
-        int nombreEvaluation = 0;
+        double total ;
+        int nombreEvaluation;
         if (!(listeEvaluation == null)){
             for(Evaluation evaluation : listeEvaluation){
                 total = 0;
@@ -44,7 +44,7 @@ public class Calculs {
                     }
                 } 
             }
-            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+            if(ponderationExiste) total = total + convertirPonderation(evaluation.getPonderation());
          }
         return arrondirChiffre(total,1);
     }
