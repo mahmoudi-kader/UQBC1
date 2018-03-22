@@ -114,7 +114,7 @@ public class ValidationDonnees {
     public static void validerNomEvaluation(String nomEvaluation, String typeEvaluation){
         boolean valide = false;
       
-        if(!(nomEvaluation == null) && !(typeEvaluation == null) && estAlphabetique(nomEvaluation) == true ){
+        if(!(nomEvaluation == null) && !(typeEvaluation == null) ){
             if(typeEvaluation.equalsIgnoreCase("Examen")){
                 if(nomEvaluation.equalsIgnoreCase("Examen intra") || nomEvaluation.equalsIgnoreCase("Examen final") || nomEvaluation.equalsIgnoreCase("Quiz")){
                     valide = true;
@@ -174,7 +174,7 @@ public class ValidationDonnees {
     private static boolean estAlphabetique(String str){
         for (char c : str.toCharArray())
         {
-            if (!(c >= 'a' && c <= 'z' )) return false;
+            if (!(c >= 'a' && c <= 'z' ) && !(c >= 'A' && c <= 'Z' )) return false;
         }
         return true;
     }

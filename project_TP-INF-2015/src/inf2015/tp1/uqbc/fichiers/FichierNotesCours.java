@@ -23,9 +23,9 @@ public class FichierNotesCours extends FichierJSON {
         Matcher m = p.matcher(fichier.getName());
         boolean succes = m.matches();
         if(succes){
-            int groupCount = m.groupCount();
-            System.out.println("group count: "+m.groupCount());
             
+            this.setFichier(fichier);
+            int groupCount = m.groupCount();
             this.evaluation = new Evaluation();
             evaluation.setNumeroEvaluation(m.group(1));
             

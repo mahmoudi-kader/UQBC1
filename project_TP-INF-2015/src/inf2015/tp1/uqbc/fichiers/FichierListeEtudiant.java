@@ -27,20 +27,14 @@ public class FichierListeEtudiant extends FichierJSON {
         boolean succes = m.matches();
         if(succes){
             
+            this.setFichier(fichier);
             int groupCount = m.groupCount();
-            System.out.println("group count: "+m.groupCount());
             
             setCours(new Cours());
             getCours().setTitre(m.group(1)+m.group(2));
             getCours().setNumeroCours(m.group(2));
             getCours().setGroupe(m.group(3));            
             getCours().setSession(m.group(4));
-            
-            System.out.println("Fichier:"+m.group(0));
-            System.out.println("titre="+getCours().getTitre());
-            System.out.println("group="+getCours().getGroupe());
-            System.out.println("group="+getCours().getNumeroCours());
-            System.out.println("session="+getCours().getSession());
 
         }
         

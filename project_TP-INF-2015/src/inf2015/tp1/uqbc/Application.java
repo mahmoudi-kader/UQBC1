@@ -3,9 +3,7 @@ package inf2015.tp1.uqbc;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
 import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -19,19 +17,12 @@ public class Application {
     public static void main(String[] args) {
         
         
+        String repertoire = "/home/benoit/NetBeansProjects/UQBC1/project_TP-INF-2015/fichiers/";
+        
         List<FichierJSON> listeFichiers = new ArrayList();
-        TraitementFichiers.ramasser(null, listeFichiers);
-        TraitementFichiers.chargerDonnees(listeFichiers);
+        TraitementFichiers.ramasser(repertoire, listeFichiers);
+        List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
         //traiter chargement objets : Benoit
-        
-        
-        
-        
-        //TODO Benoit
-        
-        //Resultat:
-        
-        List<Cours> listeCours;
         
         
         //TODO Nawal Calculs

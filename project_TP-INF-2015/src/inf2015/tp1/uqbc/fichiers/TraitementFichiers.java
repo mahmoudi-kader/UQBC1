@@ -48,7 +48,7 @@ public class TraitementFichiers {
         
         File repertoireTravail = new File(repertoire);
         
-        if(! repertoireTravail.exists() || !repertoireTravail.isDirectory() || repertoireTravail.canRead() ){
+        if(! repertoireTravail.exists() || !repertoireTravail.isDirectory() || !repertoireTravail.canRead() ){
             throw new RuntimeException("Le répertoire : '"+repertoire+"' n'est pas un répertoire ou n'est pas accessible." );    
         }
         
@@ -98,28 +98,25 @@ public class TraitementFichiers {
         
         for(FichierJSON fichier : liste){
             
-            String szJson = fichier.getJson();
-            JSONObject jsonObj = new JSONObject(szJson);
-            
-            if(fichier instanceof FichierNotesCours){
-                
-                String commentaire = jsonObj.getString("commentaire");
-                String nomEvaluation = jsonObj.getString("nom_evaluation");
-                String ponderation = jsonObj.getString("ponderation");
-                String typeEvaluation = jsonObj.getString("type");
-                JSONArray donnees = jsonObj.getJSONArray("donnees");
-                
-                boolean valide = true;
-                
-                if(donnees == null || donnees.length()==0){
-                    throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
-                }
-                //valide = valide && ValidationDonnees.validerNomEvaluation(nomEvaluation, szJson);
-                //valide = valide && ValidationDonnees.validerPonderation(ponderation);
-                
-                
-                if(valide){
-                    
+            try{
+
+                String szJson = fichier.getJson();
+                JSONObject jsonObj = new JSONObject(szJson);
+
+                if(fichier instanceof FichierNotesCours){
+
+                    String commentaire = jsonObj.getString("commentaire");
+                    String nomEvaluation = jsonObj.getString("nom_evaluation");
+                    String ponderation = jsonObj.getString("ponderation");
+                    String typeEvaluation = jsonObj.getString("type");
+                    JSONArray donnees = jsonObj.getJSONArray("donnees");
+
+                    if(donnees == null || donnees.length()==0){
+                        throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
+                    }
+                    ValidationDonnees.validerNomEvaluation(nomEvaluation, typeEvaluation);
+                    ValidationDonnees.validerPonderation(ponderation);
+
                     //On s'assure que le cours n'est pas déjà dans notre liste de cours
                     Cours cours = fichier.getCours();
                     if(map.containsKey(cours)){
@@ -127,38 +124,81 @@ public class TraitementFichiers {
                     }else{
                         map.put(cours, cours);
                     }
-                    
+
                     Evaluation eval = ((FichierNotesCours) fichier).getEvaluation();
                     eval.setCommentaire(commentaire);
                     eval.setNomEvaluation(nomEvaluation);
                     eval.setType(jsonObj.getString("type"));
                     eval.setPonderation(ponderation);
                     eval.setNumeroEvaluation(jsonObj.getString(""));
-                    
-                    eval.setListeResultatEvaluation(traiterDonnees(donnees));
-                    
+
+                    eval.setListeResultatEvaluation(traiterDonneesResultats(donnees));
+
                     cours.getListeEvaluation().add(eval);
-                    
+
+                //FichierListeEtudiant
                 }else{
-                    throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est invalide.");
+
+                    FichierListeEtudiant listeEtudiant = (FichierListeEtudiant)fichier;
+
+                    //On s'assure que le cours n'est pas déjà dans notre liste de cours
+                    Cours cours = fichier.getCours();
+                    if(map.containsKey(cours)){
+                        cours = map.get(cours);
+                    }else{
+                        map.put(cours, cours);
+                    }
+
+                    String commentaire = jsonObj.getString("commentaire");
+                    JSONArray donnees = jsonObj.getJSONArray("donnees");
+
+                    if(donnees == null || donnees.length()==0){
+                        throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
+                    }
+
+
                 }
-                
-            //FichierListeEtudiant
-            }else{
-                
-                
-                
-                
+
+            }catch(ValidationException ve){
+                System.out.println(ve.getMessage()+ " dans le fichier :"+fichier.getFichier().getAbsolutePath());
             }
-            
         }
         
-        List<Cours> listeCours = null;
+        List<Cours> listeCours = new ArrayList<>(map.values());
         
         return listeCours;
     }
     
-    protected static List<ResultatEvaluation> traiterDonnees(JSONArray donnees){
+    protected static List<Etudiant> traiterDonneesEtudiants(JSONArray donnees){
+
+        List<Etudiant> liste = new ArrayList<>();
+        
+        int size = donnees.length();
+        
+        for(int i=0; i< size; i++){
+            
+            JSONObject obj = donnees.getJSONObject(i);
+            String codePermanent = obj.getString("code_permanent");
+            String nom = obj.getString("nom");
+            String prenom = obj.getString("prenom");
+            
+            ValidationDonnees.validerCodePermanent(codePermanent);
+
+            Etudiant etudiant = tableEtudiants.get(codePermanent);
+            if(etudiant == null){
+                etudiant = new Etudiant(codePermanent, nom, prenom);
+                tableEtudiants.put(codePermanent, etudiant);
+            }else{
+                etudiant.setNom(nom);
+                etudiant.setPrenom(prenom);
+            }
+           
+        }        
+        
+        return liste;
+    }
+    
+    protected static List<ResultatEvaluation> traiterDonneesResultats(JSONArray donnees){
         
         List<ResultatEvaluation> liste = new ArrayList<>();
         
