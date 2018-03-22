@@ -130,7 +130,6 @@ public class TraitementFichiers {
                     eval.setNomEvaluation(nomEvaluation);
                     eval.setType(jsonObj.getString("type"));
                     eval.setPonderation(ponderation);
-                    eval.setNumeroEvaluation(jsonObj.getString(""));
 
                     eval.setListeResultatEvaluation(traiterDonneesResultats(donnees));
 

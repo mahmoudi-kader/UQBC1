@@ -77,9 +77,9 @@ public class ValidationDonnees {
     public static void validerCodePermanent(String codePermanent){
         boolean valide = false;
       
-        if(!(codePermanent == null) && codePermanent.length()==12 ){
-            if(estAlphabetique(codePermanent.substring(0,4)) == true){
-                if(estNumerique(codePermanent.substring(4,12)) == true){
+        if(!(codePermanent == null) && codePermanent.length()==9){
+            if(estAlphabetique(codePermanent.substring(0,3)) == true){
+                if(estNumerique(codePermanent.substring(3,9)) == true){
                     valide = true;
                 }else{
                     valide = false;
@@ -116,7 +116,7 @@ public class ValidationDonnees {
       
         if(!(nomEvaluation == null) && !(typeEvaluation == null) ){
             if(typeEvaluation.equalsIgnoreCase("Examen")){
-                if(nomEvaluation.equalsIgnoreCase("Examen intra") || nomEvaluation.equalsIgnoreCase("Examen final") || nomEvaluation.equalsIgnoreCase("Quiz")){
+                if(nomEvaluation.startsWith("Examen") || nomEvaluation.startsWith("Quiz")){
                     valide = true;
                 }else{
                     valide = false;
@@ -149,7 +149,7 @@ public class ValidationDonnees {
       
         if(!(ponderation == null)){
             if(estNumerique(ponderation.substring(0, ponderation.length()-1)) == true){
-                if(ponderation.substring(ponderation.length()-1)=="%"){
+                if(ponderation.substring(ponderation.length()-1).equals("%")){
                     valide = true;
                 }else{
                     valide = false;
