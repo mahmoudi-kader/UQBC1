@@ -1,0 +1,27 @@
+Version :      a venir       
+Cours: BIO1012
+Groupe: Gr10
+Session: H18
+============================ 
+Cours : SADN27272727
+Groupe: Saddd
+Session: Naaaa
+============================ 
+Evaluation 1 : TP
+Type : TP
+Ponderation : 20%
+Note : 36.0
+Moyenne du groupe : 28.8
+============================ 
+Evaluation 2 : Examen intra
+Type : Examen
+Ponderation : 40%
+Note : 36.0
+Moyenne du groupe : 28.8
+============================ 
+Evaluation 3 : Examen final
+Type : Examen
+Ponderation : 40%
+Note : 36.0
+Moyenne du groupe : 28.8
+============================ 

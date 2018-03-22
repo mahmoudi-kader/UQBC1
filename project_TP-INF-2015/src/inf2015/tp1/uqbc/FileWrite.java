@@ -22,10 +22,5 @@ public class FileWrite {
         System.out.println("JSON Object: " + obj);
         file.flush();
         file.close();
-        
-        
-    
     }
-    
-    
 }

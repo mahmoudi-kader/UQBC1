@@ -49,9 +49,10 @@ public class CalculsTest {
         cours1.setListeEvaluation(listeEvaluation);
         
         double moyenneCours = cours1.getMoyenneGroupe();
-        double moyenneEvaluation = 0;
-        System.out.println("La moyenne du cours " + moyenneCours);
+        String moyenneEvaluation = cours1.noteEtudiantGlobal(cours1.getListeEtudiant(), cours1.getListeEvaluation()).get(0);
         Assert.assertEquals(86.5, moyenneCours,0.001);
-        Assert.assertEquals(14.0, moyenneEvaluation,0.001);
+        Assert.assertEquals("SADN27272727 : 29.0", moyenneEvaluation);
+        moyenneEvaluation = cours1.noteEtudiantGlobal(cours1.getListeEtudiant(), cours1.getListeEvaluation()).get(1);
+        Assert.assertEquals("DASS27272727 : 28.6", moyenneEvaluation);
     }
 }

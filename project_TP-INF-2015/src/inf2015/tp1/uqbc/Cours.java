@@ -74,12 +74,12 @@ public class Cours {
         return moyenneGroupe;
     }
     
-    public ArrayList<String> moyenneEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
+    public ArrayList<String> noteEtudiantGlobal(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         ArrayList<String> listNoteEtudiants = new ArrayList();
-        double moyenneEtudiantGlobal = 0;
+        double noteEtudiantGlobal = 0;
         for(Etudiant etudiant:listeEtudiant){
-            moyenneEtudiantGlobal = Calculs.calculNotePondereeGlobale(getListeEtudiant(), listeEvaluation, etudiant.getCodePermanent());
-            
+            noteEtudiantGlobal = Calculs.calculNotePondereeGlobale(getListeEtudiant(), listeEvaluation, etudiant.getCodePermanent());
+            listNoteEtudiants.add(etudiant.getCodePermanent() + " : " + noteEtudiantGlobal);
         }
         return listNoteEtudiants;
     }
