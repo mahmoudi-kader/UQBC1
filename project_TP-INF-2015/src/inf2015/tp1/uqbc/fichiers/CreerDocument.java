@@ -21,27 +21,34 @@ public class CreerDocument {
     
     private String EcrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
-        String version = "Version :      a venir       ";
+        String version = "Version :      a venir       \r\n";
         CoursEtudiant coursEtudiant;
-        texte = version + "\n";
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + "\n";
-        texte = texte + "Groupe: " + cours.getGroupe() + "\n";
-        texte = texte + "Session: " + cours.getSession() + "\n";
-        texte = texte + "============================ " + "\n";
-        texte = texte + "Cours : " + etudiant.getCodePermanent() + "\n";
-        texte = texte + "Groupe: " + etudiant.getNom() + "\n";
-        texte = texte + "Session: " + etudiant.getPrenom() + "\n";
-        texte = texte + "============================ " + "\n";
+        double noteEtudiant = 0;
+        texte = version + "\r\n";
+        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + "\r\n";
+        texte = texte + "Groupe: " + cours.getGroupe() + "\r\n";
+        texte = texte + "Session: " + cours.getSession() + "\r\n";
+        texte = texte + "============================ " + "\r\n";
+        texte = texte + "Cours : " + etudiant.getCodePermanent() + "\r\n";
+        texte = texte + "Groupe: " + etudiant.getNom() + "\r\n";
+        texte = texte + "Session: " + etudiant.getPrenom() + "\r\n";
+        texte = texte + "============================ " + "\r\n";
         for(Evaluation evaluation : cours.getListeEvaluation()){
-            coursEtudiant = new CoursEtudiant(cours, etudiant,evaluation);
+            coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);
             texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
-            texte = texte + coursEtudiant.getNomEvaluation() +  "\n";
-            texte = texte + "Type : " + coursEtudiant.getType() +  "\n";
-            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() +  "\n";
-            texte = texte + "Note : " + coursEtudiant.getNote() +  "\n";
-            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() +  "\n";
-            texte = texte + "============================ " + "\n";
+            texte = texte + coursEtudiant.getNomEvaluation() +  "\r\n";
+            texte = texte + "Type : " + coursEtudiant.getType() +  "\r\n";
+            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() +  "\r\n";
+            texte = texte + "Note : " + coursEtudiant.getNote() +  "\r\n";
+            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() +  "\r\n";
+            texte = texte + "============================ " + "\r\n";
+            noteEtudiant = noteEtudiant + coursEtudiant.getNote();
         }
+        texte = texte + "Total\r\n";
+        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + "\r\n";
+        texte = texte + "Note : " + noteEtudiant + "\r\n";
+        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + "\r\n";
+        
         return texte;
     }
 

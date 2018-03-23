@@ -10,9 +10,9 @@ public class Calculs {
     
     public static double calculMoyenneGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         double moyenne = 0;
-        double total = 0;
-        int nombreEvaluation = 0;
-        if (!(listeEvaluation == null)){
+        double total ;
+        int nombreEvaluation;
+        if (listeEvaluation != null){
             for(Evaluation evaluation : listeEvaluation){
                 total = 0;
                 nombreEvaluation = 0;
@@ -44,7 +44,7 @@ public class Calculs {
                     }
                 } 
             }
-            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+            if(ponderationExiste) total = total + convertirPonderation(evaluation.getPonderation());
          }
         return arrondirChiffre(total,1);
     }
@@ -87,13 +87,10 @@ public class Calculs {
     }
     
     public static double calculPonderationGlobaleEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent){
-        double notePonderee=0;
         boolean ponderationExiste = false;
         double total = 0;
-        int nombreEvaluation = 0;
-        for(Evaluation evaluation : listeEvaluation){
+              for(Evaluation evaluation : listeEvaluation){
             total = 0;
-            nombreEvaluation = 0;
             if(validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true){
                 for(ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()){
                     if(resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0){
@@ -102,9 +99,8 @@ public class Calculs {
                 } 
             } else {
                 total = 0;
-                nombreEvaluation = 1;
             }
-            if(ponderationExiste = true) total = total + convertirPonderation(evaluation.getPonderation());
+            if(ponderationExiste) total = total + convertirPonderation(evaluation.getPonderation());
         }
         return arrondirChiffre(total,1);
     }
@@ -133,18 +129,16 @@ public class Calculs {
     }
     
     private static double convertirPonderation(String ponderation){
-        double nombre = 0;
-        
-        nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
+        double nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
         
         return nombre;
     }
     
     public static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, List<ResultatEvaluation> listeResultatEvaluation){
         boolean evaluationValide = false;
-        String codePermanentEtudiant = null;
-        boolean valide = false;
-        int i=0;
+        String codePermanentEtudiant;
+        boolean valide;
+        int i;
         for(int j = 0; j < listeResultatEvaluation.size() ; j++){
             codePermanentEtudiant = listeResultatEvaluation.get(j).getEtudiant().getCodePermanent();
             i = 0;
@@ -155,11 +149,7 @@ public class Calculs {
                 }
                 i++;
             }
-            if (valide == true){
-                evaluationValide = true;
-            }else{
-                evaluationValide = false;
-            }
+            evaluationValide = valide;
         }
         return evaluationValide;
     }

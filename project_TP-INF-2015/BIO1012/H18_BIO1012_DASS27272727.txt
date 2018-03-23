@@ -1,4 +1,5 @@
 Version :      a venir       
+
 Cours: BIO1012
 Groupe: Gr10
 Session: H18
@@ -10,18 +11,22 @@ Session: Naaaa
 Evaluation 1 : TP
 Type : TP
 Ponderation : 20%
-Note : 36.0
-Moyenne du groupe : 28.8
+Note : 15.0
+Moyenne du groupe : 14.0
 ============================ 
 Evaluation 2 : Examen intra
 Type : Examen
 Ponderation : 40%
-Note : 36.0
-Moyenne du groupe : 28.8
+Note : 35.0
+Moyenne du groupe : 36.5
 ============================ 
 Evaluation 3 : Examen final
 Type : Examen
 Ponderation : 40%
 Note : 36.0
-Moyenne du groupe : 28.8
+Moyenne du groupe : 36.0
 ============================ 
+Total
+Ponderation : 100.0
+Note : 86.0
+Moyenne du groupe : 86.5
