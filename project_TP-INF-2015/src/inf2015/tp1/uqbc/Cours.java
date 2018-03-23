@@ -95,32 +95,46 @@ public class Cours {
     public void setListeEtudiant(List<Etudiant> listeEtudiant) {
         this.listeEtudiant = listeEtudiant;
     }
-    
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 11 * hash + Objects.hashCode(this.titre);
-        hash = 11 * hash + Objects.hashCode(this.groupe);
-        hash = 11 * hash + Objects.hashCode(this.session);
-        hash = 11 * hash + Objects.hashCode(this.numeroCours);
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.titre);
+        hash = 83 * hash + Objects.hashCode(this.groupe);
+        hash = 83 * hash + Objects.hashCode(this.session);
+        hash = 83 * hash + Objects.hashCode(this.numeroCours);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Boolean egal=(this == obj) && (obj == null) ;
-        if (obj!=null){
-           egal=egal && getClass() == obj.getClass();
+        if (this == obj) {
+            return true;
         }
-        final Cours other;
-        other = (Cours) obj;
-        egal=egal && Objects.equals(this.titre, other.titre);
-        egal=egal && Objects.equals(this.groupe, other.groupe);
-        egal=egal && Objects.equals(this.session, other.session);
-        egal=egal && Objects.equals(this.numeroCours, other.numeroCours);
-        return egal;
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cours other = (Cours) obj;
+        if (!Objects.equals(this.titre, other.titre)) {
+            return false;
+        }
+        if (!Objects.equals(this.groupe, other.groupe)) {
+            return false;
+        }
+        if (!Objects.equals(this.session, other.session)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroCours, other.numeroCours)) {
+            return false;
+        }
+        return true;
     }
+    
+
+
 
     /**
      * @return the listeEvaluation
