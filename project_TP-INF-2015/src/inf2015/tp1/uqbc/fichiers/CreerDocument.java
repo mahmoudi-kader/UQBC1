@@ -57,10 +57,10 @@ public class CreerDocument {
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
-            nomRepertoire = defaultWorkingDirectory + cours.getTitre() + cours.getNumeroCours() + "\\";
+            nomRepertoire = defaultWorkingDirectory + cours.getTitre() + "\\";
             CreerRepertoire(nomRepertoire);
             for (Etudiant etudiant : cours.getListeEtudiant()) {
-                nomFichier = cours.getSession() + "_" + cours.getTitre() + cours.getNumeroCours() + "_" + etudiant.getCodePermanent();
+                nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
                 CreerFichier(nomRepertoire + nomFichier + ".txt");
                 //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = EcrireTexte(cours, etudiant);
