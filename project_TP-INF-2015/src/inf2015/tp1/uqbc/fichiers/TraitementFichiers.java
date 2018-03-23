@@ -7,6 +7,7 @@ import inf2015.tp1.uqbc.ResultatEvaluation;
 import inf2015.tp1.uqbc.ValidationDonnees;
 import inf2015.tp1.uqbc.ValidationException;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -54,7 +55,18 @@ public class TraitementFichiers {
             throw new RuntimeException("Le répertoire : '" + repertoire + "' n'est pas un répertoire ou n'est pas accessible.");
         }
 
-        File[] listeFichiers = repertoireTravail.listFiles();
+        FilenameFilter myFilenameFilter = new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name){
+                boolean accept = false;
+                if(name != null && name.toLowerCase().endsWith("json") ){
+                    accept = true;
+                }
+                return accept;
+            }
+        };
+        
+        File[] listeFichiers = repertoireTravail.listFiles(myFilenameFilter);
 
         for (File fichier : listeFichiers) {
 
