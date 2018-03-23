@@ -17,8 +17,9 @@ import java.util.List;
  * Classe qui permet d'ècrire le fichier txt par étudiant
  */
 public class CreerDocument {
+
     private static final String defaultWorkingDirectory = "./";
-    
+
     private String EcrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
         String version = "Version :      a venir       \r\n";
@@ -33,14 +34,14 @@ public class CreerDocument {
         texte = texte + "Nom : " + etudiant.getNom() + "\r\n";
         texte = texte + "Prenom : " + etudiant.getPrenom() + "\r\n";
         texte = texte + "============================ " + "\r\n";
-        for(Evaluation evaluation : cours.getListeEvaluation()){
+        for (Evaluation evaluation : cours.getListeEvaluation()) {
             coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);
             texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
-            texte = texte + coursEtudiant.getNomEvaluation() +  "\r\n";
-            texte = texte + "Type : " + coursEtudiant.getType() +  "\r\n";
-            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() +  "\r\n";
-            texte = texte + "Note : " + coursEtudiant.getNote() +  "\r\n";
-            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() +  "\r\n";
+            texte = texte + coursEtudiant.getNomEvaluation() + "\r\n";
+            texte = texte + "Type : " + coursEtudiant.getType() + "\r\n";
+            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() + "\r\n";
+            texte = texte + "Note : " + coursEtudiant.getNote() + "\r\n";
+            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() + "\r\n";
             texte = texte + "============================ " + "\r\n";
             noteEtudiant = noteEtudiant + coursEtudiant.getNote();
         }
@@ -48,7 +49,7 @@ public class CreerDocument {
         texte = texte + "Ponderation : " + cours.getPonderationGroupe() + "\r\n";
         texte = texte + "Note : " + noteEtudiant + "\r\n";
         texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + "\r\n";
-        
+
         return texte;
     }
 

@@ -17,24 +17,24 @@ import static org.junit.Assert.*;
  * @author nawal
  */
 public class ValidationDonneesTest {
-    
+
     public ValidationDonneesTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        String getNomRepertoire="";
-        
+        String getNomRepertoire = "";
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -44,7 +44,6 @@ public class ValidationDonneesTest {
     //
     // @Test
     // public void hello() {}
-
     @Test
     public void testGetNomRepertoire() {
     }

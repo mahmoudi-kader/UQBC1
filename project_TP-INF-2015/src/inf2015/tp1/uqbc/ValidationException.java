@@ -10,9 +10,9 @@ package inf2015.tp1.uqbc;
  * @author benoit
  */
 public class ValidationException extends RuntimeException {
-    
-    public ValidationException(String message){
+
+    public ValidationException(String message) {
         super(message);
     }
-    
+
 }

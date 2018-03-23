@@ -2,43 +2,46 @@ package inf2015.tp1.uqbc;
 
 /**
  * Classe qui représente un étudiant.
+ *
  * @author benoit
  */
 public class Etudiant {
-    
+
     private String codePermanent;
     private String nom;
     private String prenom;
-    
-    public Etudiant(){
-        
+
+    public Etudiant() {
+
     }
-    public Etudiant(String codePermanent, String nom, String prenom){
+
+    public Etudiant(String codePermanent, String nom, String prenom) {
         this.codePermanent = codePermanent;
         this.nom = nom;
         this.prenom = prenom;
     }
-    public String getCodePermanent(){
+
+    public String getCodePermanent() {
         return codePermanent;
     }
-    
-    public void setCodePermanent(String codePermanent){
+
+    public void setCodePermanent(String codePermanent) {
         this.codePermanent = codePermanent;
     }
-    
-    public String getNom(){
+
+    public String getNom() {
         return nom;
     }
-    
-    public void setNom(String nom){
+
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public String getPrenom(){
+    public String getPrenom() {
         return prenom;
     }
-    
-    public void setPrenom(String prenom){
+
+    public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }    
+    }
 }

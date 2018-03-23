@@ -15,95 +15,95 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * Cette class va ramasser tous les fichiers du répertoire, et les mettre dans une liste.
- * Si un répertoire est rencontré, on exécute la même logique dans le répertoire.
- * 
+ * Cette class va ramasser tous les fichiers du répertoire, et les mettre dans
+ * une liste. Si un répertoire est rencontré, on exécute la même logique dans le
+ * répertoire.
+ *
  * @author benoit
  */
 public class TraitementFichiers {
-    
+
     //private static final String defaultWorkingDirectory = "./";
     private static final String defaultWorkingDirectory = "./";
     private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
     private static final String PREFIXE_FICHIER_NOTES = "evaluation";
-    
-    private static final Hashtable<String,Etudiant> tableEtudiants = new Hashtable<>();
-    
+
+    private static final Hashtable<String, Etudiant> tableEtudiants = new Hashtable<>();
+
     /**
      * ramasser tous les fichiers du répertoire, et les mettre dans une liste.
-     * Si un répertoire est rencontré, on exécute la même méthode dans le répertoire
-     * Si la variable repertoire est nulle, on utilise le répertoire courant.
-     * Si la variable liste est nulle, on lance une exception.
+     * Si un répertoire est rencontré, on exécute la même méthode dans le
+     * répertoire Si la variable repertoire est nulle, on utilise le répertoire
+     * courant. Si la variable liste est nulle, on lance une exception.
+     *
      * @param repertoire
-     * @param liste 
+     * @param liste
      */
-    public static void ramasser(String repertoire, List<FichierJSON> liste){
-        if(repertoire == null || repertoire.length() == 0){
+    public static void ramasser(String repertoire, List<FichierJSON> liste) {
+        if (repertoire == null || repertoire.length() == 0) {
             repertoire = defaultWorkingDirectory;
         }
-        
-        if(liste == null){
+
+        if (liste == null) {
             throw new RuntimeException("La variable 'liste' doit être initialisée.");
         }
-        
-        File repertoireTravail = new File(repertoire);
-        
-        if(! repertoireTravail.exists() || !repertoireTravail.isDirectory() || !repertoireTravail.canRead() ){
-            throw new RuntimeException("Le répertoire : '"+repertoire+"' n'est pas un répertoire ou n'est pas accessible." );    
-        }
-        
-        File[] listeFichiers = repertoireTravail.listFiles();
-                      
-        for(File fichier : listeFichiers){
-            
-            
-            try{
-            
-                if(fichier.isDirectory()){
-                    ramasser(fichier.getAbsolutePath(),liste);
-                }else{
 
-                    if(!fichier.canRead()){
-                        throw new ValidationException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
+        File repertoireTravail = new File(repertoire);
+
+        if (!repertoireTravail.exists() || !repertoireTravail.isDirectory() || !repertoireTravail.canRead()) {
+            throw new RuntimeException("Le répertoire : '" + repertoire + "' n'est pas un répertoire ou n'est pas accessible.");
+        }
+
+        File[] listeFichiers = repertoireTravail.listFiles();
+
+        for (File fichier : listeFichiers) {
+
+            try {
+
+                if (fichier.isDirectory()) {
+                    ramasser(fichier.getAbsolutePath(), liste);
+                } else {
+
+                    if (!fichier.canRead()) {
+                        throw new ValidationException("Le fichier '" + fichier.getAbsolutePath() + "' n'est pas accessible.");
                     }
 
-
                     FichierJSON fichierJSON = null;
-                    if(fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)){
+                    if (fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)) {
 
                         fichierJSON = new FichierListeEtudiant();
 
-                    }else if(fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)){
+                    } else if (fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)) {
 
                         fichierJSON = new FichierNotesCours();
 
-                    }else{
-                        throw new ValidationException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
+                    } else {
+                        throw new ValidationException("Le nom du fichier '" + fichier.getName() + "' n'est pas un format reconnu.");
                     }
                     fichierJSON.initialiserFichier(fichier);
-                    fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));                
+                    fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));
                     liste.add(fichierJSON);
                 }
-                
-            }catch(ValidationException ve){
-                System.out.println(ve.getMessage() + " dans le fichier : "+fichier.getAbsolutePath());
+
+            } catch (ValidationException ve) {
+                System.out.println(ve.getMessage() + " dans le fichier : " + fichier.getAbsolutePath());
             }
         }
-        
+
     }
-    
-    public static List<Cours> chargerDonnees(List<FichierJSON> liste){
-        
-        Map<Cours, Cours> map= new Hashtable();
-        
-        for(FichierJSON fichier : liste){
-            
-            try{
+
+    public static List<Cours> chargerDonnees(List<FichierJSON> liste) {
+
+        Map<Cours, Cours> map = new Hashtable();
+
+        for (FichierJSON fichier : liste) {
+
+            try {
 
                 String szJson = fichier.getJson();
                 JSONObject jsonObj = new JSONObject(szJson);
 
-                if(fichier instanceof FichierNotesCours){
+                if (fichier instanceof FichierNotesCours) {
 
                     String commentaire = jsonObj.getString("commentaire");
                     String nomEvaluation = jsonObj.getString("nom_evaluation");
@@ -111,17 +111,17 @@ public class TraitementFichiers {
                     String typeEvaluation = jsonObj.getString("type");
                     JSONArray donnees = jsonObj.getJSONArray("donnees");
 
-                    if(donnees == null || donnees.length()==0){
-                        throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
+                    if (donnees == null || donnees.length() == 0) {
+                        throw new RuntimeException("Le fichier " + fichier.getFichier().getAbsolutePath() + " est vide.");
                     }
                     ValidationDonnees.validerNomEvaluation(nomEvaluation, typeEvaluation);
                     ValidationDonnees.validerPonderation(ponderation);
 
                     //On s'assure que le cours n'est pas déjà dans notre liste de cours
                     Cours cours = fichier.getCours();
-                    if(map.containsKey(cours)){
+                    if (map.containsKey(cours)) {
                         cours = map.get(cours);
-                    }else{
+                    } else {
                         map.put(cours, cours);
                     }
 
@@ -134,100 +134,100 @@ public class TraitementFichiers {
                     eval.setListeResultatEvaluation(traiterDonneesResultats(donnees));
                     cours.getListeEvaluation().add(eval);
 
-                //FichierListeEtudiant
-                }else{
+                    //FichierListeEtudiant
+                } else {
 
-                    FichierListeEtudiant listeEtudiant = (FichierListeEtudiant)fichier;
+                    FichierListeEtudiant listeEtudiant = (FichierListeEtudiant) fichier;
 
                     //On s'assure que le cours n'est pas déjà dans notre liste de cours
                     Cours cours = fichier.getCours();
-                    if(map.containsKey(cours)){
+                    if (map.containsKey(cours)) {
                         cours = map.get(cours);
-                    }else{
+                    } else {
                         map.put(cours, cours);
                     }
 
                     String commentaire = jsonObj.getString("commentaire");
                     JSONArray donnees = jsonObj.getJSONArray("donnees");
 
-                    if(donnees == null || donnees.length()==0){
-                        throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
+                    if (donnees == null || donnees.length() == 0) {
+                        throw new RuntimeException("Le fichier " + fichier.getFichier().getAbsolutePath() + " est vide.");
                     }
 
                     cours.getListeEtudiant().addAll(traiterDonneesEtudiants(donnees));
-                    
+
                 }
 
-            }catch(ValidationException ve){
-                System.out.println(ve.getMessage()+ " dans le fichier :"+fichier.getFichier().getAbsolutePath());
+            } catch (ValidationException ve) {
+                System.out.println(ve.getMessage() + " dans le fichier :" + fichier.getFichier().getAbsolutePath());
             }
-            
+
         }
-        
+
         List<Cours> listeCours = new ArrayList<>(map.values());
-        
+
         return listeCours;
     }
-    
-    protected static List<Etudiant> traiterDonneesEtudiants(JSONArray donnees){
+
+    protected static List<Etudiant> traiterDonneesEtudiants(JSONArray donnees) {
 
         List<Etudiant> liste = new ArrayList<>();
-        
+
         int size = donnees.length();
-        
-        for(int i=0; i< size; i++){
-            
+
+        for (int i = 0; i < size; i++) {
+
             JSONObject obj = donnees.getJSONObject(i);
             String codePermanent = obj.getString("code_permanent");
             String nom = obj.getString("nom");
             String prenom = obj.getString("prenom");
-            
+
             ValidationDonnees.validerCodePermanent(codePermanent);
 
             Etudiant etudiant = tableEtudiants.get(codePermanent);
-            if(etudiant == null){
+            if (etudiant == null) {
                 etudiant = new Etudiant(codePermanent, nom, prenom);
                 tableEtudiants.put(codePermanent, etudiant);
-            }else{
+            } else {
                 etudiant.setNom(nom);
                 etudiant.setPrenom(prenom);
             }
-           
+
             liste.add(etudiant);
-        }        
-        
+        }
+
         return liste;
     }
-    
-    protected static List<ResultatEvaluation> traiterDonneesResultats(JSONArray donnees){
-        
+
+    protected static List<ResultatEvaluation> traiterDonneesResultats(JSONArray donnees) {
+
         List<ResultatEvaluation> liste = new ArrayList<>();
-        
+
         int size = donnees.length();
-        
-        for(int i=0; i< size; i++){
-            
+
+        for (int i = 0; i < size; i++) {
+
             JSONObject obj = donnees.getJSONObject(i);
             String codePermanent = obj.getString("code_permanent");
             Double note = obj.getDouble("note");
-            
+
             ValidationDonnees.validerCodePermanent(codePermanent);
-            
+
             ResultatEvaluation resultatEvaluation = new ResultatEvaluation();
-            
+
             Etudiant etudiant = tableEtudiants.get(codePermanent);
-            if(etudiant == null){
+            if (etudiant == null) {
                 etudiant = new Etudiant(codePermanent, null, null);
                 tableEtudiants.put(codePermanent, etudiant);
             }
             resultatEvaluation.setEtudiant(etudiant);
             resultatEvaluation.setNote(note);
-            
+
             liste.add(resultatEvaluation);
-            
+
         }
-        
+
         return liste;
     }
-    
+
 }

@@ -1,4 +1,3 @@
-
 package inf2015.tp1.uqbc;
 
 import java.util.ArrayList;
@@ -17,17 +16,19 @@ public class Cours {
     private String numeroCours;
     private List<Evaluation> listeEvaluation = new ArrayList();
     private List<Etudiant> listeEtudiant = new ArrayList();
-    
-    public Cours(){
-        
+
+    public Cours() {
+
     }
-    public Cours(String titre, String groupe, String session, String commentaire, String numeroCours){
+
+    public Cours(String titre, String groupe, String session, String commentaire, String numeroCours) {
         this.titre = titre;
         this.groupe = groupe;
         this.session = session;
         this.commentaire = commentaire;
         this.numeroCours = numeroCours;
     }
+
     public String getTitre() {
         return titre;
     }
@@ -51,11 +52,11 @@ public class Cours {
     public void setSession(String session) {
         this.session = session;
     }
-    
+
     public String getCommentaire() {
-          return commentaire ; 
+        return commentaire;
     }
-    
+
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
@@ -69,25 +70,25 @@ public class Cours {
     }
 
     public double getMoyenneGroupe() {
-        double moyenneGroupe= Calculs.calculMoyenneGroupeGlobale(getListeEtudiant(), getListeEvaluation());
+        double moyenneGroupe = Calculs.calculMoyenneGroupeGlobale(getListeEtudiant(), getListeEvaluation());
         return moyenneGroupe;
     }
-    
+
     public double getPonderationGroupe() {
-        double ponderationGroupe= Calculs.calculPonderationGroupeGlobale(getListeEtudiant(), getListeEvaluation());
+        double ponderationGroupe = Calculs.calculPonderationGroupeGlobale(getListeEtudiant(), getListeEvaluation());
         return ponderationGroupe;
     }
-    
-    public ArrayList<String> noteEtudiantGlobal(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
+
+    public ArrayList<String> noteEtudiantGlobal(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation) {
         ArrayList<String> listNoteEtudiants = new ArrayList();
         double noteEtudiantGlobal = 0;
-        for(Etudiant etudiant:listeEtudiant){
+        for (Etudiant etudiant : listeEtudiant) {
             noteEtudiantGlobal = Calculs.calculNotePondereeGlobale(getListeEtudiant(), listeEvaluation, etudiant.getCodePermanent());
             listNoteEtudiants.add(etudiant.getCodePermanent() + " : " + noteEtudiantGlobal);
         }
         return listNoteEtudiants;
     }
-    
+
     public void setListeEvaluation(List<Evaluation> listeEvaluation) {
         this.listeEvaluation = listeEvaluation;
     }
@@ -132,9 +133,6 @@ public class Cours {
         }
         return true;
     }
-    
-
-
 
     /**
      * @return the listeEvaluation
@@ -150,7 +148,4 @@ public class Cours {
         return listeEtudiant;
     }
 
-    
-    
-    
 }

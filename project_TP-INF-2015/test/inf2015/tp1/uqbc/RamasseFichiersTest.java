@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
  * @author Abdelkader
  */
 public class RamasseFichiersTest {
-    
+
     public RamasseFichiersTest() {
     }
 
     @Test
     public void testRamasser() {
     }
-    
+
 }
