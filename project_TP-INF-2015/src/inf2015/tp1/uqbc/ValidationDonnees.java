@@ -9,10 +9,8 @@ public class ValidationDonnees {
     public static void validerNomCours(String cours){
         boolean valide = false;
         
-        if(!(cours == null) && cours.length()==3 && estAlphabetique(cours)== true){
+        if(cours!= null && cours.length()==3 && estAlphabetique(cours)){
             valide = true;
-        }else{
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+cours+" n'est pas valide.");
@@ -22,11 +20,9 @@ public class ValidationDonnees {
     public static void validerNumeroCours(String cours){
         boolean valide = false;
       
-        if(!(cours == null) && cours.length()==4 && estNumerique(cours) == true ){
+        if(cours != null && cours.length()==4 && estNumerique(cours) ){
             valide = true;
-        } else {
-            valide = false;
-        }
+        } 
         if(!valide){
             throw new ValidationException("La valeur "+cours +" n'est pas valide comme numero de cours.");
         }
@@ -35,18 +31,10 @@ public class ValidationDonnees {
     public static void validerGroupe(String groupe){
         boolean valide = false;
       
-        if(!(groupe == null) && groupe.length()==4 ){
-            if(groupe.substring(0,2).toUpperCase() == "GR"){
-                if(estNumerique(groupe.substring(2,4)) == true){
+        if(groupe != null && groupe.length()==4 ){
+            if(groupe.substring(0,2).toUpperCase().equals("GR")&& estNumerique(groupe.substring(2,4))){
                     valide = true;
-                }else{
-                    valide = false;
-                }
-            }else{
-                valide = false;
             }
-        } else {
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+groupe+" n'est pas valide");
@@ -56,18 +44,10 @@ public class ValidationDonnees {
     public static void validerSession(String cours){
         boolean valide = false;
       
-        if(!(cours == null) && cours.length()==3 ){
-            if(cours.substring(0,1).toUpperCase() == "H" || cours.substring(0,1).toUpperCase() == "E" || cours.substring(0,1).toUpperCase() == "A"){
-                if(estNumerique(cours.substring(1,3)) == true){
-                    valide = true;
-                }else{
-                    valide = false;
-                }
-            }else{
-                valide = false;
+        if(cours != null && cours.length()==3 ){
+            if(cours.substring(0,1).toUpperCase().equals("H")  || cours.substring(0,1).toUpperCase().equals("E")  || cours.substring(0,1).toUpperCase().equals("A")){
+                    valide = estNumerique(cours.substring(1,3));
             }
-        } else {
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+cours+" n'est pas valide ");
@@ -77,18 +57,10 @@ public class ValidationDonnees {
     public static void validerCodePermanent(String codePermanent){
         boolean valide = false;
       
-        if(!(codePermanent == null) && codePermanent.length()==9){
-            if(estAlphabetique(codePermanent.substring(0,3)) == true){
-                if(estNumerique(codePermanent.substring(3,9)) == true){
-                    valide = true;
-                }else{
-                    valide = false;
-                }
-            }else{
-                valide = false;
+        if(codePermanent != null && codePermanent.length()==9){
+            if(estAlphabetique(codePermanent.substring(0,3))&& estNumerique(codePermanent.substring(3,9))){
+               
             }
-        } else {
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+codePermanent+" n'est pas valide ");
@@ -98,14 +70,10 @@ public class ValidationDonnees {
     public static void validerTypeEvaluation(String typeEvaluation){
         boolean valide = false;
       
-        if(!(typeEvaluation == null) && estAlphabetique(typeEvaluation) == true ){
+        if(!(typeEvaluation == null) && estAlphabetique(typeEvaluation) ){
             if(typeEvaluation.equalsIgnoreCase("Examen") || typeEvaluation.equalsIgnoreCase("Rapport") || typeEvaluation.equalsIgnoreCase("TP")){
                 valide = true;
-            }else{
-                valide = false;
             }
-        } else {
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+typeEvaluation+" n'est pas valide ");
@@ -118,26 +86,16 @@ public class ValidationDonnees {
             if(typeEvaluation.equalsIgnoreCase("Examen")){
                 if(nomEvaluation.startsWith("Examen") || nomEvaluation.startsWith("Quiz")){
                     valide = true;
-                }else{
-                    valide = false;
                 }
             }else if(typeEvaluation.equalsIgnoreCase("Rapport")){
                 if(nomEvaluation.startsWith("Rapport")){
                     valide = true;
-                }else{
-                    valide = false;
                 }
             }else if(typeEvaluation.equalsIgnoreCase("TP")){
                 if(nomEvaluation.startsWith("TP")){
                     valide = true;
-                }else{
-                    valide = false;
                 }
-            }else{
-                valide = false;
             }
-        } else {
-            valide = false;
         }
         if(!valide){
             throw new ValidationException("La valeur "+nomEvaluation+" n'est pas valide ");
@@ -151,11 +109,7 @@ public class ValidationDonnees {
             if(estNumerique(ponderation.substring(0, ponderation.length()-1)) == true){
                 if(ponderation.substring(ponderation.length()-1).equals("%")){
                     valide = true;
-                }else{
-                    valide = false;
                 }
-            } else {
-                valide = false;
             }
         }
         if(!valide){
