@@ -29,9 +29,9 @@ public class CreerDocument {
         texte = texte + "Groupe: " + cours.getGroupe() + "\r\n";
         texte = texte + "Session: " + cours.getSession() + "\r\n";
         texte = texte + "============================ " + "\r\n";
-        texte = texte + "Cours : " + etudiant.getCodePermanent() + "\r\n";
-        texte = texte + "Groupe: " + etudiant.getNom() + "\r\n";
-        texte = texte + "Session: " + etudiant.getPrenom() + "\r\n";
+        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + "\r\n";
+        texte = texte + "Nom : " + etudiant.getNom() + "\r\n";
+        texte = texte + "Prenom : " + etudiant.getPrenom() + "\r\n";
         texte = texte + "============================ " + "\r\n";
         for(Evaluation evaluation : cours.getListeEvaluation()){
             coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);

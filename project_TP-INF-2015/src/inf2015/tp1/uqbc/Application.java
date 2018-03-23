@@ -4,6 +4,7 @@ import inf2015.tp1.uqbc.fichiers.CreerDocument;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
 import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Application {
     /**
      * @param args Les arguments de la ligne de commande
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
         String repertoire = null;
         if(args[0] != null && new File(args[0]).canRead() ){
@@ -31,7 +32,8 @@ public class Application {
 
         //TODO Amine & Abdel
         
-
+        CreerDocument creerDocument = new CreerDocument();
+        creerDocument.EcrireFichier(listeCours);
     }
     
 }
