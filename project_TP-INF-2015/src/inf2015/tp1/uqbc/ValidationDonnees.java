@@ -57,9 +57,13 @@ public class ValidationDonnees {
     public static void validerCodePermanent(String codePermanent){
         boolean valide = false;
       
-        if(codePermanent != null && codePermanent.length()==9){
-            if(estAlphabetique(codePermanent.substring(0,3))&& estNumerique(codePermanent.substring(3,9))){
-               
+        if(!(codePermanent == null) && codePermanent.length()==9){
+            if(estAlphabetique(codePermanent.substring(0,3)) == true){
+                if(estNumerique(codePermanent.substring(3,9)) == true){
+                    valide = true;
+                }else{
+                    valide = false;
+                }
             }
         }
         if(!valide){
