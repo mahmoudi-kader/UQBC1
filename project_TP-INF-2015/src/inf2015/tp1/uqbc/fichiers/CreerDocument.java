@@ -23,6 +23,7 @@ public class CreerDocument {
         String texte = null;
         String version = "Version :      a venir       \r\n";
         CoursEtudiant coursEtudiant;
+        double noteEtudiant = 0;
         texte = version + "\r\n";
         texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + "\r\n";
         texte = texte + "Groupe: " + cours.getGroupe() + "\r\n";
@@ -41,7 +42,13 @@ public class CreerDocument {
             texte = texte + "Note : " + coursEtudiant.getNote() +  "\r\n";
             texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() +  "\r\n";
             texte = texte + "============================ " + "\r\n";
+            noteEtudiant = noteEtudiant + coursEtudiant.getNote();
         }
+        texte = texte + "Total\r\n";
+        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + "\r\n";
+        texte = texte + "Note : " + noteEtudiant + "\r\n";
+        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + "\r\n";
+        
         return texte;
     }
 

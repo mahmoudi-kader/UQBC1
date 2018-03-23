@@ -73,6 +73,11 @@ public class Cours {
         return moyenneGroupe;
     }
     
+    public double getPonderationGroupe() {
+        double ponderationGroupe= Calculs.calculPonderationGroupeGlobale(getListeEtudiant(), getListeEvaluation());
+        return ponderationGroupe;
+    }
+    
     public ArrayList<String> noteEtudiantGlobal(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation){
         ArrayList<String> listNoteEtudiants = new ArrayList();
         double noteEtudiantGlobal = 0;

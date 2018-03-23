@@ -26,3 +26,7 @@ Ponderation : 40%
 Note : 36.0
 Moyenne du groupe : 36.0
 ============================ 
+Total
+Ponderation : 100.0
+Note : 87.0
+Moyenne du groupe : 86.5
