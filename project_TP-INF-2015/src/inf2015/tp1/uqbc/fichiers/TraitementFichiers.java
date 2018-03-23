@@ -64,7 +64,7 @@ public class TraitementFichiers {
                 }else{
 
                     if(!fichier.canRead()){
-                        throw new RuntimeException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
+                        throw new ValidationException("Le fichier '"+fichier.getAbsolutePath()+"' n'est pas accessible.");
                     }
 
 
@@ -78,7 +78,7 @@ public class TraitementFichiers {
                         fichierJSON = new FichierNotesCours();
 
                     }else{
-                        throw new RuntimeException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
+                        throw new ValidationException("Le nom du fichier '"+fichier.getName()+"' n'est pas un format reconnu.");
                     }
                     fichierJSON.initialiserFichier(fichier);
                     fichierJSON.setJson(FileReader.StringFromFile(fichier.getAbsolutePath()));                
@@ -132,7 +132,6 @@ public class TraitementFichiers {
                     eval.setPonderation(ponderation);
 
                     eval.setListeResultatEvaluation(traiterDonneesResultats(donnees));
-
                     cours.getListeEvaluation().add(eval);
 
                 //FichierListeEtudiant
@@ -155,12 +154,14 @@ public class TraitementFichiers {
                         throw new RuntimeException("Le fichier "+ fichier.getFichier().getAbsolutePath() +" est vide.");
                     }
 
-
+                    cours.getListeEtudiant().addAll(traiterDonneesEtudiants(donnees));
+                    
                 }
 
             }catch(ValidationException ve){
                 System.out.println(ve.getMessage()+ " dans le fichier :"+fichier.getFichier().getAbsolutePath());
             }
+            
         }
         
         List<Cours> listeCours = new ArrayList<>(map.values());
@@ -192,6 +193,7 @@ public class TraitementFichiers {
                 etudiant.setPrenom(prenom);
             }
            
+            liste.add(etudiant);
         }        
         
         return liste;
@@ -211,15 +213,18 @@ public class TraitementFichiers {
             
             ValidationDonnees.validerCodePermanent(codePermanent);
             
-            ResultatEvaluation resultat = new ResultatEvaluation();
+            ResultatEvaluation resultatEvaluation = new ResultatEvaluation();
             
             Etudiant etudiant = tableEtudiants.get(codePermanent);
             if(etudiant == null){
                 etudiant = new Etudiant(codePermanent, null, null);
                 tableEtudiants.put(codePermanent, etudiant);
             }
-            resultat.setEtudiant(etudiant);
-            resultat.setNote(note);
+            resultatEvaluation.setEtudiant(etudiant);
+            resultatEvaluation.setNote(note);
+            
+            liste.add(resultatEvaluation);
+            
         }
         
         return liste;
