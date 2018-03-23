@@ -19,36 +19,39 @@ import java.util.List;
 public class CreerDocument {
 
     private static final String defaultWorkingDirectory = "./";
+    
+    private String finLigne = System.lineSeparator();
+    private String sepFichier = System.getProperty("file.separator");
 
     private String EcrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
-        String version = "Version :      a venir       \r\n";
+        String version = "Version :      a venir       "+finLigne;
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
-        texte = version + "\r\n";
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + "\r\n";
-        texte = texte + "Groupe: " + cours.getGroupe() + "\r\n";
-        texte = texte + "Session: " + cours.getSession() + "\r\n";
-        texte = texte + "============================ " + "\r\n";
-        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + "\r\n";
-        texte = texte + "Nom : " + etudiant.getNom() + "\r\n";
-        texte = texte + "Prenom : " + etudiant.getPrenom() + "\r\n";
-        texte = texte + "============================ " + "\r\n";
+        texte = version + finLigne;
+        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + finLigne;
+        texte = texte + "Groupe: " + cours.getGroupe() + finLigne;
+        texte = texte + "Session: " + cours.getSession() + finLigne;
+        texte = texte + "============================ " + finLigne;
+        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + finLigne;
+        texte = texte + "Nom : " + etudiant.getNom() + finLigne;
+        texte = texte + "Prenom : " + etudiant.getPrenom() + finLigne;
+        texte = texte + "============================ " + finLigne;
         for (Evaluation evaluation : cours.getListeEvaluation()) {
             coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);
             texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
-            texte = texte + coursEtudiant.getNomEvaluation() + "\r\n";
-            texte = texte + "Type : " + coursEtudiant.getType() + "\r\n";
-            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() + "\r\n";
-            texte = texte + "Note : " + coursEtudiant.getNote() + "\r\n";
-            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() + "\r\n";
-            texte = texte + "============================ " + "\r\n";
+            texte = texte + coursEtudiant.getNomEvaluation() + finLigne;
+            texte = texte + "Type : " + coursEtudiant.getType() + finLigne;
+            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() + finLigne;
+            texte = texte + "Note : " + coursEtudiant.getNote() + finLigne;
+            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() + finLigne;
+            texte = texte + "============================ " + finLigne;
             noteEtudiant = noteEtudiant + coursEtudiant.getNote();
         }
         texte = texte + "Total\r\n";
-        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + "\r\n";
-        texte = texte + "Note : " + noteEtudiant + "\r\n";
-        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + "\r\n";
+        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + finLigne;
+        texte = texte + "Note : " + noteEtudiant + finLigne;
+        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + finLigne;
 
         return texte;
     }
@@ -58,15 +61,15 @@ public class CreerDocument {
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
-            nomRepertoire = defaultWorkingDirectory + cours.getTitre() + "\\";
+            nomRepertoire = defaultWorkingDirectory + cours.getTitre();
             CreerRepertoire(nomRepertoire);
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                 nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
-                CreerFichier(nomRepertoire + nomFichier + ".txt");
+                //CreerFichier(nomRepertoire + sepFichier +nomFichier + ".txt");
                 //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = EcrireTexte(cours, etudiant);
                 //BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
-                FileWriter writer = new FileWriter(nomRepertoire + nomFichier + ".txt");
+                FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier + ".txt");
                 writer.write(texte);
                 writer.close();
             }
