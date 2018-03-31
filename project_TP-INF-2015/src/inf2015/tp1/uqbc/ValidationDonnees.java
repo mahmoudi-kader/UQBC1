@@ -113,7 +113,9 @@ public class ValidationDonnees {
         if (!(ponderation == null)) {
             if (estNumerique(ponderation.substring(0, ponderation.length() - 1)) == true) {
                 if (ponderation.substring(ponderation.length() - 1).equals("%")) {
-                    valide = true;
+                    if(convertirNumerique(ponderation.substring(0, ponderation.length() - 1)) <= 100){
+                        valide = true;
+                    }
                 }
             }
         }
@@ -129,6 +131,20 @@ public class ValidationDonnees {
             }
         }
         return true;
+    }
+    
+    private static int convertirNumerique(String str) {
+        int numero = 0;
+        int indice = 1;
+        char c;
+        for (int i=str.length()-1 ; i>=0 ; i--) {
+            c = str.charAt(i);
+            if (Character.isDigit(c)) {
+                numero = numero + (Character.getNumericValue(c) * indice);
+                indice = indice * 10;
+            }
+        }
+        return numero;
     }
 
     private static boolean estAlphabetique(String str) {
