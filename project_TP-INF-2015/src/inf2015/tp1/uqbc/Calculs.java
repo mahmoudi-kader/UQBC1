@@ -70,8 +70,8 @@ public class Calculs {
         double total = 0;
         int nombreEvaluation = 0;
         for (Evaluation evaluation : listeEvaluation) {
-            total = 0;
-            nombreEvaluation = 0;
+            //total = 0;
+            //nombreEvaluation = 0;
             if (validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true) {
                 for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
                     if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
@@ -84,7 +84,8 @@ public class Calculs {
                 nombreEvaluation = 1;
             }
         }
-        notePonderee = notePonderee + (total / nombreEvaluation);
+        //notePonderee = notePonderee + (total / nombreEvaluation);
+        notePonderee = notePonderee + total;
         return arrondirChiffre(notePonderee, 1);
     }
 
@@ -92,7 +93,8 @@ public class Calculs {
         boolean ponderationExiste = false;
         double total = 0;
         for (Evaluation evaluation : listeEvaluation) {
-            total = 0;
+            //total = 0;
+            ponderationExiste = false;
             if (validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true) {
                 for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
                     if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
@@ -114,13 +116,15 @@ public class Calculs {
         double total = 0;
         int nombreEvaluation = 0;
         for (Evaluation evaluation : listeEvaluation) {
-            total = 0;
-            nombreEvaluation = 0;
+            //total = 0;
+            //nombreEvaluation = 0;
             if (validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true) {
-                for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
-                    if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
-                        total = total + resultat.getNote();
-                        nombreEvaluation++;
+                if(evaluation.getNumeroEvaluation().equalsIgnoreCase(numeroEvaluation)){
+                    for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
+                        if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
+                            total = total + resultat.getNote();
+                            nombreEvaluation++;
+                        }
                     }
                 }
             } else {
@@ -138,7 +142,7 @@ public class Calculs {
         return nombre;
     }
 
-    public static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, List<ResultatEvaluation> listeResultatEvaluation) {
+    private static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, List<ResultatEvaluation> listeResultatEvaluation) {
         boolean evaluationValide = false;
         String codePermanentEtudiant;
         boolean valide;
@@ -158,7 +162,7 @@ public class Calculs {
         return evaluationValide;
     }
 
-    public static double arrondirChiffre(double val, int pos) {
+    private static double arrondirChiffre(double val, int pos) {
         if ((("" + val).substring(("" + val).indexOf('.') + 1)).length() > pos + 1) {
             int lastNumber = Integer.parseInt("" + ("" + val).substring(("" + val).indexOf('.') + pos + 1, ("" + val).indexOf('.') + pos + 2));
             double response = (double) ((int) (val * Math.pow(10, pos + 1)));
