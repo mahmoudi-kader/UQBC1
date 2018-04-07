@@ -7,6 +7,8 @@ package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
+import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.ResultatEvaluation;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class CreerDocumentTest {
 
     @Test
     public void testEcrireFichier() throws Exception {
+        
         String repertoire = null;
         String repertoireDestination=null;
         repertoire = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/fichiers/";
@@ -80,6 +83,46 @@ public class CreerDocumentTest {
 
        
     }
-    
+        
+    }
+    @Test   
+     public void testerContenu() throws IOException{
+        String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+
+         // test unitaire ecriture dans le fichier texte
+        List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
+        List<Evaluation> listeEvaluation = new ArrayList<Evaluation>();
+        List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        List<Cours> mesCours = new ArrayList<Cours>();
+
+        Cours coursAttendu = new Cours();
+        coursAttendu.setGroupe("Gr10");
+        coursAttendu.setNumeroCours("1012");
+        coursAttendu.setSession("H18");
+        coursAttendu.setTitre("BIO1012");
+        
+        Etudiant etudiantTemp1 = new Etudiant("AAA310797", "Saddd", "Naaaa");
+        listeEtudiant.add(etudiantTemp1);
+        coursAttendu.setListeEtudiant(listeEtudiant);
+
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 18.0));
+        listeEvaluation.add(new Evaluation("blabla", "1", "TP", "TP", "20%"));
+        listeEvaluation.get(0).setListeResultatEvaluation(listeResultatEvaluation);
+        listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 23.0));
+        listeEvaluation.add(new Evaluation("bla", "2", "Examen intra", "Examen", "40%"));
+
+        listeEvaluation.get(1).setListeResultatEvaluation(listeResultatEvaluation);
+        coursAttendu.setListeEvaluation(listeEvaluation);
+        mesCours.add(coursAttendu);
+
+        CreerDocument test = new CreerDocument();
+        test.EcrireFichier(mesCours);
+        String path=repertoireDestination+ "\\"+"BIO1012"+"\\"+"H18_BIO1012_SADN27272727.txt";
+       // File  H18_BIO1012_SADN27272727.txt;
+       System.out.println(new File(path).exists());
+        //theDir.exists();
+        //CreerDocument.EcrireFichier(mesCours) xx =new CreerDocument.EcrireFichier(mesCours);
     }
 }
