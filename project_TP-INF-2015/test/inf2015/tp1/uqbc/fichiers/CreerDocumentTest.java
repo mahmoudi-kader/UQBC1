@@ -49,11 +49,11 @@ public class CreerDocumentTest {
 
     @Test
     public void testEcrireFichier() throws Exception {
-        
+      
         String repertoire = null;
         String repertoireDestination=null;
-        repertoire = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/fichiers/";
-        repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+        repertoire = "C:/Users/nawal/Documents/Cerificat UQAM1/2018-hiver/inf2015/json/";
+        repertoireDestination = "C:/Users/nawal/Documents/temp/";
         
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
@@ -85,9 +85,10 @@ public class CreerDocumentTest {
     }
         
     }
+    
     @Test   
      public void testerContenu() throws IOException{
-        String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+        String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
 
          // test unitaire ecriture dans le fichier texte
         List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
@@ -119,10 +120,7 @@ public class CreerDocumentTest {
 
         CreerDocument test = new CreerDocument();
         test.EcrireFichier(mesCours);
-        String path=repertoireDestination+ "\\"+"BIO1012"+"\\"+"H18_BIO1012_SADN27272727.txt";
-       // File  H18_BIO1012_SADN27272727.txt;
-       System.out.println(new File(path).exists());
-        //theDir.exists();
-        //CreerDocument.EcrireFichier(mesCours) xx =new CreerDocument.EcrireFichier(mesCours);
+        String path=repertoireDestination+ "\\"+"BIO1012"+"\\"+"H18_BIO1012_AAA310797.txt";
+
     }
 }
