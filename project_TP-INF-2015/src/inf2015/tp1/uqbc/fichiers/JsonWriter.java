@@ -25,10 +25,10 @@ public class JsonWriter {
     Evaluation test = new Evaluation("blabla", "2", "Examen", "Intrea", "40%");  
 
     ObjectMapper mapper = new ObjectMapper();
-
+    
     try {  
 
-        // Writing to a file   
+        // Ecriture dans le fichier JSON    
         mapper.writeValue(new File("C:\\Users\\DALIL\\Desktop\\Work\\TEST\\exemple.json"), test );
 
     } catch (IOException e) {  
