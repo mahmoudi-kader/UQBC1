@@ -189,4 +189,62 @@ public class Calculs {
             return val;
         }
     }
+    
+    public static double calculMoyenne(Evaluation evaluation){
+        double moyenne = 0;
+        double notes = 0;
+        int nbreEtudiants = 0;
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            notes = notes + resultatEvaluation.getNote();
+            nbreEtudiants = nbreEtudiants + 1;
+        }
+        if(nbreEtudiants > 0) moyenne = notes / nbreEtudiants;
+        return moyenne;
+    }
+    
+    public static double calculMode(Evaluation evaluation){
+        double mode = 0;
+        double notes = 0;
+        int nbreEtudiants = 0;
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            notes = notes + resultatEvaluation.getNote();
+            nbreEtudiants = nbreEtudiants + 1;
+        }
+        if(nbreEtudiants > 0) mode = notes / nbreEtudiants;
+        return mode;
+    }
+    
+    public static double calculMediane(Evaluation evaluation){
+        double mediane = 0;
+        double notes = 0;
+        int nbreEtudiants = 0;
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            notes = notes + resultatEvaluation.getNote();
+            nbreEtudiants = nbreEtudiants + 1;
+        }
+        if(nbreEtudiants > 0) mediane = notes / nbreEtudiants;
+        return mediane;
+    }
+    
+    public static double calculEcartType(Evaluation evaluation){
+        double ecartType = 0;
+        double notes = 0;
+        double moyenne = 0;
+        int nbreEtudiants = 0;
+        moyenne = calculMoyenne(evaluation);
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            notes = notes + ((resultatEvaluation.getNote() - moyenne)*(resultatEvaluation.getNote() - moyenne));
+            nbreEtudiants = nbreEtudiants + 1;
+        }
+        if(nbreEtudiants > 0) ecartType = Math.sqrt(notes / nbreEtudiants);
+        return ecartType;
+    }
+    
+    public static int calculNbreEtudiants(Evaluation evaluation){
+        int nbreEtudiants = 0;
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            nbreEtudiants = nbreEtudiants + 1;
+        }
+        return nbreEtudiants;
+    }
 }
