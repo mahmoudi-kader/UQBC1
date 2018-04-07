@@ -152,7 +152,7 @@ public class Calculs {
             i = 0;
             valide = false;
             while (i < listeEtudiant.size() && valide == false) {
-                if (!codePermanentEtudiant.equals(listeEtudiant.get(i).getCodePermanent())) {
+                if (codePermanentEtudiant.equals(listeEtudiant.get(i).getCodePermanent())) {
                     valide = true;
                 }
                 i++;
