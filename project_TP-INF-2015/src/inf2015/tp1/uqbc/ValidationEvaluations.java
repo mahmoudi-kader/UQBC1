@@ -25,6 +25,16 @@ public class ValidationEvaluations {
         }
         return validationEtudiant;
     }
-    
+    public static boolean validerPonderationComplete(Cours cours){
+        boolean validationPonderation = false;
+        double totalPonderation = 0;
+        for (Evaluation evaluation : cours.getListeEvaluation()){
+            totalPonderation = totalPonderation + Calculs.convertirPonderation(evaluation.getPonderation());
+        }
+        if (totalPonderation==100){
+            validationPonderation = true;
+        }
+        return validationPonderation;
+    }
     
 }

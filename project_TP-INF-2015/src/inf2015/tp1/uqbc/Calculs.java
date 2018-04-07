@@ -136,7 +136,7 @@ public class Calculs {
         return arrondirChiffre(notePonderee, 1);
     }
 
-    private static double convertirPonderation(String ponderation) {
+    public static double convertirPonderation(String ponderation) {
         double nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
 
         return nombre;
