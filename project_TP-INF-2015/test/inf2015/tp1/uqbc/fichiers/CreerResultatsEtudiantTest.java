@@ -25,9 +25,9 @@ import static org.junit.Assert.*;
  *
  * @author Abdelkader
  */
-public class CreerDocumentTest {
+public class CreerResultatsEtudiantTest {
     
-    public CreerDocumentTest() {
+    public CreerResultatsEtudiantTest() {
     }
     
     @BeforeClass
@@ -58,8 +58,8 @@ public class CreerDocumentTest {
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
-        CreerDocument creerDocument = new CreerDocument();
-        creerDocument.EcrireFichier(listeCours);
+        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant();
+        creerDocument.ecrireFichier(listeCours);
        // System.out.println(" TEST methode EcrireFichier");
         Iterator<Cours> it = listeCours.iterator();
  
@@ -118,8 +118,8 @@ public class CreerDocumentTest {
         coursAttendu.setListeEvaluation(listeEvaluation);
         mesCours.add(coursAttendu);
 
-        CreerDocument test = new CreerDocument();
-        test.EcrireFichier(mesCours);
+        CreerResultatsEtudiant test = new CreerResultatsEtudiant();
+        test.ecrireFichier(mesCours);
         String path=repertoireDestination+ "\\"+"BIO1012"+"\\"+"H18_BIO1012_AAA310797.txt";
 
     }

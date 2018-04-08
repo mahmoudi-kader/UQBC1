@@ -4,26 +4,29 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
-import inf2015.tp1.uqbc.ResultatEvaluation;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * Classe qui permet d'ècrire le fichier txt par étudiant
  */
-public class CreerDocument {
+public class CreerResultatsEtudiant {
 
     private static final String defaultWorkingDirectory = "./";
     
     private String finLigne = System.lineSeparator();
     private String sepFichier = System.getProperty("file.separator");
 
-    private String EcrireTexte(Cours cours, Etudiant etudiant) {
+    /**
+     * Cette méthode insère le texte qui doit être écrit dans le string et le retourne.
+     * @param cours
+     * @param etudiant
+     * @return 
+     */
+    private String ecrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
         String version = "Version :      a venir       "+finLigne;
         CoursEtudiant coursEtudiant;
@@ -56,19 +59,22 @@ public class CreerDocument {
         return texte;
     }
 
-    public void EcrireFichier(List<Cours> listeCours) throws IOException {
+    /**
+     * Cette méthode écrit le fichier.
+     * @param listeCours
+     * @throws IOException 
+     */
+    public void ecrireFichier(List<Cours> listeCours) throws IOException {
         String nomFichier = null;
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
             nomRepertoire = defaultWorkingDirectory + cours.getTitre();
-            CreerRepertoire(nomRepertoire);
+            creerRepertoire(nomRepertoire);
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                 nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
-                //CreerFichier(nomRepertoire + sepFichier +nomFichier + ".txt");
                 //on insere dans le fichier les données de l'objet CoursEtudiant
-                texte = EcrireTexte(cours, etudiant);
-                //BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
+                texte = ecrireTexte(cours, etudiant);
                 FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier + ".txt");
                 writer.write(texte);
                 writer.close();
@@ -76,7 +82,12 @@ public class CreerDocument {
         }
     }
 
-    private Boolean CreerRepertoire(String nomFichier) {
+    /**
+     * Cette méthode permet de créer le répertoire s'il n'existe pas.
+     * @param nomFichier
+     * @return 
+     */
+    private Boolean creerRepertoire(String nomFichier) {
         File theDir = new File(nomFichier);
         boolean result = false;
         if (!theDir.exists()) {
@@ -90,7 +101,12 @@ public class CreerDocument {
         return result;
     }
 
-    private Boolean CreerFichier(String nomFichier) {
+    /**
+     * Cette éthode permet de créer le fichier s'il n'existe pas.
+     * @param nomFichier
+     * @return 
+     */
+    private Boolean creerFichier(String nomFichier) {
 
         File fichier = new File(nomFichier);
         boolean fichierExiste = false;

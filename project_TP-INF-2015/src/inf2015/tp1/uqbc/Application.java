@@ -1,6 +1,6 @@
 package inf2015.tp1.uqbc;
 
-import inf2015.tp1.uqbc.fichiers.CreerDocument;
+import inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
 import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
 import java.io.File;
@@ -31,8 +31,8 @@ public class Application {
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
 
         //TODO Amine & Abdel
-        CreerDocument creerDocument = new CreerDocument();
-        creerDocument.EcrireFichier(listeCours);
+        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant();
+        creerDocument.ecrireFichier(listeCours);
     }
 
 }
