@@ -190,6 +190,30 @@ public class Calculs {
         }
     }
     
+    private static double[] trierNotes(Evaluation evaluation){
+        double[] notes = null;
+        double valeurTemp = 0;
+        boolean triEffectue = false;
+        int i = 0;
+        
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            notes[i] = resultatEvaluation.getNote();
+            ++i;
+        }
+        while(triEffectue){
+            triEffectue = false;
+            for(i=0; i < notes.length; i++){
+                if (notes[i] > notes[i+1]){
+                    valeurTemp = notes[i];
+                    notes[i] = notes[i+1];
+                    notes[i+1] = valeurTemp;
+                    triEffectue = true;
+                }
+            }
+        }
+        return notes;
+    }
+    
     public static double calculMoyenne(Evaluation evaluation){
         double moyenne = 0;
         double notes = 0;
@@ -204,25 +228,43 @@ public class Calculs {
     
     public static double calculMode(Evaluation evaluation){
         double mode = 0;
-        double notes = 0;
-        int nbreEtudiants = 0;
+        double[] notes = null;
+        int i = 0;
+        int compteCourant = 0;
+        int compteMode = 0;
         for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
-            notes = notes + resultatEvaluation.getNote();
-            nbreEtudiants = nbreEtudiants + 1;
+            notes[i] = resultatEvaluation.getNote();
+            ++i;
         }
-        if(nbreEtudiants > 0) mode = notes / nbreEtudiants;
+        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            for (double element : notes){
+                compteCourant = 0;
+                if (resultatEvaluation.getNote() == element){
+                        compteCourant++;
+                }
+            }
+
+            if (compteCourant > compteMode){
+                compteMode = compteCourant;
+                mode = resultatEvaluation.getNote();
+            }
+        }
         return mode;
     }
     
     public static double calculMediane(Evaluation evaluation){
         double mediane = 0;
-        double notes = 0;
-        int nbreEtudiants = 0;
-        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
-            notes = notes + resultatEvaluation.getNote();
-            nbreEtudiants = nbreEtudiants + 1;
+        double[] listeTrier = trierNotes(evaluation);
+        
+        if (listeTrier.length % 2 == 0){
+            int indexA = (listeTrier.length - 1) / 2;
+            int indexB = listeTrier.length / 2;
+
+            mediane = (listeTrier[indexA] + listeTrier[indexB]) / 2;
+        } else {
+            int index = (listeTrier.length - 1) / 2;
+            mediane = listeTrier[ index ];
         }
-        if(nbreEtudiants > 0) mediane = notes / nbreEtudiants;
         return mediane;
     }
     
@@ -242,7 +284,7 @@ public class Calculs {
     
     public static int calculNbreEtudiants(Evaluation evaluation){
         int nbreEtudiants = 0;
-        for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+        for(int i = 0; i < evaluation.getListeResultatEvaluation().size(); ++i){
             nbreEtudiants = nbreEtudiants + 1;
         }
         return nbreEtudiants;
