@@ -11,9 +11,12 @@ import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ResultatEvaluation;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,6 +29,9 @@ import static org.junit.Assert.*;
  * @author Abdelkader
  */
 public class CreerResultatsEtudiantTest {
+    
+    private String finLigne = System.lineSeparator();
+    private long version = new Date(118,01,01).getTime();
     
     public CreerResultatsEtudiantTest() {
     }
@@ -58,7 +64,7 @@ public class CreerResultatsEtudiantTest {
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
-        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant();
+        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
        // System.out.println(" TEST methode EcrireFichier");
         Iterator<Cours> it = listeCours.iterator();
@@ -85,6 +91,20 @@ public class CreerResultatsEtudiantTest {
     }
         
     }
+    
+    @Test   
+    public void testerGetVersion(){
+        String versionAttendue = "Version : 01/02/18 12:00 AM\n";//"Version : "+ new SimpleDateFormat().format(new Date(this.version)) +"\n";
+        
+        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
+        
+        String resultat = creerDocument.getVersion();
+        
+        
+        Assert.assertEquals("", versionAttendue, resultat);
+    }    
+    
+    
     
     @Test   
      public void testerContenu() throws IOException{
@@ -118,7 +138,7 @@ public class CreerResultatsEtudiantTest {
         coursAttendu.setListeEvaluation(listeEvaluation);
         mesCours.add(coursAttendu);
 
-        CreerResultatsEtudiant test = new CreerResultatsEtudiant();
+        CreerResultatsEtudiant test = new CreerResultatsEtudiant(version);
         test.ecrireFichier(mesCours);
         String path=repertoireDestination+ "\\"+"BIO1012"+"\\"+"H18_BIO1012_AAA310797.txt";
 

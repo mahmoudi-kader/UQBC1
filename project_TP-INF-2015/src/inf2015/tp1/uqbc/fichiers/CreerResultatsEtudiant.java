@@ -7,6 +7,8 @@ import inf2015.tp1.uqbc.Evaluation;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +21,21 @@ public class CreerResultatsEtudiant {
     
     private String finLigne = System.lineSeparator();
     private String sepFichier = System.getProperty("file.separator");
+    private long version = 0l;
 
+    public CreerResultatsEtudiant(long version){
+        this.version = version;
+    }
+    
+    /**
+     * Cette méthode retourne la ligne qui affiche la version du document.
+     * @return String la version
+     */
+    protected String getVersion(){
+        return "Version : "+ new SimpleDateFormat().format(new Date(this.version)) +finLigne;
+    }
+    
+    
     /**
      * Cette méthode insère le texte qui doit être écrit dans le string et le retourne.
      * @param cours
@@ -28,7 +44,7 @@ public class CreerResultatsEtudiant {
      */
     private String ecrireTexte(Cours cours, Etudiant etudiant) {
         String texte = null;
-        String version = "Version :      a venir       "+finLigne;
+        String version = getVersion();
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
         texte = version + finLigne;

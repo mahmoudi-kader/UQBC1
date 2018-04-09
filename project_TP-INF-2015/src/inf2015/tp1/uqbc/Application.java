@@ -20,6 +20,8 @@ public class Application {
      */
     public static void main(String[] args) throws IOException {
 
+        long version = System.currentTimeMillis();
+        
         String repertoire = null;
         if (args[0] != null && new File(args[0]).canRead()) {
             repertoire = args[0];
@@ -31,7 +33,7 @@ public class Application {
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
 
         //TODO Amine & Abdel
-        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant();
+        CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
     }
 
