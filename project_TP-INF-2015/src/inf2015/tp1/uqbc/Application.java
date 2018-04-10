@@ -1,6 +1,7 @@
 package inf2015.tp1.uqbc;
 
 import inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant;
+import inf2015.tp1.uqbc.fichiers.CreerResultatsGroupeCours;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
 import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
 import java.io.File;
@@ -35,6 +36,12 @@ public class Application {
         //TODO Amine & Abdel
         CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
+        
+        CreerResultatsGroupeCours resultatGroupeCours = new CreerResultatsGroupeCours();
+        resultatGroupeCours.ecrireFichier(listeCours);
+        
+        
+        
     }
 
 }
