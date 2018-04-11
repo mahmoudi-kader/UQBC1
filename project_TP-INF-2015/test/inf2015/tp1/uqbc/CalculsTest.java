@@ -141,4 +141,66 @@ public class CalculsTest {
         System.out.println("ponderationGlobaleEtudiant : " + ponderationGlobaleEtudiant);
         Assert.assertEquals(60.0, ponderationGlobaleEtudiant, 0.001);
     }
+    
+    @Test
+    public void testCalculsStats() {
+        List<Evaluation> listeEvaluation = new ArrayList<Evaluation>();
+        List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
+        List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        double mode = 0;
+        double moyenne = 0;
+        double mediane = 0;
+        double ecartType = 0;
+        double nombre = 0;
+        
+        Cours cours1 = new Cours("BIO", "Gr10", "H18", "BlaBla", "1012");
+        Etudiant etudiantTemp1 = new Etudiant("SAD272727", "Saddd", "Naaaa");
+        Etudiant etudiantTemp2 = new Etudiant("DAS272727", "Dasss", "Naaaa");
+        Etudiant etudiantTemp3 = new Etudiant("DAS282828", "Dasss", "Saaaa");
+        Etudiant etudiantTemp4 = new Etudiant("DAS292929", "Dasss", "Saaaa");
+        listeEtudiant.add(etudiantTemp1);
+        listeEtudiant.add(etudiantTemp2);
+        listeEtudiant.add(etudiantTemp3);
+        listeEtudiant.add(etudiantTemp4);
+        cours1.setListeEtudiant(listeEtudiant);
+
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 15.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 13.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 13.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 14.0));
+        listeEvaluation.add(new Evaluation("blabla", "1", "TP", "TP", "20%"));
+        listeEvaluation.get(0).setListeResultatEvaluation(listeResultatEvaluation);
+
+        listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 35.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 38.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 38.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 37.0));
+        listeEvaluation.add(new Evaluation("blabla", "2", "Examen intra", "Examen", "40%"));
+        listeEvaluation.get(1).setListeResultatEvaluation(listeResultatEvaluation);
+
+        listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        //listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 36.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 36.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 39.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 35.0));
+        listeEvaluation.add(new Evaluation("blabla", "3", "Examen final", "Examen", "40%"));
+        listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
+        cours1.setListeEvaluation(listeEvaluation);
+                
+        for(Evaluation evaluation : cours1.getListeEvaluation()){
+            moyenne = Calculs.calculMoyenne(evaluation);
+            System.out.println("Moyenne : " + moyenne);
+            mode = Calculs.calculMode(evaluation);
+            System.out.println("Mode : " + mode);
+            mediane = Calculs.calculMediane(evaluation);
+            System.out.println("Mediane : " + mediane);
+            ecartType = Calculs.calculEcartType(evaluation);
+            System.out.println("Ecart-Type : " + ecartType);
+            nombre = Calculs.calculNbreEtudiants(evaluation);
+            System.out.println("Nombre : " + nombre);
+        }
+        
+    }
+
 }

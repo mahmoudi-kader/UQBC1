@@ -191,18 +191,18 @@ public class Calculs {
     }
     
     private static double[] trierNotes(Evaluation evaluation){
-        double[] notes = null;
         double valeurTemp = 0;
-        boolean triEffectue = false;
+        boolean triEffectue = true;
         int i = 0;
-        
+        int nbreValeurs = evaluation.getListeResultatEvaluation().size();
+        double notes[] = new double[nbreValeurs];
         for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
             notes[i] = resultatEvaluation.getNote();
             ++i;
         }
         while(triEffectue){
             triEffectue = false;
-            for(i=0; i < notes.length; i++){
+            for(i=0; i < notes.length-1; i++){
                 if (notes[i] > notes[i+1]){
                     valeurTemp = notes[i];
                     notes[i] = notes[i+1];
@@ -228,7 +228,7 @@ public class Calculs {
     
     public static double calculMode(Evaluation evaluation){
         double mode = 0;
-        double[] notes = null;
+        double notes[] = new double[30];
         int i = 0;
         int compteCourant = 0;
         int compteMode = 0;
@@ -237,8 +237,8 @@ public class Calculs {
             ++i;
         }
         for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+            compteCourant = 0;
             for (double element : notes){
-                compteCourant = 0;
                 if (resultatEvaluation.getNote() == element){
                         compteCourant++;
                 }
@@ -254,7 +254,7 @@ public class Calculs {
     
     public static double calculMediane(Evaluation evaluation){
         double mediane = 0;
-        double[] listeTrier = trierNotes(evaluation);
+        double listeTrier[] = trierNotes(evaluation);
         
         if (listeTrier.length % 2 == 0){
             int indexA = (listeTrier.length - 1) / 2;
