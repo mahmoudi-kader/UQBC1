@@ -223,7 +223,7 @@ public class Calculs {
             nbreEtudiants = nbreEtudiants + 1;
         }
         if(nbreEtudiants > 0) moyenne = notes / nbreEtudiants;
-        return moyenne;
+        return arrondirChiffre(moyenne,1);
     }
     
     public static double calculMode(Evaluation evaluation){
@@ -249,7 +249,7 @@ public class Calculs {
                 mode = resultatEvaluation.getNote();
             }
         }
-        return mode;
+        return arrondirChiffre(mode, 1);
     }
     
     public static double calculMediane(Evaluation evaluation){
@@ -265,7 +265,7 @@ public class Calculs {
             int index = (listeTrier.length - 1) / 2;
             mediane = listeTrier[ index ];
         }
-        return mediane;
+        return arrondirChiffre(mediane,1);
     }
     
     public static double calculEcartType(Evaluation evaluation){
@@ -279,7 +279,7 @@ public class Calculs {
             nbreEtudiants = nbreEtudiants + 1;
         }
         if(nbreEtudiants > 0) ecartType = Math.sqrt(notes / nbreEtudiants);
-        return ecartType;
+        return arrondirChiffre(ecartType,1);
     }
     
     public static int calculNbreEtudiants(Evaluation evaluation){

@@ -188,19 +188,21 @@ public class CalculsTest {
         listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
         cours1.setListeEvaluation(listeEvaluation);
                 
-        for(Evaluation evaluation : cours1.getListeEvaluation()){
-            moyenne = Calculs.calculMoyenne(evaluation);
-            System.out.println("Moyenne : " + moyenne);
-            mode = Calculs.calculMode(evaluation);
-            System.out.println("Mode : " + mode);
-            mediane = Calculs.calculMediane(evaluation);
-            System.out.println("Mediane : " + mediane);
-            ecartType = Calculs.calculEcartType(evaluation);
-            System.out.println("Ecart-Type : " + ecartType);
-            nombre = Calculs.calculNbreEtudiants(evaluation);
-            System.out.println("Nombre : " + nombre);
-        }
-        
+        Evaluation evaluation = cours1.getListeEvaluation().get(0);
+        moyenne = Calculs.calculMoyenne(evaluation);
+        System.out.println("Moyenne : " + moyenne);
+        Assert.assertEquals(13.75, moyenne, 0.001);
+        mode = Calculs.calculMode(evaluation);
+        System.out.println("Mode : " + mode);
+        Assert.assertEquals(13.0, mode, 0.001);
+        mediane = Calculs.calculMediane(evaluation);
+        System.out.println("Mediane : " + mediane);
+        Assert.assertEquals(13.5, mediane, 0.001);
+        ecartType = Calculs.calculEcartType(evaluation);
+        System.out.println("Ecart-Type : " + ecartType);
+        Assert.assertEquals(0.8, ecartType, 0.001);
+        nombre = Calculs.calculNbreEtudiants(evaluation);
+        System.out.println("Nombre : " + nombre);
+        Assert.assertEquals(4, nombre, 0.001);
     }
-
 }
