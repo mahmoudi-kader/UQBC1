@@ -30,7 +30,8 @@ public class Application {
             repertoire = args[0];
         }
         */
-         String repertoire ="C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
+       String repertoire ="./";
+        // String repertoire ="C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
         //String repertoire = "/home/benoit/NetBeansProjects/UQBC1/project_TP-INF-2015/fichiers/";
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);

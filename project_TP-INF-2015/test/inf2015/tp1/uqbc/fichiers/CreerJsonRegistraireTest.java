@@ -31,7 +31,7 @@ public class CreerJsonRegistraireTest {
     public void testCreerJson() throws Exception {
 
 
-        String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
+        String repertoireDestination = "./";
         String cours_groupe="";
         String fileContent="";
 
@@ -40,9 +40,9 @@ public class CreerJsonRegistraireTest {
         List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
         List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
         List<Cours> cours = new ArrayList<Cours>();
-        String expected="[{\"Groupe: \":\"Gr11\"},{\"sigle: \":\"BIO\"},{\"Notes des etudiants: \":[{\"Code_permanent: \":\"ABC27272727\",\"Note: \":45},{\"Code_permanent: \":\"XYZ27272727\",\"Note: \":86}]}]" ;
+        String expected="[{\"Groupe: \":\"Gr11\"},{\"sigle: \":\"BIO1012\"},{\"Notes des etudiants: \":[{\"Code_permanent: \":\"ABC27272727\",\"Note: \":45},{\"Code_permanent: \":\"XYZ27272727\",\"Note: \":86}]}]";
 
-        Cours cours1 = new Cours("BIO", "Gr11", "H18", "BlaBla", "1012");
+        Cours cours1 = new Cours("BIO1012", "Gr11", "H18", "BlaBla", "1012");
         cours.add(cours1);
         cours_groupe=cours1.getTitre()+cours1.getGroupe();
         

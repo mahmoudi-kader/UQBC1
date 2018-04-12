@@ -5,6 +5,7 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ValidationEvaluations;
+import static inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant.creerRepertoire;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class CreerJsonRegistraire {
     String repertoireDestination = "./";
 
     public CreerJsonRegistraire(List<Cours> listeCours) throws IOException {
-        CreerJson( listeCours);
+    CreerJson( listeCours);
     }
    
    public void CreerJson(List<Cours> listeCours) throws IOException{
@@ -70,12 +71,12 @@ public class CreerJsonRegistraire {
                     cours_groupe = cours.getTitre()+cours.getGroupe();
                     nomCours = cours.getTitre();
                 }
-                File file = new File(repertoireDestination + nomCours + "/" + cours_groupe + ".json");
-                file.createNewFile();
-                FileWriter writer = new FileWriter(file);  
+                CreerResultatsEtudiant.creerRepertoire(repertoireDestination + nomCours);
+                FileWriter writer = new FileWriter(repertoireDestination + nomCours + "/" + cours_groupe + ".json");  
                 writer.write(obj.toString());
                 writer.close();   
             }
         }
     }
+   
 }

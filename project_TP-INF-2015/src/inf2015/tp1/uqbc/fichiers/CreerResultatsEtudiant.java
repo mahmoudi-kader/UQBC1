@@ -103,7 +103,7 @@ public class CreerResultatsEtudiant {
      * @param nomFichier
      * @return 
      */
-    private Boolean creerRepertoire(String nomFichier) {
+    public static Boolean creerRepertoire(String nomFichier) {
         File theDir = new File(nomFichier);
         boolean result = false;
         if (!theDir.exists()) {
@@ -122,7 +122,7 @@ public class CreerResultatsEtudiant {
      * @param nomFichier
      * @return 
      */
-    private Boolean creerFichier(String nomFichier) {
+    public static Boolean creerFichier(String nomFichier) {
 
         File fichier = new File(nomFichier);
         boolean fichierExiste = false;
