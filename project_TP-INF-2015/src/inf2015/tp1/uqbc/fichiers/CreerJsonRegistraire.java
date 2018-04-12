@@ -64,8 +64,7 @@ public class CreerJsonRegistraire {
     String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
    //    Map obj = new LinkedHashMap();
 
-   JSONObject notes=new JSONObject();
-   String cours_groupe="";
+  
 //    ObjectMapper o = new ObjectMapper();
 
     public CreerJsonRegistraire(List<Cours> listeCours) throws IOException {
@@ -75,14 +74,14 @@ public class CreerJsonRegistraire {
    
    public void CreerJson(List<Cours> listeCours) throws IOException
            {
-               
-        List<Map> arrayMap = new ArrayList<Map>();
-      //  Map<String, String> obj = new LinkedHashMap<String, String>();
-        String notes="";
+            JSONObject notes=new JSONObject();
+   String cours_groupe="";    
+   String nomCours="";
       JSONArray obj =new JSONArray ();
         //pour chaque cours
         if (listeCours != null) {
             for (Cours cours : listeCours) {
+                cours_groupe=cours.getTitre()+cours.getGroupe();
                ValidationEvaluations validatation =new ValidationEvaluations();
                if (validatation.validerPonderationComplete(cours))
                 {
@@ -112,20 +111,23 @@ public class CreerJsonRegistraire {
                         etudiantCourant.put("Note: ", Calculs.calculNotePondereeGlobale(etudiants, cours.getListeEvaluation(), etudiant.getCodePermanent()));
                         array.put(etudiantCourant);
                     }
-                                        JSONObject notesEtudiantGroupe = new JSONObject();
+                    JSONObject notesEtudiantGroupe = new JSONObject();
                     notesEtudiantGroupe.put("Notes des etudiants: ", array);
                     obj.put(notesEtudiantGroupe);
                     // remplir l'objet notes par les notes de'etudiants avant d'e l'afecter a obj
                     cours_groupe=cours.getTitre()+cours.getGroupe();
+                    nomCours=cours.getTitre();
                 }
+                JSONObject json = new JSONObject(obj);
                 
-               JSONObject json = new JSONObject(obj);
-                File file =new File (repertoireDestination+"\\"+cours.getTitre()+"\\"+cours_groupe+".json") ;
+                File file =new File (repertoireDestination+nomCours+"/"+cours_groupe+".json");
                 file.createNewFile();
                 FileWriter writer =new FileWriter(file);  
                 writer.write(obj.toString());
-                writer.close();     
+                writer.close();   
+                 
             }
+            
          }
 
     }
