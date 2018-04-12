@@ -5,18 +5,10 @@
  */
 package inf2015.tp1.uqbc.fichiers;
 
-import inf2015.tp1.uqbc.ValidationException;
-import java.io.File;
-import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import java.io.File;
-import java.nio.file.Paths;
-import inf2015.tp1.uqbc.Cours;
 import java.io.File;
 import org.junit.Assert;
 import org.junit.Test;
