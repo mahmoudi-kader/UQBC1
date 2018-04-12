@@ -11,6 +11,7 @@ import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ResultatEvaluation;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -29,9 +30,7 @@ import static org.junit.Assert.*;
  */
 public class CreerResultatsEtudiantTest {
     
-    private static final String finLigne = System.lineSeparator();
-    private static final String sepFichier = System.getProperty("file.separator");
-    private static final String repertoireParDefaut = "."+sepFichier;
+    private String finLigne = System.lineSeparator();
     private long version = new Date(118,01,01).getTime();
     
     public CreerResultatsEtudiantTest() {
@@ -59,7 +58,7 @@ public class CreerResultatsEtudiantTest {
       
         String repertoire = null;
         String repertoireDestination=null;
-        repertoire = "./2018-hiver/inf2015/json/";
+        repertoire = "C:/Users/nawal/Documents/Cerificat UQAM1/2018-hiver/inf2015/json/";
         repertoireDestination = "C:/Users/nawal/Documents/temp/";
         
         List<FichierJSON> listeFichiers = new ArrayList();
@@ -67,6 +66,7 @@ public class CreerResultatsEtudiantTest {
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
         CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
+       // System.out.println(" TEST methode EcrireFichier");
         Iterator<Cours> it = listeCours.iterator();
  
         while (it.hasNext()) {
@@ -76,14 +76,17 @@ public class CreerResultatsEtudiantTest {
         File dossier = new File(repertoireDestination+nomCours);
         Boolean repertoireExiste=dossier.exists();
         assertTrue(repertoireExiste);
-        
         // test si fichiers sont crées dans chacun des repertoires
+       
+    
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                     String   nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
                     File fichierEudiant = new File(dossier.getAbsolutePath()+"\\"+nomFichier+".txt");
                     Boolean fichierEudiantExiste=fichierEudiant.exists();
                     assertTrue(fichierEudiantExiste);
             }
+        //
+
        
     }
         
