@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class CreerResultatsEtudiant {
 
-    private static final String defaultWorkingDirectory = "./";
+    private static final String repertoireParDefaut = "./";
     
     private String finLigne = System.lineSeparator();
     private String sepFichier = System.getProperty("file.separator");
@@ -85,7 +85,7 @@ public class CreerResultatsEtudiant {
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
-            nomRepertoire = defaultWorkingDirectory + cours.getTitre();
+            nomRepertoire = repertoireParDefaut + cours.getTitre();
             creerRepertoire(nomRepertoire);
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                 nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
