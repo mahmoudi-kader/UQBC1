@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Calculs;
@@ -21,76 +16,32 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 /**
- *
+ * Créer le fichier pour le registraire dans les mêmes répertoires 
+ * que les résultats des étudiants
  * @author Abdelkader
  * 
  */
 
-/*
-En tant que registraire
-Je veux obtenir les notes finales de chaque enseignant
-Afin de générer les relevés de note.
-Critères d’acceptation
-Un fichier par groupe-cours, en format JSON;
-Une note par étudiant; 
-La note doit être sur 100;
-Le fichier ne peut être généré que si toutes les évaluations, totalisant une pondération de 100%, ont été compilées.
-Le fichier peut être regénéré au besoin, si l’enseignant a fait des changements;
-Les étudiants doivent être identifiés par leur code permanent;
-Le cours doit être identifié par son sigle;
-Le groupe-cours doit être identifié par son numéro;
-Le fichier est versionné avec la date et l’heure pour s’y retrouver parmi les multiples versions;
-
-*/
-
- /*
-        //json attendu pour chaque cours
-    {
-	"sigle": "sigle",
-	"groupe": "groupe",
-	"version": "version",
-	"notes": [{
-    			"matricule1": "note"
-    		},
-    		{
-    			"matricule2": "note"
-    		}
-    	]
-}
-    */
-
 public class CreerJsonRegistraire {
 
-    String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
-   //    Map obj = new LinkedHashMap();
-
-  
-//    ObjectMapper o = new ObjectMapper();
+    String repertoireDestination = "./";
 
     public CreerJsonRegistraire(List<Cours> listeCours) throws IOException {
     CreerJson( listeCours);
     }
    
-   
-   public void CreerJson(List<Cours> listeCours) throws IOException
-           {
+   public void CreerJson(List<Cours> listeCours) throws IOException{
             JSONObject notes=new JSONObject();
-   String cours_groupe="";    
-   String nomCours="";
-      JSONArray obj =new JSONArray ();
+        String cours_groupe="";    
+        String nomCours="";
+        JSONArray obj =new JSONArray ();
         //pour chaque cours
         if (listeCours != null) {
             for (Cours cours : listeCours) {
                 cours_groupe=cours.getTitre()+cours.getGroupe();
-               ValidationEvaluations validatation =new ValidationEvaluations();
-               if (validatation.validerPonderationComplete(cours))
-                {
-                    /*recuperer les notes d'etudiants dans un tableau sous la forme
-                    [{"matricule": matricule,"note":note },
-                    {"matricule": matricule,"note":note },
-                            ...
-                    ]
-                    */
+                ValidationEvaluations validatation =new ValidationEvaluations();
+                if (validatation.validerPonderationComplete(cours)){
+                    //recuperer les notes d'etudiants dans un tableau 
                     JSONObject sigle = new JSONObject();
                     sigle.put("sigle: ", cours.getTitre());
                     JSONObject groupe = new JSONObject();
@@ -114,21 +65,17 @@ public class CreerJsonRegistraire {
                     JSONObject notesEtudiantGroupe = new JSONObject();
                     notesEtudiantGroupe.put("Notes des etudiants: ", array);
                     obj.put(notesEtudiantGroupe);
+                    
                     // remplir l'objet notes par les notes de'etudiants avant d'e l'afecter a obj
-                    cours_groupe=cours.getTitre()+cours.getGroupe();
-                    nomCours=cours.getTitre();
+                    cours_groupe = cours.getTitre()+cours.getGroupe();
+                    nomCours = cours.getTitre();
                 }
-                JSONObject json = new JSONObject(obj);
-                
-                File file =new File (repertoireDestination+nomCours+"/"+cours_groupe+".json");
+                File file = new File(repertoireDestination + nomCours + "/" + cours_groupe + ".json");
                 file.createNewFile();
-                FileWriter writer =new FileWriter(file);  
+                FileWriter writer = new FileWriter(file);  
                 writer.write(obj.toString());
                 writer.close();   
-                 
             }
-            
-         }
-
+        }
     }
 }

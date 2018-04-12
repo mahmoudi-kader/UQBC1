@@ -35,23 +35,6 @@ public class CreerResultatsEtudiantTest {
     
     public CreerResultatsEtudiantTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() throws IOException {
-       
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testEcrireFichier() throws Exception {
@@ -103,9 +86,7 @@ public class CreerResultatsEtudiantTest {
         
         Assert.assertEquals("", versionAttendue, resultat);
     }    
-    
-    
-    
+
     @Test   
      public void testerContenu() throws IOException{
         String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";

@@ -27,29 +27,13 @@ public class CreerJsonRegistraireTest {
     public CreerJsonRegistraireTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void testCreerJson() throws Exception {
 
 
-            String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
-String cours_groupe="";
-String fileContent="";
+        String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+        String cours_groupe="";
+        String fileContent="";
 
 
         List<Evaluation> listeEvaluation = new ArrayList<Evaluation>();
