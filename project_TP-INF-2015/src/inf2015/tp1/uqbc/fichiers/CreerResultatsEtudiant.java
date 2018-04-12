@@ -17,10 +17,11 @@ import java.util.List;
  */
 public class CreerResultatsEtudiant {
 
-    private static final String repertoireParDefaut = "./";
     
-    private String finLigne = System.lineSeparator();
-    private String sepFichier = System.getProperty("file.separator");
+    private static final String finLigne = System.lineSeparator();
+    private static final String sepFichier = System.getProperty("file.separator");
+    private static final String repertoireParDefaut = "."+sepFichier;
+    
     private long version = 0l;
 
     public CreerResultatsEtudiant(long version){
