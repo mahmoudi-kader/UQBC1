@@ -5,6 +5,7 @@
  */
 package inf2015.tp1.uqbc.fichiers;
 
+import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
@@ -12,10 +13,13 @@ import inf2015.tp1.uqbc.ValidationEvaluations;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import org.json.JSONArray;
 import org.json.JSONObject;
-
 /**
  *
  * @author Abdelkader
@@ -45,43 +49,81 @@ Le fichier est versionné avec la date et l’heure pour s’y retrouver parmi l
 	"sigle": "sigle",
 	"groupe": "groupe",
 	"version": "version",
-	"notes": {
-		"matricule1": "note",
-		"matricule2": "note"
-	}
+	"notes": [{
+    			"matricule1": "note"
+    		},
+    		{
+    			"matricule2": "note"
+    		}
+    	]
 }
     */
+
 public class CreerJsonRegistraire {
-   String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
-   JSONObject obj = new JSONObject();
+
+    String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+   //    Map obj = new LinkedHashMap();
+
    JSONObject notes=new JSONObject();
    String cours_groupe="";
+//    ObjectMapper o = new ObjectMapper();
+
+    public CreerJsonRegistraire(List<Cours> listeCours) throws IOException {
+    CreerJson( listeCours);
+    }
    
-   public CreerJsonRegistraire(List<Cours> cour) throws IOException
+   
+   public void CreerJson(List<Cours> listeCours) throws IOException
            {
+               
+        List<Map> arrayMap = new ArrayList<Map>();
+      //  Map<String, String> obj = new LinkedHashMap<String, String>();
+        String notes="";
+      JSONArray obj =new JSONArray ();
         //pour chaque cours
-        if (cour != null) {
-            for (Cours course : cour) {
+        if (listeCours != null) {
+            for (Cours cours : listeCours) {
                ValidationEvaluations validatation =new ValidationEvaluations();
-               if (validatation.validerPonderationComplete(course))
+               if (validatation.validerPonderationComplete(cours))
                 {
-                    
-                obj.put("sigle", course.getTitre());
-                obj.put("groupe", course.getGroupe());
-                obj.put("version", new Date());
-                // remplir l'objet notes par les notes de'etudiants avant d'e l'afecter a obj
-                obj.put("notes", notes);
-                cours_groupe=course.getTitre()+course.getGroupe();
-                 }
-                   
+                    /*recuperer les notes d'etudiants dans un tableau sous la forme
+                    [{"matricule": matricule,"note":note },
+                    {"matricule": matricule,"note":note },
+                            ...
+                    ]
+                    */
+                    JSONObject sigle = new JSONObject();
+                    sigle.put("sigle: ", cours.getTitre());
+                    JSONObject groupe = new JSONObject();
+                    groupe.put("groupe: ", cours.getGroupe());
+                    JSONObject note = new JSONObject();
+                    JSONObject version = new JSONObject();
+                    version.put("version: ", new Date());
+
+                    obj.put(groupe);
+                    obj.put(sigle);
+                    obj.put(version);
+
+                    List<Etudiant> etudiants = cours.getListeEtudiant();
+                    JSONArray array = new JSONArray();
+                    for (Etudiant etudiant : etudiants) {
+                        JSONObject etudiantCourant = new JSONObject();
+                        etudiantCourant.put("code_permanent: ",etudiant.getCodePermanent());
+                        etudiantCourant.put("Note: ", Calculs.calculNotePondereeGlobale(etudiants, cours.getListeEvaluation(), etudiant.getCodePermanent()));
+                        array.put(etudiantCourant);
+                    }
+                    obj.put(array);
+                    // remplir l'objet notes par les notes de'etudiants avant d'e l'afecter a obj
+                    cours_groupe=cours.getTitre()+cours.getGroupe();
+                }
+                
+               JSONObject json = new JSONObject(obj);
+                File file =new File (repertoireDestination+"\\"+cours.getTitre()+"\\"+cours_groupe+".json") ;
+                file.createNewFile();
+                FileWriter writer =new FileWriter(file);  
+                writer.write(obj.toString());
+                writer.close();     
             }
-            // ecrire obj dans un fichier json qui porte le nom du cours+ groupe
-            
-            File file =new File (repertoireDestination+"\\"+cours_groupe+".json") ;
-            file.createNewFile();
-            FileWriter writer =new FileWriter(file);  
-            writer.write(obj.toString());
-            writer.close();
          }
 
     }
