@@ -1,5 +1,6 @@
 package inf2015.tp1.uqbc;
 
+import inf2015.tp1.uqbc.fichiers.CreerJsonRegistraire;
 import inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant;
 import inf2015.tp1.uqbc.fichiers.CreerResultatsGroupeCours;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
@@ -19,15 +20,17 @@ public class Application {
     /**
      * @param args Les arguments de la ligne de commande
      */
+    
     public static void main(String[] args) throws IOException {
 
         long version = System.currentTimeMillis();
-        
+       /* 
         String repertoire = null;
         if (args[0] != null && new File(args[0]).canRead()) {
             repertoire = args[0];
         }
-
+*/
+         String repertoire ="C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
         //String repertoire = "/home/benoit/NetBeansProjects/UQBC1/project_TP-INF-2015/fichiers/";
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
@@ -40,7 +43,9 @@ public class Application {
         CreerResultatsGroupeCours resultatGroupeCours = new CreerResultatsGroupeCours();
         resultatGroupeCours.ecrireFichier(listeCours);
         
-        
+        CreerJsonRegistraire creerJson =new CreerJsonRegistraire(listeCours);
+
+
         
     }
 

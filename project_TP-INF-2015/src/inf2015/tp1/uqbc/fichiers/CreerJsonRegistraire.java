@@ -95,24 +95,26 @@ public class CreerJsonRegistraire {
                     JSONObject sigle = new JSONObject();
                     sigle.put("sigle: ", cours.getTitre());
                     JSONObject groupe = new JSONObject();
-                    groupe.put("groupe: ", cours.getGroupe());
+                    groupe.put("Groupe: ", cours.getGroupe());
                     JSONObject note = new JSONObject();
-                    JSONObject version = new JSONObject();
-                    version.put("version: ", new Date());
+                    //JSONObject version = new JSONObject();
+                    //version.put("Version: ", new Date());
 
                     obj.put(groupe);
                     obj.put(sigle);
-                    obj.put(version);
+                    //obj.put(version);
 
                     List<Etudiant> etudiants = cours.getListeEtudiant();
                     JSONArray array = new JSONArray();
                     for (Etudiant etudiant : etudiants) {
                         JSONObject etudiantCourant = new JSONObject();
-                        etudiantCourant.put("code_permanent: ",etudiant.getCodePermanent());
+                        etudiantCourant.put("Code_permanent: ",etudiant.getCodePermanent());
                         etudiantCourant.put("Note: ", Calculs.calculNotePondereeGlobale(etudiants, cours.getListeEvaluation(), etudiant.getCodePermanent()));
                         array.put(etudiantCourant);
                     }
-                    obj.put(array);
+                                        JSONObject notesEtudiantGroupe = new JSONObject();
+                    notesEtudiantGroupe.put("Notes des etudiants: ", array);
+                    obj.put(notesEtudiantGroupe);
                     // remplir l'objet notes par les notes de'etudiants avant d'e l'afecter a obj
                     cours_groupe=cours.getTitre()+cours.getGroupe();
                 }
