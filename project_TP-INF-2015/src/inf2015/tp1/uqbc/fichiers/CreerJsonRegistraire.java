@@ -27,7 +27,7 @@ public class CreerJsonRegistraire {
     String repertoireDestination = "./";
 
     public CreerJsonRegistraire(List<Cours> listeCours) throws IOException {
-    CreerJson( listeCours);
+        CreerJson( listeCours);
     }
    
    public void CreerJson(List<Cours> listeCours) throws IOException{

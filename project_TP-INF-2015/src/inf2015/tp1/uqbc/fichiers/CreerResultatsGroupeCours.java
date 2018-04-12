@@ -46,10 +46,11 @@ public class CreerResultatsGroupeCours {
             
             creerRepertoire(nomRepertoire);
             
-            String szGroupeCours = cours.getGroupe()+"-"+cours.getTitre()+"-"+cours.getNumeroCours();
+            String szGroupeCours = cours.getGroupe()+"-"+cours.getTitre();
             
             sbTexte.append("Groupe - Cours :"+szGroupeCours+finLigne);
-            sbTexte.append("Session:"+cours.getSession());
+            sbTexte.append("Session:"+cours.getSession()+finLigne);
+            sbTexte.append(getVersion()+finLigne);
             
             String nomFichier = szGroupeCours+".txt";
 

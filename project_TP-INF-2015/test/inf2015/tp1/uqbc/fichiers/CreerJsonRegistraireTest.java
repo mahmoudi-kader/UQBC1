@@ -31,7 +31,7 @@ public class CreerJsonRegistraireTest {
     public void testCreerJson() throws Exception {
 
 
-        String repertoireDestination = "C:/Users/Abdelkader/Desktop/UQBC/UQBC1/project_TP-INF-2015/";
+        String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
         String cours_groupe="";
         String fileContent="";
 
