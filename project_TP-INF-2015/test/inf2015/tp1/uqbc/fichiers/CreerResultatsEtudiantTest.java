@@ -36,31 +36,14 @@ public class CreerResultatsEtudiantTest {
     
     public CreerResultatsEtudiantTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() throws IOException {
-       
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testEcrireFichier() throws Exception {
       
         String repertoire = null;
         String repertoireDestination=null;
-        repertoire = "./2018-hiver/inf2015/json/";
-        repertoireDestination = "C:/Users/nawal/Documents/temp/";
+        repertoire = "./";
+        repertoireDestination = "./";
         
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
@@ -80,7 +63,7 @@ public class CreerResultatsEtudiantTest {
         // test si fichiers sont crées dans chacun des repertoires
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                     String   nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
-                    File fichierEudiant = new File(dossier.getAbsolutePath()+"\\"+nomFichier+".txt");
+                    File fichierEudiant = new File(dossier.getAbsolutePath()+sepFichier+nomFichier+".txt");
                     Boolean fichierEudiantExiste=fichierEudiant.exists();
                     assertTrue(fichierEudiantExiste);
             }
@@ -100,9 +83,7 @@ public class CreerResultatsEtudiantTest {
         
         Assert.assertEquals("", versionAttendue, resultat);
     }    
-    
-    
-    
+
     @Test   
      public void testerContenu() throws IOException{
         String repertoireDestination = "C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
