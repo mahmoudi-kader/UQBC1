@@ -1,4 +1,4 @@
-Version :      a venir       
+Version : 01/02/18 12:00 AM
 
 Cours: BIO10121012
 Groupe: Gr10
@@ -21,6 +21,6 @@ Note : 23.0
 Moyenne du groupe : 23.0
 ============================ 
 Total
-Ponderation : 0.0
+Ponderation : 60.0
 Note : 41.0
-Moyenne du groupe : 0.0
+Moyenne du groupe : 41.0
