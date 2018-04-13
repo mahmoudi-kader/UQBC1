@@ -4,15 +4,16 @@ import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.ValidationEvaluations;
+import static inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant.creerRepertoire;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 /**
  * Cette classe sert a générer le fichier json a être envoyé au registraire.
  * @author Abdelkader
