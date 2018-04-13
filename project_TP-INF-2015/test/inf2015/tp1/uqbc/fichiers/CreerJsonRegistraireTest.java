@@ -40,7 +40,7 @@ public class CreerJsonRegistraireTest {
         List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
         List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
         List<Cours> cours = new ArrayList<Cours>();
-        String expected="[{\"Groupe: \":\"Gr11\"},{\"sigle: \":\"BIO1012\"},{\"Version: \":\"01/02/18 12:00 AM\"},{\"Notes des etudiants: \":[{\"Code_permanent: \":\"ABC27272727\",\"Note: \":45},{\"Code_permanent: \":\"XYZ27272727\",\"Note: \":86}]}]";
+        String expected="[{\"Groupe: \":\"Gr11\"},{\"sigle: \":\"BIO1012\"},{\"Version:\":\"2018.02.01 AD at 00:00:00 EST \"},{\"Notes des etudiants: \":[{\"Code_permanent: \":\"ABC27272727\",\"Note: \":45},{\"Code_permanent: \":\"XYZ27272727\",\"Note: \":86}]}]";
 
         Cours cours1 = new Cours("BIO1012", "Gr11", "H18", "BlaBla", "1012");
         cours.add(cours1);

@@ -87,7 +87,7 @@ public class CreerJsonRegistraire {
      * @return String la version
      */
     protected String getVersion(){
-        return ""+ new SimpleDateFormat().format(new Date(this.version));
+        return ""+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format( new Date(this.version));
     }
    
 }

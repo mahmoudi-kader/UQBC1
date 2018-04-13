@@ -32,7 +32,7 @@ public class CreerResultatsEtudiant {
      * @return String la version
      */
     protected String getVersion(){
-        return "Version : "+ new SimpleDateFormat().format(new Date(this.version)) +finLigne;
+        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format(new Date(this.version)) +finLigne;
     }
     
     

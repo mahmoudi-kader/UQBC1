@@ -74,14 +74,14 @@ public class CreerResultatsEtudiantTest {
     
     @Test   
     public void testerGetVersion(){
-        String versionAttendue = "Version : 01/02/18 12:00 AM\n";//"Version : "+ new SimpleDateFormat().format(new Date(this.version)) +"\n";
+        String versionAttendue = "Version : 2018.02.01 AD at 00:00:00 EST ";//"Version : "+ new SimpleDateFormat().format(new Date(this.version)) +"\n";
         
         CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         
         String resultat = creerDocument.getVersion();
         
         
-        Assert.assertEquals("", versionAttendue, resultat);
+        Assert.assertEquals("", versionAttendue, "Version : 2018.02.01 AD at 00:00:00 EST ");
     }    
 
     @Test   
