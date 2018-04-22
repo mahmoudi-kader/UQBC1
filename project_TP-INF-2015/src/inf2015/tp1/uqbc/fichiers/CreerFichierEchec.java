@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
-import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.io.File;
@@ -21,14 +15,14 @@ import java.util.List;
 
 /**
  *
- * Classe qui permet d'ècrire le fichier txt par étudiant
+ * Classe qui permet d'écrire le fichier txt par étudiant
  */
 public class CreerFichierEchec {
 
-    private static final String repertoireParDefaut = "./";
+    private static final String REPERTOIRE_PAR_DEFAUT = "./";
     
-    private String finLigne = System.lineSeparator();
-    private String sepFichier = System.getProperty("file.separator");
+    private static final String FIN_LIGNE = System.lineSeparator();
+    private static final String SEP_FICHIER = System.getProperty("file.separator");
     private long version = 0l;
 
     public CreerFichierEchec(long version){
@@ -40,7 +34,7 @@ public class CreerFichierEchec {
      * @return String la version
      */
     protected String getVersion(){
-        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format(new Date(this.version)) +finLigne;
+        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format(new Date(this.version)) +FIN_LIGNE;
     }
     
     
@@ -55,18 +49,18 @@ public class CreerFichierEchec {
         String version = getVersion();
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
-        texte = version + finLigne;
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + finLigne;
-        texte = texte + "Groupe: " + cours.getGroupe() + finLigne;
-        texte = texte + "Session: " + cours.getSession() + finLigne;
-        texte = texte + "============================ " + finLigne;
+        texte = version + FIN_LIGNE;
+        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
+        texte = texte + "Groupe: " + cours.getGroupe() + FIN_LIGNE;
+        texte = texte + "Session: " + cours.getSession() + FIN_LIGNE;
+        texte = texte + "============================ " + FIN_LIGNE;
   
 for (Evaluation evaluation : cours.getListeEvaluation()) {
-            texte = texte + "Code permanent : "  + finLigne;
-            texte = texte + "Nom : "  + finLigne;
-            texte = texte + "Prenom : "  + finLigne;
-            texte = texte + "============================ " + finLigne;
-            texte = texte + "Ponderation : " +finLigne;
+            texte = texte + "Code permanent : "  + FIN_LIGNE;
+            texte = texte + "Nom : "  + FIN_LIGNE;
+            texte = texte + "Prenom : "  + FIN_LIGNE;
+            texte = texte + "============================ " + FIN_LIGNE;
+            texte = texte + "Ponderation : " +FIN_LIGNE;
             noteEtudiant = noteEtudiant ;
         }
         return texte;
@@ -95,12 +89,12 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
-            nomRepertoire = repertoireParDefaut + cours.getTitre();
+            nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
             creerRepertoire(nomRepertoire);
                 nomFichier = "Echec"+ "_"+cours.getSession() + "_" + cours.getTitre();
                 //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = ecrireTexte(cours);
-                FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier + ".txt");
+                FileWriter writer = new FileWriter(nomRepertoire +SEP_FICHIER+ nomFichier + ".txt");
                 writer.write(texte);
                 writer.close();
             }
