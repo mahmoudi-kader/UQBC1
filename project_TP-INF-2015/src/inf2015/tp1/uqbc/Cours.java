@@ -78,7 +78,24 @@ public class Cours {
         double ponderationGroupe = Calculs.calculPonderationGroupeGlobale(getListeEtudiant(), getListeEvaluation());
         return ponderationGroupe;
     }
+    
+    public void setListeEvaluation(List<Evaluation> listeEvaluation) {
+        this.listeEvaluation = listeEvaluation;
+    }
 
+    public void setListeEtudiant(List<Etudiant> listeEtudiant) {
+        this.listeEtudiant = listeEtudiant;
+    }
+    
+    public List<Evaluation> getListeEvaluation() {
+        return listeEvaluation;
+    }
+
+    public List<Etudiant> getListeEtudiant() {
+        return listeEtudiant;
+    }
+
+    //méthode de calcul de la note par étudiant pour un cours
     public ArrayList<String> noteEtudiantGlobal(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation) {
         ArrayList<String> listNoteEtudiants = new ArrayList();
         double noteEtudiantGlobal = 0;
@@ -87,14 +104,6 @@ public class Cours {
             listNoteEtudiants.add(etudiant.getCodePermanent() + " : " + noteEtudiantGlobal);
         }
         return listNoteEtudiants;
-    }
-
-    public void setListeEvaluation(List<Evaluation> listeEvaluation) {
-        this.listeEvaluation = listeEvaluation;
-    }
-
-    public void setListeEtudiant(List<Etudiant> listeEtudiant) {
-        this.listeEtudiant = listeEtudiant;
     }
 
     @Override
@@ -133,19 +142,4 @@ public class Cours {
         }
         return true;
     }
-
-    /**
-     * @return the listeEvaluation
-     */
-    public List<Evaluation> getListeEvaluation() {
-        return listeEvaluation;
-    }
-
-    /**
-     * @return the listeEtudiant
-     */
-    public List<Etudiant> getListeEtudiant() {
-        return listeEtudiant;
-    }
-
 }

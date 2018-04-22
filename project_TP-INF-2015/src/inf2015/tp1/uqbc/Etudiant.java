@@ -2,8 +2,6 @@ package inf2015.tp1.uqbc;
 
 /**
  * Classe qui représente un étudiant.
- *
- * @author benoit
  */
 public class Etudiant {
 

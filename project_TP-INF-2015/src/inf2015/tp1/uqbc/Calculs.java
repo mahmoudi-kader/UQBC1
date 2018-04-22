@@ -113,32 +113,6 @@ public class Calculs {
         return arrondirChiffre(total, 1);
     }
 
-    //méthode de calcul de la note pondérée par évaluation
-    public static double calculNotePondereeEvaluation(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent, String numeroEvaluation) {
-        double notePonderee = 0;
-        double total = 0;
-        int nombreEvaluation = 0;
-        for (Evaluation evaluation : listeEvaluation) {
-            //total = 0;
-            //nombreEvaluation = 0;
-            if (validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true) {
-                if(evaluation.getNumeroEvaluation().equalsIgnoreCase(numeroEvaluation)){
-                    for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
-                        if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
-                            total = total + resultat.getNote();
-                            nombreEvaluation++;
-                        }
-                    }
-                }
-            } else {
-                total = 0;
-                nombreEvaluation = 1;
-            }
-        }
-        notePonderee = notePonderee + (total / nombreEvaluation);
-        return arrondirChiffre(notePonderee, 1);
-    }
-
     //méthode qui permet de convertir un texte en double
     public static double convertirPonderation(String ponderation) {
         double nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
@@ -146,6 +120,7 @@ public class Calculs {
         return nombre;
     }
 
+    //méthode qui permet de valider si un étudiant a des évaluations
     private static boolean validerEtudiantEvaluation(List<Etudiant> listeEtudiant, List<ResultatEvaluation> listeResultatEvaluation) {
         boolean evaluationValide = false;
         String codePermanentEtudiant;
@@ -166,6 +141,7 @@ public class Calculs {
         return evaluationValide;
     }
 
+    //méthode qui permet d'arrondir les chiffres double
     private static double arrondirChiffre(double val, int pos) {
         if ((("" + val).substring(("" + val).indexOf('.') + 1)).length() > pos + 1) {
             int lastNumber = Integer.parseInt("" + ("" + val).substring(("" + val).indexOf('.') + pos + 1, ("" + val).indexOf('.') + pos + 2));
@@ -194,6 +170,7 @@ public class Calculs {
         }
     }
     
+    //méthode qui permet de trier les notes
     private static double[] trierNotes(Evaluation evaluation){
         double valeurTemp = 0;
         boolean triEffectue = true;
@@ -218,6 +195,7 @@ public class Calculs {
         return notes;
     }
     
+    //méthode de calcul de la moyenne
     public static double calculMoyenne(Evaluation evaluation){
         double moyenne = 0;
         double notes = 0;
@@ -230,6 +208,7 @@ public class Calculs {
         return arrondirChiffre(moyenne,1);
     }
     
+    //méthode de calcul du mode
     public static double calculMode(Evaluation evaluation){
         double mode = 0;
         double notes[] = new double[30];
@@ -256,6 +235,7 @@ public class Calculs {
         return arrondirChiffre(mode, 1);
     }
     
+    //méthode de calcul de la médiane
     public static double calculMediane(Evaluation evaluation){
         double mediane = 0;
         double listeTrier[] = trierNotes(evaluation);
@@ -272,6 +252,7 @@ public class Calculs {
         return arrondirChiffre(mediane,1);
     }
     
+    //méthode de calcul de l'écart-type
     public static double calculEcartType(Evaluation evaluation){
         double ecartType = 0;
         double notes = 0;
@@ -286,6 +267,7 @@ public class Calculs {
         return arrondirChiffre(ecartType,1);
     }
     
+    //méthode de calcul du nombre d'étudiants
     public static int calculNbreEtudiants(Evaluation evaluation){
         int nbreEtudiants = 0;
         for(int i = 0; i < evaluation.getListeResultatEvaluation().size(); ++i){
@@ -294,6 +276,7 @@ public class Calculs {
         return nbreEtudiants;
     }
     
+    //méthode de calcul de la note totale par cours d'un étudiant
     public static double calculNoteGlobalEtudiant(Cours cours, Etudiant etudiant){
         double notes = 0;
         
@@ -308,6 +291,7 @@ public class Calculs {
         return notes;
     }
     
+    //méthode de calcul du pourcentage de réussite d'un étudiant pour un cours
     public static double calculPourcentageReussite(Cours cours, Etudiant etudiant){
         double notes = 0;
         double ponderation = 0;
@@ -320,7 +304,6 @@ public class Calculs {
         if(ponderation > 0){
             pourcentageReussite = notes * 100/ponderation;
         }
-        
         return pourcentageReussite;
     }
 }

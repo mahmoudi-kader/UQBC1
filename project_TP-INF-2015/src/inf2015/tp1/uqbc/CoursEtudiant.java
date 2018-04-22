@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Abdelkader
+ * Classe qui représente un étudiant
  */
 public class CoursEtudiant {
 

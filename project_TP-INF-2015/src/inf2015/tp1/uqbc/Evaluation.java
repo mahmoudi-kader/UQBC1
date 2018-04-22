@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Abdelkader
+ * Classe qui représente une évaluation
  */
 public class Evaluation {
 
@@ -18,7 +17,6 @@ public class Evaluation {
     private double moyenneGroupeEvaluation = 0;
 
     public Evaluation() {
-
     }
 
     public Evaluation(String commentaire, String numeroEvaluation, String nomEvaluation, String type, String ponderation) {
@@ -27,7 +25,6 @@ public class Evaluation {
         this.type = type;
         this.ponderation = ponderation;
         this.numeroEvaluation = numeroEvaluation;
-
     }
 
     public String getCommentaire() {
