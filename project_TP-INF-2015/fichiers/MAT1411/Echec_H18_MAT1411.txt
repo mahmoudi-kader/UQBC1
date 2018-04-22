@@ -1,0 +1,27 @@
+Version : 2018.04.22 AD à 13:59:58 EDT
+
+ * *****************************************************
+ *               ETUDIANTS EN SITUATION D'ECHEC        *
+ * *****************************************************
+
+                 ============================ 
+                 =   Cours: MAT14111411
+                 =   Groupe: Gr20
+                 =   Session: H18
+                 ============================ 
+
+
+Code permanent : BED121098
+Nom : Bedard
+Prenom : Antoine
+Note : 58.0
+Ponderation : 100.0
+Pourcentage Reussite : 58.0
+============================ 
+Code permanent : ROY020397
+Nom : Royer
+Prenom : Jean-Christophe
+Note : 53.0
+Ponderation : 100.0
+Pourcentage Reussite : 53.0
+============================ 

@@ -43,16 +43,23 @@ public class CreerFichierEchec {
         texte = texte + "                 =   Session: " + cours.getSession() + FIN_LIGNE;
         texte = texte + "                 ============================ " + FIN_LIGNE+ FIN_LIGNE+ FIN_LIGNE;
 
-        for (ValidationReussite validation : liste) {
+        if(liste == null || liste.size() == 0){
             
-            texte = texte + "Code permanent : " +validation.getEtudiant().getCodePermanent() + FIN_LIGNE;
-            texte = texte + "Nom : " +validation.getEtudiant().getNom() + FIN_LIGNE;
-            texte = texte + "Prenom : " +validation.getEtudiant().getPrenom() + FIN_LIGNE;
-            texte = texte + "Note : " +validation.getNote()+FIN_LIGNE;
-            texte = texte + "Ponderation : " +validation.getPonderation()+FIN_LIGNE;
-            texte = texte + "Pourcentage Reussite : " +validation.getPourcentageReussite()+FIN_LIGNE;
-            texte = texte + "============================ " + FIN_LIGNE;
+            texte = texte + "Aucun échec pour ce cours."+FIN_LIGNE+FIN_LIGNE;
+            
+        }else{
+        
+            for (ValidationReussite validation : liste) {
 
+                texte = texte + "Code permanent : " +validation.getEtudiant().getCodePermanent() + FIN_LIGNE;
+                texte = texte + "Nom : " +validation.getEtudiant().getNom() + FIN_LIGNE;
+                texte = texte + "Prenom : " +validation.getEtudiant().getPrenom() + FIN_LIGNE;
+                texte = texte + "Note : " +validation.getNote()+FIN_LIGNE;
+                texte = texte + "Ponderation : " +validation.getPonderation()+FIN_LIGNE;
+                texte = texte + "Pourcentage Reussite : " +validation.getPourcentageReussite()+FIN_LIGNE;
+                texte = texte + "============================ " + FIN_LIGNE;
+
+            }
         }
         return texte;
     }

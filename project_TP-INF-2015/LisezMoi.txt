@@ -1,7 +1,7 @@
 1-Extraire le fichier UQBC1_GROUPE_8.zip vers dans le répertoire ou se trouvent les fichiers JSON à traiter.(<repertoire>)
 2-Aller dans <Windows system/Command Prompt> de Microsoft ou <macOS Terminal> de apple
 3-Aller dans le répertoire en question. (Taper la commande 'cd <repertoire>')
-4-Ensuite exécuter la commande 'java -jar dist/project_TP-INF-2015.jar .' (ne pas oublier le '.')
+4-Ensuite exécuter la commande 'java -jar dist/project_TP-INF-2015.jar .' (ne pas oublier le '.' a la fin.)
 5-Récupérer les fichiers générés dans les dossiers portant le nom du cours.
 6-Enfin, 
 a-pour les évaluations par étudiants
