@@ -289,4 +289,34 @@ public class Calculs {
         }
         return nbreEtudiants;
     }
+    
+    public static double calculNoteGlobalEtudiant(Cours cours, Etudiant etudiant){
+        double notes = 0;
+        
+        for(Evaluation evaluation : cours.getListeEvaluation()){
+            for(ResultatEvaluation resultatEvaluation : evaluation.getListeResultatEvaluation()){
+                if(resultatEvaluation.getEtudiant().getCodePermanent().equalsIgnoreCase(etudiant.getCodePermanent())){
+                    notes = notes + resultatEvaluation.getNote();
+                }
+            }
+        }
+
+        return notes;
+    }
+    
+    public static double calculPourcentageReussite(Cours cours, Etudiant etudiant){
+        double notes = 0;
+        double ponderation = 0;
+        double pourcentageReussite = 0;
+        
+        notes = calculNoteGlobalEtudiant(cours, etudiant);
+        
+        ponderation = calculPonderationGlobaleEtudiant(cours.getListeEtudiant(), cours.getListeEvaluation(), etudiant.getCodePermanent());
+        
+        if(ponderation > 0){
+            pourcentageReussite = notes * 100/ponderation;
+        }
+        
+        return pourcentageReussite;
+    }
 }

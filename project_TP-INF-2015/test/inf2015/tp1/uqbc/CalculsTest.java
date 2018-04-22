@@ -205,4 +205,53 @@ public class CalculsTest {
         System.out.println("Nombre : " + nombre);
         Assert.assertEquals(4, nombre, 0.001);
     }
+    @Test
+    public void testValiderReussite() {
+        List<Evaluation> listeEvaluation = new ArrayList<Evaluation>();
+        List<Etudiant> listeEtudiant = new ArrayList<Etudiant>();
+        List<ResultatEvaluation> listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        double pourcentageReussite = 0;
+        
+        Cours cours1 = new Cours("BIO", "Gr10", "H18", "BlaBla", "1012");
+        Etudiant etudiantTemp1 = new Etudiant("SAD272727", "Saddd", "Naaaa");
+        Etudiant etudiantTemp2 = new Etudiant("DAS272727", "Dasss", "Naaaa");
+        Etudiant etudiantTemp3 = new Etudiant("DAS282828", "Dasss", "Saaaa");
+        Etudiant etudiantTemp4 = new Etudiant("DAS292929", "Dasss", "Saaaa");
+        listeEtudiant.add(etudiantTemp1);
+        listeEtudiant.add(etudiantTemp2);
+        listeEtudiant.add(etudiantTemp3);
+        listeEtudiant.add(etudiantTemp4);
+        cours1.setListeEtudiant(listeEtudiant);
+
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 10.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 13.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp3, 13.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp4, 14.0));
+        listeEvaluation.add(new Evaluation("blabla", "1", "TP", "TP", "20%"));
+        listeEvaluation.get(0).setListeResultatEvaluation(listeResultatEvaluation);
+
+        listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 20.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 38.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp3, 38.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp4, 37.0));
+        listeEvaluation.add(new Evaluation("blabla", "2", "Examen intra", "Examen", "40%"));
+        listeEvaluation.get(1).setListeResultatEvaluation(listeResultatEvaluation);
+
+        listeResultatEvaluation = new ArrayList<ResultatEvaluation>();
+        //listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp2, 36.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp1, 36.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp3, 39.0));
+        listeResultatEvaluation.add(new ResultatEvaluation(etudiantTemp4, 35.0));
+        listeEvaluation.add(new Evaluation("blabla", "3", "Examen final", "Examen", "40%"));
+        listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
+        cours1.setListeEvaluation(listeEvaluation);
+        
+        Etudiant etudiant = cours1.getListeEtudiant().get(1);
+        pourcentageReussite = Calculs.calculPourcentageReussite(cours1, etudiant);
+        System.out.println("pourcentageReussite : " + pourcentageReussite);
+        etudiant = cours1.getListeEtudiant().get(0);
+        pourcentageReussite = Calculs.calculPourcentageReussite(cours1, etudiant);
+        System.out.println("pourcentageReussite : " + pourcentageReussite);
+    }
 }
