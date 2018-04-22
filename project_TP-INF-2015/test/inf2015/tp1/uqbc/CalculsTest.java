@@ -102,16 +102,6 @@ public class CalculsTest {
     }
     
     @Test
-    public void testCalculsNotePonderee() {
-        
-        double notePondereeEvaluation  = 0;
-        notePondereeEvaluation = Calculs.calculNotePondereeEvaluation(cours.getListeEtudiant(), cours.getListeEvaluation(), "SADN27272727", "2");
-        System.out.println("notePondereeEvaluation : " + notePondereeEvaluation);
-        Assert.assertEquals(38.0, notePondereeEvaluation, 0.001);
-        
-    }
-    
-    @Test
     public void testCalculsNotePondereeGlobale() {
         
         double notePondereeGlobale = 0;
@@ -176,10 +166,6 @@ public class CalculsTest {
         moyenneGroupeEvaluation = Calculs.calculMoyenneGroupeEvaluation(cours1.getListeEvaluation().get(0).getListeResultatEvaluation());
         System.out.println("moyenneGroupeEvaluation : " + moyenneGroupeEvaluation);
         Assert.assertEquals(14.0, moyenneGroupeEvaluation, 0.001);
-        
-        notePondereeEvaluation = Calculs.calculNotePondereeEvaluation(cours1.getListeEtudiant(), cours1.getListeEvaluation(), "SADN27272727", "2");
-        System.out.println("notePondereeEvaluation : " + notePondereeEvaluation);
-        Assert.assertEquals(38.0, notePondereeEvaluation, 0.001);
         
         notePondereeGlobale = Calculs.calculNotePondereeGlobale(cours1.getListeEtudiant(), cours1.getListeEvaluation(), "SADN27272727");
         System.out.println("notePondereeGlobale : " + notePondereeGlobale);
