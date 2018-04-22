@@ -76,7 +76,7 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
         List<ValidationReussite>liste = new ArrayList();
         ValidationReussite validationReussite = new ValidationReussite();
         
-        for(int i = 0; i >= cours.getListeEtudiant().size(); i++){
+        for(int i = 0; i < cours.getListeEtudiant().size(); i++){
             validationReussite = new ValidationReussite(cours,cours.getListeEtudiant().get(i));
             if(validationReussite.getPourcentageReussite()<60){
                 liste.add(validationReussite);
