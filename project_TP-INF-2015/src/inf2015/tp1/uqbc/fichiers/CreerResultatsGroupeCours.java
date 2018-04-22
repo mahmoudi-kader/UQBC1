@@ -33,27 +33,26 @@ public class CreerResultatsGroupeCours {
      */
     public void ecrireFichier(List<Cours> listeCours){
         
-        
+        String texte="";
+         texte=texte+
+       " * *****************************************************"+ FIN_LIGNE
+     + " *               RESULTATS DU GROUPE COURS             *"+ FIN_LIGNE
+     + " * *****************************************************"+ FIN_LIGNE+FIN_LIGNE;
         //Creer nouveau fichier pour chaque cours
         for(Cours cours : listeCours){
-            
             StringBuilder sbTexte = new StringBuilder();
-            String nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
-            
-            creerRepertoire(nomRepertoire);
-            
-            String szGroupeCours = cours.getGroupe()+"-"+cours.getTitre();
-            
-            sbTexte.append("Groupe-Cours : ").append(szGroupeCours);
-            sbTexte.append(" Session : ").append(cours.getSession()).append(FIN_LIGNE).append(FIN_LIGNE).append(FIN_LIGNE);
+            sbTexte.append(texte);
             sbTexte.append(Utilitaires.getInstance().getVersion());
-            
+            String szGroupeCours = cours.getGroupe()+"-"+cours.getTitre();
+            sbTexte.append("        Groupe-Cours : ").append(szGroupeCours);
+            sbTexte.append("        Session : ").append(cours.getSession()).append(FIN_LIGNE).append(FIN_LIGNE).append(FIN_LIGNE);
+            String nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
+            creerRepertoire(nomRepertoire);
             String nomFichier = szGroupeCours+".txt";
 
             for(Evaluation evaluation : cours.getListeEvaluation()){               
 
                 sbTexte.append("Evaluation : "+evaluation.getNomEvaluation()+"-"+evaluation.getNumeroEvaluation()+FIN_LIGNE+FIN_LIGNE);
-                
                 sbTexte.append("Moyenne : "+Calculs.calculMoyenne(evaluation)+FIN_LIGNE);
                 sbTexte.append("Mode : "+Calculs.calculMode(evaluation)+FIN_LIGNE);
                 sbTexte.append("Médiane : "+Calculs.calculMediane(evaluation)+FIN_LIGNE);
