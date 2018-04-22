@@ -66,11 +66,8 @@ public class CreerResultatsGroupeCours {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                
             }
-            
         }
-        
     }
       
 
@@ -125,9 +122,7 @@ public class CreerResultatsGroupeCours {
         StringBuilder sb = new StringBuilder();
         String texte = null;
         String version = Utilitaires.getInstance().getVersion();
-        
-        
-        
+
         return texte;
     }
        

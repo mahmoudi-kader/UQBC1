@@ -5,8 +5,6 @@ import java.util.Date;
 
 /**
  * Cette class contient les constantes de l'application et les fonctions utilitaires
- * 
- * @author benoit
  */
 public class Utilitaires {
     
