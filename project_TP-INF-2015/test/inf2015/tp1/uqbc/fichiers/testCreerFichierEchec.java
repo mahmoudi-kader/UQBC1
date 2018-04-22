@@ -9,7 +9,7 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ResultatEvaluation;
-import inf2015.tp1.uqbc.ValidationReussite;
+import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

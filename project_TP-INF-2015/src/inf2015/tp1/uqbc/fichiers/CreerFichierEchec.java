@@ -9,7 +9,7 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
-import inf2015.tp1.uqbc.ValidationReussite;
+import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
