@@ -7,8 +7,6 @@ import inf2015.tp1.uqbc.Utilitaires;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import static inf2015.tp1.uqbc.Utilitaires.FIN_LIGNE;
 import static inf2015.tp1.uqbc.Utilitaires.REPERTOIRE_PAR_DEFAUT;
@@ -18,13 +16,6 @@ import static inf2015.tp1.uqbc.Utilitaires.SEP_FICHIER;
  * @author benoit
  */
 public class CreerResultatsGroupeCours {
-    
-    
-    private long version = 0l;    
-    
-    public CreerResultatsGroupeCours(long version){
-        this.version = version;
-    }
     
     
     /**
