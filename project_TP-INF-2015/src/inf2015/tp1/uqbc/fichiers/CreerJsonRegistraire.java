@@ -3,7 +3,7 @@ package inf2015.tp1.uqbc.fichiers;
 import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
-import inf2015.tp1.uqbc.ValidationEvaluations;
+import inf2015.tp1.uqbc.validation.ValidationEvaluations;
 import static inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant.creerRepertoire;
 import java.io.File;
 import java.io.FileWriter;

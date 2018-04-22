@@ -9,10 +9,11 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ResultatEvaluation;
-import inf2015.tp1.uqbc.ValidationReussite;
+import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import junit.framework.Assert;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,22 +30,6 @@ public class testCreerFichierEchec {
     private long version = new Date(118,01,01).getTime();
     
     public testCreerFichierEchec() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -91,13 +76,13 @@ public class testCreerFichierEchec {
         
         CreerFichierEchec test = new CreerFichierEchec(version);
         listeEtudiantEchec = test.extraireEtudiantEchec(cours1);
-        for(int i = 0 ; i <= listeEtudiantEchec.size() ; i++){
+        for(int i = 0 ; i < listeEtudiantEchec.size() ; i++){
             System.out.print("Code : " + listeEtudiantEchec.get(i).getEtudiant().getCodePermanent());
-            System.out.print("Nom : " + listeEtudiantEchec.get(i).getEtudiant().getNom());
-            System.out.print("Prénom : " + listeEtudiantEchec.get(i).getEtudiant().getPrenom());
-            System.out.print("Note : " + listeEtudiantEchec.get(i).getNote());
-            System.out.print("Ponderation : " + listeEtudiantEchec.get(i).getPonderation());
-            System.out.println("Pourcentage réussite : " + listeEtudiantEchec.get(i).getPourcentageReussite());
+            System.out.print(" - Nom : " + listeEtudiantEchec.get(i).getEtudiant().getNom());
+            System.out.print(" - Prénom : " + listeEtudiantEchec.get(i).getEtudiant().getPrenom());
+            System.out.print(" - Note : " + listeEtudiantEchec.get(i).getNote());
+            System.out.print(" - Ponderation : " + listeEtudiantEchec.get(i).getPonderation());
+            System.out.println(" - Pourcentage réussite : " + listeEtudiantEchec.get(i).getPourcentageReussite());
         }
     }
 

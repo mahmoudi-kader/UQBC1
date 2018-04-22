@@ -1,5 +1,8 @@
-package inf2015.tp1.uqbc;
+package inf2015.tp1.uqbc.validation;
 
+import inf2015.tp1.uqbc.Calculs;
+import inf2015.tp1.uqbc.Cours;
+import inf2015.tp1.uqbc.Etudiant;
 import java.util.ArrayList;
 import java.util.List;
 
