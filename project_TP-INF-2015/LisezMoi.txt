@@ -1,6 +1,15 @@
-1-Extraire le fichier UQBC1_GROUPE_8.zip vers dans le rÃ©pertoire ou se trouvent les fichiers JSON Ã  traiter.(<repertoire>)
-2-Aller dans le rÃ©pertoire en question. ('cd <repertoire>')
-3-ExÃ©cuter la commande 'java -jar dist/project_TP-INF-2015.jar .' (ne pas oublier le '.')
-4-RÃ©cupÃ©rer les fichiers gÃ©nÃ©rÃ©s dans les dossiers portant le nom du cours.
-5-Envoyer les courriels aux destinataires en joignant Ã  chacun son fichier de note .txt correspondant.
-
+1-Extraire le fichier UQBC1_GROUPE_8.zip vers dans le répertoire ou se trouvent les fichiers JSON à traiter.(<repertoire>)
+2-Aller dans <Windows system/Command Prompt> de Microsoft ou <macOS Terminal> de apple
+3-Aller dans le répertoire en question. (Taper la commande 'cd <repertoire>')
+4-Ensuite exécuter la commande 'java -jar dist/project_TP-INF-2015.jar .' (ne pas oublier le '.')
+5-Récupérer les fichiers générés dans les dossiers portant le nom du cours.
+6-Enfin, 
+a-pour les évaluations par étudiants
+Envoyer les courriels aux destinataires en joignant à chacun son fichier de note .txt correspondant.
+les fichiers nommés : Session_Titre du cours_code permanent étudiant
+b-pour les statistiques des résultats des évaluations
+Consulter le fichier de note .txt correspondant. Le fichier est nommé : Groupe-Titre du cours
+c-pour la note finale de chaque étudiant pour le régistraire
+Envoyer les courriels au registraire en joignant le fichier de note .json correspondant. Le fichier est nommé : Titre du coursGroupe
+d-pour les étudiants en échecs
+Consulter le fichier de note .txt correspondant. Le fichier est nommé : Echec_Session_Titre du cours
