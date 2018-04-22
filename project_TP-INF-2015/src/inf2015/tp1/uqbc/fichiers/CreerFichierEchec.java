@@ -2,7 +2,6 @@ package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
-import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.io.File;
 import java.io.FileWriter;
@@ -49,19 +48,28 @@ public class CreerFichierEchec {
         String version = getVersion();
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
+        List<ValidationReussite>liste = new ArrayList();
+        liste=extraireEtudiantEchec(cours);
+
         texte = version + FIN_LIGNE;
+         texte+=" * *****************************************************"+ FIN_LIGNE
+     + " *               ETUDIANTS EN SITUATION D'ECHEC        *"+ FIN_LIGNE
+     + " * *****************************************************"+ FIN_LIGNE+FIN_LIGNE;
         texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
         texte = texte + "Groupe: " + cours.getGroupe() + FIN_LIGNE;
         texte = texte + "Session: " + cours.getSession() + FIN_LIGNE;
         texte = texte + "============================ " + FIN_LIGNE;
-  
-for (Evaluation evaluation : cours.getListeEvaluation()) {
-            texte = texte + "Code permanent : "  + FIN_LIGNE;
-            texte = texte + "Nom : "  + FIN_LIGNE;
-            texte = texte + "Prenom : "  + FIN_LIGNE;
+
+        for (ValidationReussite validation : liste) {
+            
+            texte = texte + "Code permanent : " +validation.getEtudiant().getCodePermanent() + FIN_LIGNE;
+            texte = texte + "Nom : " +validation.getEtudiant().getNom() + FIN_LIGNE;
+            texte = texte + "Prenom : " +validation.getEtudiant().getPrenom() + FIN_LIGNE;
+            texte = texte + "Note : " +validation.getNote()+FIN_LIGNE;
+            texte = texte + "Ponderation : " +validation.getPonderation()+FIN_LIGNE;
+            texte = texte + "Pourcentage Reussite : " +validation.getPourcentageReussite()+FIN_LIGNE;
             texte = texte + "============================ " + FIN_LIGNE;
-            texte = texte + "Ponderation : " +FIN_LIGNE;
-            noteEtudiant = noteEtudiant ;
+
         }
         return texte;
     }
@@ -84,7 +92,7 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
      * @param listeCours
      * @throws IOException 
      */
-    public void ecrireFichier(List<Cours> listeCours) throws IOException {
+    public  void ecrireFichier(List<Cours> listeCours) throws IOException {
         String nomFichier = null;
         String nomRepertoire = null;
         String texte = null;
@@ -92,7 +100,6 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
             nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
             creerRepertoire(nomRepertoire);
                 nomFichier = "Echec"+ "_"+cours.getSession() + "_" + cours.getTitre();
-                //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = ecrireTexte(cours);
                 FileWriter writer = new FileWriter(nomRepertoire +SEP_FICHIER+ nomFichier + ".txt");
                 writer.write(texte);

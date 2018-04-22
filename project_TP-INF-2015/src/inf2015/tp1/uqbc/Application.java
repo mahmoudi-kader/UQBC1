@@ -1,5 +1,6 @@
 package inf2015.tp1.uqbc;
 
+import inf2015.tp1.uqbc.fichiers.CreerFichierEchec;
 import inf2015.tp1.uqbc.fichiers.CreerJsonRegistraire;
 import inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant;
 import inf2015.tp1.uqbc.fichiers.CreerResultatsGroupeCours;
@@ -43,6 +44,9 @@ public class Application {
         
         CreerJsonRegistraire creerJson =new CreerJsonRegistraire(version);
         creerJson.CreerJson(listeCours);
+        
+        CreerFichierEchec creerFichiersEchec= new CreerFichierEchec(version);
+        creerFichiersEchec.ecrireFichier(listeCours);
         
     }
 
