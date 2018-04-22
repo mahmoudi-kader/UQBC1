@@ -9,10 +9,12 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.ValidationReussite;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -70,6 +72,19 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
         return texte;
     }
 
+    public List<ValidationReussite> extraireEtudiantEchec(Cours cours){
+        List<ValidationReussite>liste = new ArrayList();
+        ValidationReussite validationReussite = new ValidationReussite();
+        
+        for(int i = 0; i >= cours.getListeEtudiant().size(); i++){
+            validationReussite = new ValidationReussite(cours,cours.getListeEtudiant().get(i));
+            if(validationReussite.getPourcentageReussite()<60){
+                liste.add(validationReussite);
+            }
+        }
+        return liste;
+    }
+    
     /**
      * Cette méthode écrit le fichier.
      * @param listeCours
