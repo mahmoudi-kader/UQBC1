@@ -37,10 +37,11 @@ public class CreerFichierEchec {
          texte+=" * *****************************************************"+ FIN_LIGNE
      + " *               ETUDIANTS EN SITUATION D'ECHEC        *"+ FIN_LIGNE
      + " * *****************************************************"+ FIN_LIGNE+FIN_LIGNE;
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
-        texte = texte + "Groupe: " + cours.getGroupe() + FIN_LIGNE;
-        texte = texte + "Session: " + cours.getSession() + FIN_LIGNE;
-        texte = texte + "============================ " + FIN_LIGNE;
+        texte = texte + "                 ============================ " + FIN_LIGNE;
+        texte = texte + "                 =   Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
+        texte = texte + "                 =   Groupe: " + cours.getGroupe() + FIN_LIGNE;
+        texte = texte + "                 =   Session: " + cours.getSession() + FIN_LIGNE;
+        texte = texte + "                 ============================ " + FIN_LIGNE+ FIN_LIGNE+ FIN_LIGNE;
 
         for (ValidationReussite validation : liste) {
             
