@@ -59,19 +59,24 @@ public class CreerFichierEchec {
         liste=extraireEtudiantEchec(cours);
 
         texte = version + finLigne;
+         texte+=" * *****************************************************"+ finLigne
+     + " *               ETUDIANTS EN SITUATION D'ECHEC        *"+ finLigne
+     + " * *****************************************************"+ finLigne+finLigne;
         texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + finLigne;
         texte = texte + "Groupe: " + cours.getGroupe() + finLigne;
         texte = texte + "Session: " + cours.getSession() + finLigne;
         texte = texte + "============================ " + finLigne;
   
         for (ValidationReussite validation : liste) {
+            
             texte = texte + "Code permanent : " +validation.getEtudiant().getCodePermanent() + finLigne;
             texte = texte + "Nom : " +validation.getEtudiant().getNom() + finLigne;
             texte = texte + "Prenom : " +validation.getEtudiant().getPrenom() + finLigne;
-            texte = texte + "============================ " + finLigne;
+            texte = texte + "Note : " +validation.getNote()+finLigne;
             texte = texte + "Ponderation : " +validation.getPonderation()+finLigne;
             texte = texte + "Pourcentage Reussite : " +validation.getPourcentageReussite()+finLigne;
-            texte = texte + "Note : " +validation.getNote()+finLigne;
+            texte = texte + "============================ " + finLigne;
+
         }
         return texte;
     }
