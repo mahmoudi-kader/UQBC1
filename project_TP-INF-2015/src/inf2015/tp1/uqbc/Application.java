@@ -32,24 +32,24 @@ public class Application {
         */
         String repertoire ="./";
         List<FichierJSON> listeFichiers = new ArrayList();
+        //Permet de lire tous les fichiers JSON
         TraitementFichiers.ramasser(repertoire, listeFichiers);
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
 
-
+        //Permet de sortir toutes les évaluations par étudiants
         CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
         
+        //Permet d'obtenir les statistiques des résultats des évaluations
         CreerResultatsGroupeCours resultatGroupeCours = new CreerResultatsGroupeCours();
         resultatGroupeCours.ecrireFichier(listeCours);
         
+        //Permet de générer la note finale de chaque étudiant pour le régistraire
         CreerJsonRegistraire creerJson =new CreerJsonRegistraire();
         creerJson.CreerJson(listeCours);
         
+        //Permet d'identifier les étudiants en échecs
         CreerFichierEchec creerFichiersEchec= new CreerFichierEchec();
         creerFichiersEchec.ecrireFichier(listeCours);
-
-
-        
     }
-
 }

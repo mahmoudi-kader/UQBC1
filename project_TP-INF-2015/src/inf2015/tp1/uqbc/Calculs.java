@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class Calculs {
 
+    //méthode de calcul de la moyenne du groupe pour un cours
     public static double calculMoyenneGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation) {
         double moyenne = 0;
         double total;
@@ -33,6 +34,7 @@ public class Calculs {
         return arrondirChiffre(moyenne, 1);
     }
 
+    //méthode de calcul de la pondération du groupe pour un cours
     public static double calculPonderationGroupeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation) {
         boolean ponderationExiste = false;
         double total = 0;
@@ -51,6 +53,7 @@ public class Calculs {
         return arrondirChiffre(total, 1);
     }
 
+    //méthode de calcul de la moyenne du groupe pour une évaluation
     public static double calculMoyenneGroupeEvaluation(List<ResultatEvaluation> listeResultatEvaluation) {
         double moyenne = 0;
         double total = 0;
@@ -65,6 +68,7 @@ public class Calculs {
         return arrondirChiffre(moyenne, 1);
     }
 
+    //méthode de calcul de la note total pour un cours
     public static double calculNotePondereeGlobale(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent) {
         double notePonderee = 0;
         double total = 0;
@@ -89,6 +93,7 @@ public class Calculs {
         return arrondirChiffre(notePonderee, 1);
     }
 
+    //méthode de calcul de la pondération par étudiant pour un cours
     public static double calculPonderationGlobaleEtudiant(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent) {
         boolean ponderationExiste = false;
         double total = 0;
