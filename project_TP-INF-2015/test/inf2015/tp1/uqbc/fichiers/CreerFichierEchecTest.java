@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
@@ -13,16 +8,17 @@ import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  *
  * @author nawal
  */
-public class testCreerFichierEchec {
+public class CreerFichierEchecTest {
     
     private long version = new Date(118,01,01).getTime();    
-    public testCreerFichierEchec() {
+    public CreerFichierEchecTest() {
     }
     
     @Test
@@ -76,6 +72,12 @@ public class testCreerFichierEchec {
             System.out.print(" - Note : " + listeEtudiantEchec.get(i).getNote());
             System.out.print(" - Ponderation : " + listeEtudiantEchec.get(i).getPonderation());
             System.out.println(" - Pourcentage réussite : " + listeEtudiantEchec.get(i).getPourcentageReussite());
+            Assert.assertEquals("DAS272727", listeEtudiantEchec.get(i).getEtudiant().getCodePermanent());
+            Assert.assertEquals("Dasss", listeEtudiantEchec.get(i).getEtudiant().getNom());
+            Assert.assertEquals("Naaaa", listeEtudiantEchec.get(i).getEtudiant().getPrenom());
+            Assert.assertEquals(30.0, listeEtudiantEchec.get(i).getNote(), 0.01);
+            Assert.assertEquals(60.0, listeEtudiantEchec.get(i).getPonderation(), 0.01);
+            Assert.assertEquals(50.0, listeEtudiantEchec.get(i).getPourcentageReussite(), 0.01);
         }
     }
 

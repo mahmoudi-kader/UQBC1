@@ -74,8 +74,6 @@ public class Calculs {
         double total = 0;
         int nombreEvaluation = 0;
         for (Evaluation evaluation : listeEvaluation) {
-            //total = 0;
-            //nombreEvaluation = 0;
             if (validerEtudiantEvaluation(listeEtudiant, evaluation.getListeResultatEvaluation()) == true) {
                 for (ResultatEvaluation resultat : evaluation.getListeResultatEvaluation()) {
                     if (resultat.getEtudiant().getCodePermanent().equalsIgnoreCase(codeParmanent) && resultat.getNote() >= 0) {
@@ -88,7 +86,6 @@ public class Calculs {
                 nombreEvaluation = 1;
             }
         }
-        //notePonderee = notePonderee + (total / nombreEvaluation);
         notePonderee = notePonderee + total;
         return arrondirChiffre(notePonderee, 1);
     }
@@ -116,6 +113,7 @@ public class Calculs {
         return arrondirChiffre(total, 1);
     }
 
+    //méthode de calcul de la note pondérée par évaluation
     public static double calculNotePondereeEvaluation(List<Etudiant> listeEtudiant, List<Evaluation> listeEvaluation, String codeParmanent, String numeroEvaluation) {
         double notePonderee = 0;
         double total = 0;
@@ -141,6 +139,7 @@ public class Calculs {
         return arrondirChiffre(notePonderee, 1);
     }
 
+    //méthode qui permet de convertir un texte en double
     public static double convertirPonderation(String ponderation) {
         double nombre = Double.parseDouble(ponderation.substring(0, ponderation.length() - 1));
 
