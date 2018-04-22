@@ -48,14 +48,20 @@ public class CreerResultatsEtudiant {
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
         texte = version + FIN_LIGNE;
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
-        texte = texte + "Groupe: " + cours.getGroupe() + FIN_LIGNE;
-        texte = texte + "Session: " + cours.getSession() + FIN_LIGNE;
-        texte = texte + "============================ " + FIN_LIGNE;
-        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + FIN_LIGNE;
-        texte = texte + "Nom : " + etudiant.getNom() + FIN_LIGNE;
-        texte = texte + "Prenom : " + etudiant.getPrenom() + FIN_LIGNE;
-        texte = texte + "============================ " + FIN_LIGNE;
+        texte=texte
+        + " * *****************************************************"+ FIN_LIGNE
+        + " *                    RESULTAT ETUDIANT                *"+ FIN_LIGNE
+        + " * *****************************************************"+ FIN_LIGNE+FIN_LIGNE;
+        texte = texte + "                 ============================== " + FIN_LIGNE;
+        texte = texte + "                 =   Code permanent : " + etudiant.getCodePermanent() + FIN_LIGNE;
+        texte = texte + "                 =   Nom : " + etudiant.getNom() + FIN_LIGNE;
+        texte = texte + "                 =   Prenom : " + etudiant.getPrenom() + FIN_LIGNE;
+        texte = texte + "                 = ****************************"+FIN_LIGNE;
+        texte = texte + "                 =   Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
+        texte = texte + "                 =   Groupe: " + cours.getGroupe()+ FIN_LIGNE;
+        texte = texte + "                 =   Session: " + cours.getSession() + FIN_LIGNE;
+        texte = texte + "                 ============================== " + FIN_LIGNE+ FIN_LIGNE;
+
         for (Evaluation evaluation : cours.getListeEvaluation()) {
             coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);
             texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
