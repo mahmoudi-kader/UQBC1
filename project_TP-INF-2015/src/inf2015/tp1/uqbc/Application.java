@@ -47,6 +47,8 @@ public class Application {
         
         CreerFichierEchec creerFichiersEchec= new CreerFichierEchec(version);
         creerFichiersEchec.ecrireFichier(listeCours);
+
+
         
     }
 
