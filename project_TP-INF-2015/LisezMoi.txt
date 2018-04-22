@@ -1,4 +1,4 @@
-1-Extraire le fichier UQBC1_GROUP14.zip vers dans le répertoire ou se trouvent les fichiers JSON à traiter.(<repertoire>)
+1-Extraire le fichier UQBC1_GROUPE_8.zip vers dans le répertoire ou se trouvent les fichiers JSON à traiter.(<repertoire>)
 2-Aller dans le répertoire en question. ('cd <repertoire>')
 3-Exécuter la commande 'java -jar dist/project_TP-INF-2015.jar .' (ne pas oublier le '.')
 4-Récupérer les fichiers générés dans les dossiers portant le nom du cours.
