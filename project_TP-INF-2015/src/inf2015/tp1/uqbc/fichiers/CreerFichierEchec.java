@@ -55,19 +55,23 @@ public class CreerFichierEchec {
         String version = getVersion();
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
+        List<ValidationReussite>liste = new ArrayList();
+        liste=extraireEtudiantEchec(cours);
+
         texte = version + finLigne;
         texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + finLigne;
         texte = texte + "Groupe: " + cours.getGroupe() + finLigne;
         texte = texte + "Session: " + cours.getSession() + finLigne;
         texte = texte + "============================ " + finLigne;
   
-for (Evaluation evaluation : cours.getListeEvaluation()) {
-            texte = texte + "Code permanent : "  + finLigne;
-            texte = texte + "Nom : "  + finLigne;
-            texte = texte + "Prenom : "  + finLigne;
+        for (ValidationReussite validation : liste) {
+            texte = texte + "Code permanent : " +validation.getEtudiant().getCodePermanent() + finLigne;
+            texte = texte + "Nom : " +validation.getEtudiant().getNom() + finLigne;
+            texte = texte + "Prenom : " +validation.getEtudiant().getPrenom() + finLigne;
             texte = texte + "============================ " + finLigne;
-            texte = texte + "Ponderation : " +finLigne;
-            noteEtudiant = noteEtudiant ;
+            texte = texte + "Ponderation : " +validation.getPonderation()+finLigne;
+            texte = texte + "Pourcentage Reussite : " +validation.getPourcentageReussite()+finLigne;
+            texte = texte + "Note : " +validation.getNote()+finLigne;
         }
         return texte;
     }
@@ -90,7 +94,7 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
      * @param listeCours
      * @throws IOException 
      */
-    public void ecrireFichier(List<Cours> listeCours) throws IOException {
+    public  void ecrireFichier(List<Cours> listeCours) throws IOException {
         String nomFichier = null;
         String nomRepertoire = null;
         String texte = null;
@@ -98,7 +102,6 @@ for (Evaluation evaluation : cours.getListeEvaluation()) {
             nomRepertoire = repertoireParDefaut + cours.getTitre();
             creerRepertoire(nomRepertoire);
                 nomFichier = "Echec"+ "_"+cours.getSession() + "_" + cours.getTitre();
-                //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = ecrireTexte(cours);
                 FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier + ".txt");
                 writer.write(texte);
