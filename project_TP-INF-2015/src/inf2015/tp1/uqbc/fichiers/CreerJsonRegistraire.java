@@ -4,13 +4,10 @@ import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.validation.ValidationEvaluations;
-import static inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant.creerRepertoire;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,8 +18,8 @@ import org.json.JSONObject;
  */
 public class CreerJsonRegistraire {
 
-   private String finLigne = System.lineSeparator();
-   private String sepFichier = System.getProperty("file.separator");
+   private final static String FIN_LIGNE = System.lineSeparator();
+   private final static String SEP_FICHIER = System.getProperty("file.separator");
         
    String repertoireDestination = "./";
    long version = 0l;
@@ -34,7 +31,8 @@ public class CreerJsonRegistraire {
     }
    
    public void CreerJson(List<Cours> listeCours) throws IOException{
-            JSONObject notes=new JSONObject();
+       
+        JSONObject notes=new JSONObject();
         String cours_groupe="";    
         String nomCours="";
         JSONArray obj =null;
@@ -87,7 +85,7 @@ public class CreerJsonRegistraire {
      * @return String la version
      */
     protected String getVersion(){
-        return ""+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format( new Date(this.version));
+        return ""+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format( new Date(this.version));
     }
    
 }

@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import static inf2015.tp1.uqbc.Utilitaires.FIN_LIGNE;
+import static inf2015.tp1.uqbc.Utilitaires.REPERTOIRE_PAR_DEFAUT;
+import static inf2015.tp1.uqbc.Utilitaires.SEP_FICHIER;
+
 
 /**
  *
@@ -17,10 +21,6 @@ import java.util.List;
  */
 public class CreerResultatsEtudiant {
 
-    private static final String repertoireParDefaut = "./";
-    
-    private String finLigne = System.lineSeparator();
-    private String sepFichier = System.getProperty("file.separator");
     private long version = 0l;
 
     public CreerResultatsEtudiant(long version){
@@ -32,7 +32,7 @@ public class CreerResultatsEtudiant {
      * @return String la version
      */
     protected String getVersion(){
-        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format(new Date(this.version)) +finLigne;
+        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z").format(new Date(this.version)) +FIN_LIGNE;
     }
     
     
@@ -47,30 +47,30 @@ public class CreerResultatsEtudiant {
         String version = getVersion();
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
-        texte = version + finLigne;
-        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + finLigne;
-        texte = texte + "Groupe: " + cours.getGroupe() + finLigne;
-        texte = texte + "Session: " + cours.getSession() + finLigne;
-        texte = texte + "============================ " + finLigne;
-        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + finLigne;
-        texte = texte + "Nom : " + etudiant.getNom() + finLigne;
-        texte = texte + "Prenom : " + etudiant.getPrenom() + finLigne;
-        texte = texte + "============================ " + finLigne;
+        texte = version + FIN_LIGNE;
+        texte = texte + "Cours: " + cours.getTitre() + cours.getNumeroCours() + FIN_LIGNE;
+        texte = texte + "Groupe: " + cours.getGroupe() + FIN_LIGNE;
+        texte = texte + "Session: " + cours.getSession() + FIN_LIGNE;
+        texte = texte + "============================ " + FIN_LIGNE;
+        texte = texte + "Code permanent : " + etudiant.getCodePermanent() + FIN_LIGNE;
+        texte = texte + "Nom : " + etudiant.getNom() + FIN_LIGNE;
+        texte = texte + "Prenom : " + etudiant.getPrenom() + FIN_LIGNE;
+        texte = texte + "============================ " + FIN_LIGNE;
         for (Evaluation evaluation : cours.getListeEvaluation()) {
             coursEtudiant = new CoursEtudiant(cours, etudiant, evaluation);
             texte = texte + "Evaluation " + coursEtudiant.getNumeroEvaluation() + " : ";
-            texte = texte + coursEtudiant.getNomEvaluation() + finLigne;
-            texte = texte + "Type : " + coursEtudiant.getType() + finLigne;
-            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() + finLigne;
-            texte = texte + "Note : " + coursEtudiant.getNote() + finLigne;
-            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() + finLigne;
-            texte = texte + "============================ " + finLigne;
+            texte = texte + coursEtudiant.getNomEvaluation() + FIN_LIGNE;
+            texte = texte + "Type : " + coursEtudiant.getType() + FIN_LIGNE;
+            texte = texte + "Ponderation : " + coursEtudiant.getPonderation() + FIN_LIGNE;
+            texte = texte + "Note : " + coursEtudiant.getNote() + FIN_LIGNE;
+            texte = texte + "Moyenne du groupe : " + coursEtudiant.getMoyenneGroupeEvaluation() + FIN_LIGNE;
+            texte = texte + "============================ " + FIN_LIGNE;
             noteEtudiant = noteEtudiant + coursEtudiant.getNote();
         }
         texte = texte + "Total\r\n";
-        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + finLigne;
-        texte = texte + "Note : " + noteEtudiant + finLigne;
-        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + finLigne;
+        texte = texte + "Ponderation : " + cours.getPonderationGroupe() + FIN_LIGNE;
+        texte = texte + "Note : " + noteEtudiant + FIN_LIGNE;
+        texte = texte + "Moyenne du groupe : " + cours.getMoyenneGroupe() + FIN_LIGNE;
 
         return texte;
     }
@@ -85,13 +85,13 @@ public class CreerResultatsEtudiant {
         String nomRepertoire = null;
         String texte = null;
         for (Cours cours : listeCours) {
-            nomRepertoire = repertoireParDefaut + cours.getTitre();
+            nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
             creerRepertoire(nomRepertoire);
             for (Etudiant etudiant : cours.getListeEtudiant()) {
                 nomFichier = cours.getSession() + "_" + cours.getTitre() + "_" + etudiant.getCodePermanent();
                 //on insere dans le fichier les données de l'objet CoursEtudiant
                 texte = ecrireTexte(cours, etudiant);
-                FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier + ".txt");
+                FileWriter writer = new FileWriter(nomRepertoire +SEP_FICHIER+ nomFichier + ".txt");
                 writer.write(texte);
                 writer.close();
             }

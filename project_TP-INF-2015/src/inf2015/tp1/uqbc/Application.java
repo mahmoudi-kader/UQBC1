@@ -5,7 +5,6 @@ import inf2015.tp1.uqbc.fichiers.CreerResultatsEtudiant;
 import inf2015.tp1.uqbc.fichiers.CreerResultatsGroupeCours;
 import inf2015.tp1.uqbc.fichiers.FichierJSON;
 import inf2015.tp1.uqbc.fichiers.TraitementFichiers;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +29,7 @@ public class Application {
             repertoire = args[0];
         }
         */
-       String repertoire ="./";
-        // String repertoire ="C:/Users/nawal/Documents/NetBeansProjects/UQBC1/project_TP-INF-2015/";
-        //String repertoire = "/home/benoit/NetBeansProjects/UQBC1/project_TP-INF-2015/fichiers/";
+        String repertoire ="./";
         List<FichierJSON> listeFichiers = new ArrayList();
         TraitementFichiers.ramasser(repertoire, listeFichiers);
         List<Cours> listeCours = TraitementFichiers.chargerDonnees(listeFichiers);
@@ -46,8 +43,6 @@ public class Application {
         
         CreerJsonRegistraire creerJson =new CreerJsonRegistraire(version);
         creerJson.CreerJson(listeCours);
-
-
         
     }
 

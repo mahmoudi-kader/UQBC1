@@ -4,6 +4,7 @@ import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
 import inf2015.tp1.uqbc.Evaluation;
 import inf2015.tp1.uqbc.ResultatEvaluation;
+import inf2015.tp1.uqbc.Utilitaires;
 import inf2015.tp1.uqbc.validation.ValidationDonnees;
 import inf2015.tp1.uqbc.validation.ValidationException;
 import java.io.File;
@@ -24,10 +25,6 @@ import org.json.JSONObject;
  */
 public class TraitementFichiers {
 
-    //private static final String defaultWorkingDirectory = "./";
-    private static final String defaultWorkingDirectory = "./";
-    private static final String PREFIXE_FICHIER_LISTE_ETUDIANTS = "ListeEtudiantsCours";
-    private static final String PREFIXE_FICHIER_NOTES = "evaluation";
 
     private static final Hashtable<String, Etudiant> tableEtudiants = new Hashtable<>();
 
@@ -42,7 +39,7 @@ public class TraitementFichiers {
      */
     public static void ramasser(String repertoire, List<FichierJSON> liste) {
         if (repertoire == null || repertoire.length() == 0) {
-            repertoire = defaultWorkingDirectory;
+            repertoire = Utilitaires.REPERTOIRE_PAR_DEFAUT;
         }
 
         if (liste == null) {
@@ -81,11 +78,11 @@ public class TraitementFichiers {
                     }
 
                     FichierJSON fichierJSON = null;
-                    if (fichier.getName().startsWith(PREFIXE_FICHIER_LISTE_ETUDIANTS)) {
+                    if (fichier.getName().startsWith(Utilitaires.PREFIXE_FICHIER_LISTE_ETUDIANTS)) {
 
                         fichierJSON = new FichierListeEtudiant();
 
-                    } else if (fichier.getName().startsWith(PREFIXE_FICHIER_NOTES)) {
+                    } else if (fichier.getName().startsWith(Utilitaires.PREFIXE_FICHIER_NOTES)) {
 
                         fichierJSON = new FichierNotesCours();
 

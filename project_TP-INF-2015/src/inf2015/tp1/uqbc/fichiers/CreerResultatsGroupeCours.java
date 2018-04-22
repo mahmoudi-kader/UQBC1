@@ -3,37 +3,29 @@ package inf2015.tp1.uqbc.fichiers;
 import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Evaluation;
+import inf2015.tp1.uqbc.Utilitaires;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import static inf2015.tp1.uqbc.Utilitaires.FIN_LIGNE;
+import static inf2015.tp1.uqbc.Utilitaires.REPERTOIRE_PAR_DEFAUT;
+import static inf2015.tp1.uqbc.Utilitaires.SEP_FICHIER;
 /**
  *  Class qui s'occupe de la création du fichier
  * @author benoit
  */
 public class CreerResultatsGroupeCours {
     
-    private static final String repertoireParDefaut = "./";
     
-    private String finLigne = System.lineSeparator();
-    private String sepFichier = System.getProperty("file.separator");
     private long version = 0l;    
     
     public CreerResultatsGroupeCours(long version){
         this.version = version;
     }
     
-    
-    /**
-     * Cette méthode retourne la ligne qui affiche la version du document.
-     * @return String la version
-     */
-    protected String getVersion(){
-        return "Version : "+ new SimpleDateFormat().format(new Date(this.version)) +finLigne;
-    }
     
     /**
      * Cette méthode créé le fichier de résultats pour le group- cours passé en paramettre,
@@ -55,30 +47,30 @@ public class CreerResultatsGroupeCours {
         for(Cours cours : listeCours){
             
             StringBuilder sbTexte = new StringBuilder();
-            String nomRepertoire = repertoireParDefaut + cours.getTitre();
+            String nomRepertoire = REPERTOIRE_PAR_DEFAUT + cours.getTitre();
             
             creerRepertoire(nomRepertoire);
             
             String szGroupeCours = cours.getGroupe()+"-"+cours.getTitre();
             
-            sbTexte.append("Groupe-Cours : "+szGroupeCours);
-            sbTexte.append(" Session : "+cours.getSession()+finLigne+finLigne+finLigne);
-            sbTexte.append(getVersion());
+            sbTexte.append("Groupe-Cours : ").append(szGroupeCours);
+            sbTexte.append(" Session : ").append(cours.getSession()).append(FIN_LIGNE).append(FIN_LIGNE).append(FIN_LIGNE);
+            sbTexte.append(Utilitaires.getInstance().getVersion());
             
             String nomFichier = szGroupeCours+".txt";
 
             for(Evaluation evaluation : cours.getListeEvaluation()){               
 
-                sbTexte.append("Evaluation : "+evaluation.getNomEvaluation()+"-"+evaluation.getNumeroEvaluation()+finLigne+finLigne);
+                sbTexte.append("Evaluation : "+evaluation.getNomEvaluation()+"-"+evaluation.getNumeroEvaluation()+FIN_LIGNE+FIN_LIGNE);
                 
-                sbTexte.append("Moyenne : "+Calculs.calculMoyenne(evaluation)+finLigne);
-                sbTexte.append("Mode : "+Calculs.calculMode(evaluation)+finLigne);
-                sbTexte.append("Médiane : "+Calculs.calculMediane(evaluation)+finLigne);
-                sbTexte.append("Écart-type : "+Calculs.calculEcartType(evaluation)+finLigne);
-                sbTexte.append("Nombre d'étudiant : "+cours.getListeEtudiant().size()+finLigne+finLigne+finLigne);
+                sbTexte.append("Moyenne : "+Calculs.calculMoyenne(evaluation)+FIN_LIGNE);
+                sbTexte.append("Mode : "+Calculs.calculMode(evaluation)+FIN_LIGNE);
+                sbTexte.append("Médiane : "+Calculs.calculMediane(evaluation)+FIN_LIGNE);
+                sbTexte.append("Écart-type : "+Calculs.calculEcartType(evaluation)+FIN_LIGNE);
+                sbTexte.append("Nombre d'étudiant : "+cours.getListeEtudiant().size()+FIN_LIGNE+FIN_LIGNE+FIN_LIGNE);
                
                 
-                try (FileWriter writer = new FileWriter(nomRepertoire +sepFichier+ nomFichier )) {
+                try (FileWriter writer = new FileWriter(nomRepertoire +SEP_FICHIER+ nomFichier )) {
                     writer.write(sbTexte.toString());
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -141,7 +133,7 @@ public class CreerResultatsGroupeCours {
         
         StringBuilder sb = new StringBuilder();
         String texte = null;
-        String version = getVersion();
+        String version = Utilitaires.getInstance().getVersion();
         
         
         
