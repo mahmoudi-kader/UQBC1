@@ -39,13 +39,13 @@ public class Application {
         CreerResultatsEtudiant creerDocument = new CreerResultatsEtudiant(version);
         creerDocument.ecrireFichier(listeCours);
         
-        CreerResultatsGroupeCours resultatGroupeCours = new CreerResultatsGroupeCours(version);
+        CreerResultatsGroupeCours resultatGroupeCours = new CreerResultatsGroupeCours();
         resultatGroupeCours.ecrireFichier(listeCours);
         
-        CreerJsonRegistraire creerJson =new CreerJsonRegistraire(version);
+        CreerJsonRegistraire creerJson =new CreerJsonRegistraire();
         creerJson.CreerJson(listeCours);
         
-        CreerFichierEchec creerFichiersEchec= new CreerFichierEchec(version);
+        CreerFichierEchec creerFichiersEchec= new CreerFichierEchec();
         creerFichiersEchec.ecrireFichier(listeCours);
 
 

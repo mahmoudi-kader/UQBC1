@@ -3,32 +3,21 @@ package inf2015.tp1.uqbc.fichiers;
 import inf2015.tp1.uqbc.Calculs;
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.Etudiant;
+import inf2015.tp1.uqbc.Utilitaires;
 import inf2015.tp1.uqbc.validation.ValidationEvaluations;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import static inf2015.tp1.uqbc.Utilitaires.REPERTOIRE_PAR_DEFAUT;
+
 /**
  * Cette classe sert a générer le fichier json a être envoyé au registraire.
  * @author Abdelkader
  * 
  */
 public class CreerJsonRegistraire {
-
-   private final static String FIN_LIGNE = System.lineSeparator();
-   private final static String SEP_FICHIER = System.getProperty("file.separator");
-        
-   String repertoireDestination = "./";
-   long version = 0l;
-
-    public CreerJsonRegistraire(long version) throws IOException {
-        
-        this.version = version;
-        
-    }
    
    public void CreerJson(List<Cours> listeCours) throws IOException{
        
@@ -50,7 +39,7 @@ public class CreerJsonRegistraire {
                     groupe.put("Groupe: ", cours.getGroupe());
                     JSONObject note = new JSONObject();
                     JSONObject version = new JSONObject();
-                    version.put("Version: ", getVersion());
+                    version.put("Version: ", Utilitaires.getInstance().getVersionJSON());
 
                     obj.put(groupe);
                     obj.put(sigle);
@@ -72,20 +61,14 @@ public class CreerJsonRegistraire {
                     cours_groupe = cours.getTitre()+cours.getGroupe();
                     nomCours = cours.getTitre();
                 }
-                CreerResultatsEtudiant.creerRepertoire(repertoireDestination + nomCours);
-                FileWriter writer = new FileWriter(repertoireDestination + nomCours + "/" + cours_groupe + ".json");  
+                CreerResultatsEtudiant.creerRepertoire( REPERTOIRE_PAR_DEFAUT+ nomCours);
+                FileWriter writer = new FileWriter(REPERTOIRE_PAR_DEFAUT + nomCours + "/" + cours_groupe + ".json");  
                 writer.write(obj.toString());
                 writer.close();   
             }
         }
     }
    
-     /**
-     * Cette méthode retourne la ligne qui affiche la version du document.
-     * @return String la version
-     */
-    protected String getVersion(){
-        return ""+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format( new Date(this.version));
-    }
+
    
 }

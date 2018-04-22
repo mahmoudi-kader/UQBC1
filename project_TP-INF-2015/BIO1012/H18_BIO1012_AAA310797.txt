@@ -1,0 +1,26 @@
+Version : 2018.02.01 AD at 00:00:00 EST
+
+Cours: BIO10121012
+Groupe: Gr10
+Session: H18
+============================ 
+Code permanent : AAA310797
+Nom : Saddd
+Prenom : Naaaa
+============================ 
+Evaluation 1 : TP
+Type : TP
+Ponderation : 20%
+Note : 18.0
+Moyenne du groupe : 18.0
+============================ 
+Evaluation 2 : Examen intra
+Type : Examen
+Ponderation : 40%
+Note : 23.0
+Moyenne du groupe : 23.0
+============================ 
+Total
+Ponderation : 60.0
+Note : 41.0
+Moyenne du groupe : 41.0

@@ -2,6 +2,7 @@ package inf2015.tp1.uqbc.fichiers;
 
 import inf2015.tp1.uqbc.Cours;
 import inf2015.tp1.uqbc.CoursEtudiant;
+import inf2015.tp1.uqbc.Utilitaires;
 import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.io.File;
 import java.io.FileWriter;
@@ -10,33 +11,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import static inf2015.tp1.uqbc.Utilitaires.FIN_LIGNE;
+import static inf2015.tp1.uqbc.Utilitaires.REPERTOIRE_PAR_DEFAUT;
+import static inf2015.tp1.uqbc.Utilitaires.SEP_FICHIER;
 
 /**
  *
  * Classe qui permet d'écrire le fichier txt par étudiant
  */
 public class CreerFichierEchec {
-
-    private static final String REPERTOIRE_PAR_DEFAUT = "./";
-    
-    private static final String FIN_LIGNE = System.lineSeparator();
-    private static final String SEP_FICHIER = System.getProperty("file.separator");
-    private long version = 0l;
-
-    public CreerFichierEchec(long version){
-        this.version = version;
-    }
-    
-    /**
-     * Cette méthode retourne la ligne qui affiche la version du document.
-     * @return String la version
-     */
-    protected String getVersion(){
-        return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format(new Date(this.version)) +FIN_LIGNE;
-    }
-    
-    
     /**
      * Cette méthode insère le texte qui doit être écrit dans le string et le retourne.
      * @param cours
@@ -45,13 +28,12 @@ public class CreerFichierEchec {
      */
     private String ecrireTexte(Cours cours) {
         String texte = null;
-        String version = getVersion();
+ 
         CoursEtudiant coursEtudiant;
         double noteEtudiant = 0;
         List<ValidationReussite>liste = new ArrayList();
         liste=extraireEtudiantEchec(cours);
-
-        texte = version + FIN_LIGNE;
+        texte = Utilitaires.getInstance().getVersion() + FIN_LIGNE;
          texte+=" * *****************************************************"+ FIN_LIGNE
      + " *               ETUDIANTS EN SITUATION D'ECHEC        *"+ FIN_LIGNE
      + " * *****************************************************"+ FIN_LIGNE+FIN_LIGNE;

@@ -13,13 +13,7 @@ import inf2015.tp1.uqbc.validation.ValidationReussite;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -27,8 +21,7 @@ import static org.junit.Assert.*;
  */
 public class testCreerFichierEchec {
     
-    private long version = new Date(118,01,01).getTime();
-    
+    private long version = new Date(118,01,01).getTime();    
     public testCreerFichierEchec() {
     }
     
@@ -74,7 +67,7 @@ public class testCreerFichierEchec {
         listeEvaluation.get(2).setListeResultatEvaluation(listeResultatEvaluation);
         cours1.setListeEvaluation(listeEvaluation);
         
-        CreerFichierEchec test = new CreerFichierEchec(version);
+        CreerFichierEchec test = new CreerFichierEchec();
         listeEtudiantEchec = test.extraireEtudiantEchec(cours1);
         for(int i = 0 ; i < listeEtudiantEchec.size() ; i++){
             System.out.print("Code : " + listeEtudiantEchec.get(i).getEtudiant().getCodePermanent());

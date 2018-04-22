@@ -39,4 +39,12 @@ public class Utilitaires {
         return "Version : "+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format(new Date(this.version)) +FIN_LIGNE;
     }    
     
+     /**
+     * Cette méthode retourne la ligne qui affiche la version du document.
+     * @return String la version
+     */
+    public String getVersionJSON(){
+        return ""+ new SimpleDateFormat("yyyy.MM.dd G 'à' HH:mm:ss z").format( new Date(this.version));
+    }    
+    
 }

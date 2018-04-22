@@ -105,7 +105,7 @@ public class CreerResultatsGroupeCoursTest {
         }
         Assert.assertFalse(monFichier.exists());
         
-        CreerResultatsGroupeCours creerResultatsGroupeCours = new CreerResultatsGroupeCours(version);
+        CreerResultatsGroupeCours creerResultatsGroupeCours = new CreerResultatsGroupeCours();
         creerResultatsGroupeCours.ecrireFichier(listeCours);
           
         Assert.assertTrue(monFichier.exists());
